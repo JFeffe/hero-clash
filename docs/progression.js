@@ -1,0 +1,7 @@
+import {D,randomItem,applyResult} from './engine.js';
+export const rarity=it=>Number.isInteger(it.rarity)?Math.max(0,Math.min(2,it.rarity)):0;
+export const legacyPoints=h=>10+3*Math.max(0,h.level-1)+5*h.wins+h.draws;
+// The ledger is reconstructed from career records, never incremented during viewing/replay.
+export function migrate(game){for(const h of game.graveyard)if(!Number.isFinite(h.company_points))h.company_points=legacyPoints(h);game.company_points=game.graveyard.reduce((n,h)=>n+h.company_points,0);game.revision=3;return game;}
+export function rollLoot(h,winner,rng=Math.random){if(h.hearts<=0||rng()>=(winner===0?.4:winner===1?.2:.3))return null;const it=randomItem(Math.floor(rng()*4),h.level,h.class);const roll=rng();it.rarity=roll<.65?0:roll<.93?1:2;return it;}
+export function settle(game,h,result,opponent,rng=Math.random){if(!game.heroes.includes(h)||h.hearts<=0)throw Error('Hero is not active');h.energy-=20;const amount=applyResult(h,result);let loot=rollLoot(h,result.winner,rng),points=0;if(loot)h.inventory.push(loot);if(h.hearts===0){h.died_at=Date.now();h.final_opponent=opponent.name;h.company_points=legacyPoints(h);points=h.company_points;game.graveyard.push(h);game.heroes=game.heroes.filter(x=>x.id!==h.id);game.selected=game.heroes[0]?.id??null;game.deathNotice=h.id;}migrate(game);return {amount,loot,points};}
