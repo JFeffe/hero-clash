@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {webcrypto} from 'node:crypto';
+import * as appearance from '../docs/appearance.js';
 import * as engine from '../docs/engine.js';
 import * as progression from '../docs/progression.js';
 import * as heroState from '../docs/hero-state.js';
@@ -12,13 +13,13 @@ if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const h=engine.hero(1,4);h.inventory=[{id:14,level:1,rarity:0}];h.equipped=[-1,-1,0,-1];
 const backup={version:2,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
 const host={innerHTML:'',style:{}};
-const context=vm.createContext({...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
+const context=vm.createContext({...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:()=>{}},
  document:{querySelector:()=>host,querySelectorAll:()=>[],documentElement:{},addEventListener:()=>{}},
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
  cancelAnimationFrame:()=>{},requestAnimationFrame:()=>0,setInterval:()=>{},setTimeout:()=>0,clearTimeout:()=>{}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
-assert(host.innerHTML.includes('0.9'));
+assert(host.innerHTML.includes('0.11'));
 for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}'`,context);
  const html=vm.runInContext('fullHeroSheet(selected())',context);

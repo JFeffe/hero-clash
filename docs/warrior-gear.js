@@ -1,3 +1,4 @@
+import {drawWarriorHead} from './warrior-identity.js';
 // Body poses and hand sockets share atlas coordinates. Equipment is selected by
 // item ID, never inventory position or rarity, so existing saves work unchanged.
 const rows=[[0,282,278],[283,543,540],[544,799,795],[800,1024,1018]];
@@ -13,13 +14,14 @@ export function warriorEquipment(h){
  const armor=h.inventory?.[h.equipped?.[1]]?.id;
  return {weapon:Number.isInteger(weapon)&&weapon>=0&&weapon<6?weapon:null,armor:armor>=6&&armor<=9?armor-6:2};
 }
-export function drawWarriorGear(ctx,body,gear,h,index,x,ground,s,flip,time=0){
+export function drawWarriorGear(ctx,body,gear,h,index,x,ground,s,flip,time=0,heads=null){
  const {weapon,armor}=warriorEquipment(h),[top,bottom,baseline]=rows[armor], [left,right]=columns[index];
  const bodyHeight=baseline-top,scale=s*54/bodyHeight;
  const pivot=index===5?1398:(left+right)/2;
  const breathe=index===0?Math.sin(time*3)*1.4:0;
  ctx.save();ctx.translate(x,ground+breathe*scale);ctx.scale(flip?-scale:scale,scale);ctx.imageSmoothingEnabled=false;
  ctx.drawImage(body,left,top,right-left,bottom-top,left-pivot,top-baseline,right-left,bottom-top);
+ if(heads)drawWarriorHead(ctx,heads,h,armor,index,pivot,baseline);
  if(weapon!==null){
   const [sx,sy,w,ht,gx,gy,length]=weapons[weapon];const [hx,hy]=hands[armor][index];
   let angle=weapon===0||weapon===4?2.12:weapon===1?.48:weapon===5?.35:.08;
