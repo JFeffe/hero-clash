@@ -19,3 +19,13 @@ Référence : planche validée « 01 — Pixel rétro raffiné », utilisée pou
 ## 0.12.1 — Résolution affinée
 
 La grille de composition passe de 4:1 à 2:1 (320 × 224 au lieu de 160 × 112). Deux fois plus de pixels par axe conservent davantage de détails des sources pour les visages, les tenues et les armes. La taille à l’écran et les points de raccord restent identiques ; le rendu reste sans lissage.
+
+## 0.16.0 — Boxer personnalisable
+
+Intégration du Boxer (classe 12 / Boxeur), d’après la fiche approuvée : débardeur anthracite, short bordeaux, bottes et petits bandages laissant les doigts disponibles pour les armes. Atlas généré avec l’outil intégré, conservé dans `docs/assets/boxer-retro-v1.png` : quatre tenues, six poses, corps sans tête sur fond vert retiré au chargement. Les raccords de cou et de main sont mesurés pour cette planche.
+
+Le système partage les 24 identités existantes (deux genres, trois visages/teints, quatre coiffures). Le corps athlétique est commun aux genres ; les bras et jambes exposés sont recolorés selon le teint. Les six armes et le mode sans arme sont disponibles dans les portraits, combats et aperçu. Contrôles d’apparence au recrutement et dans la fiche, en français et en anglais. Statistiques, règles et format des sauvegardes inchangés.
+
+Validation : 11 fichiers de tests Node, dont 40 320 appels du compositeur sur les cinq classes et vérification des contrôles du Boxer, sauvegarde et défilement. Inspection Canvas des sources réelles avec les quatre tenues, six armes, mode sans arme, trois teints et six poses. Pas de test sur téléphone physique.
+
+Brief de production : utiliser l’atlas du Nécromancien pour la disposition seulement et la fiche Boxer approuvée pour le costume ; grille 1536 × 1024, six colonnes et quatre rangées, repos/course A/course B/attaque/blessure/chute, sans tête ni arme, bandages fins, plate/veste tactique/débardeur/cuir noir, fond vert uni, style pixel rétro raffiné.

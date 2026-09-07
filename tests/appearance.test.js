@@ -58,6 +58,17 @@ vm.runInContext('candidate=hero(1,2);page="recruit";render()',context);
 await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
 assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
 assert.equal(vm.runInContext('candidate.name',context),'Ariane');
+// Boxer identity controls work in both languages and preserve scroll/save state.
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';game.heroes[0].class=12;page='detail';render()`,context);
+ assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Boxeur':'Boxer appearance'));
+ await events.change({target:{dataset:{appearance:'face'},value:'2'}});
+ assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
+}
+vm.runInContext('candidate=hero(1,12);page="recruit";render()',context);
+await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
+assert.equal(vm.runInContext('candidate.appearance.gender',context),1);
+assert.equal(vm.runInContext('candidate.name',context),'Ariane');
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
 console.log(`${count} identity/loadout/pose/direction renders; cosmetic-only combat, old saves, import validation, FR/EN controls, recruitment name and scroll retention verified.`);
