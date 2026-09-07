@@ -22,3 +22,17 @@ export function cleanSpriteMatte(data,width,height){
  }
  return data;
 }
+
+// Green key for the Mage: retain her purple robe and hair.
+export function cleanGreenMatte(data,width,height){
+ const background=new Uint8Array(width*height);
+ for(let p=0;p<background.length;p++){const i=p*4;if(data[i+3]===0||(data[i+1]>160&&data[i+1]-data[i]>45&&data[i+1]-data[i+2]>45))background[p]=1;}
+ for(let p=0;p<background.length;p++){
+  const i=p*4;if(background[p]){data[i+3]=0;continue;}
+  const spill=data[i+1]-Math.max(data[i],data[i+2]);if(spill<=8)continue;
+  const x=p%width,y=Math.floor(p/width);let edge=false;
+  for(let dy=-2;dy<=2&&!edge;dy++)for(let dx=-2;dx<=2;dx++){const nx=x+dx,ny=y+dy;if(nx>=0&&nx<width&&ny>=0&&ny<height&&background[ny*width+nx]){edge=true;break;}}
+  if(edge){if(spill>25)data[i+3]=0;else data[i+1]=Math.max(data[i],data[i+2])+6;}
+ }
+ return data;
+}

@@ -18,7 +18,7 @@ const context=vm.createContext({...engine,...progression,...heroState,...art,B,c
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
  cancelAnimationFrame:()=>{},requestAnimationFrame:()=>0,setInterval:()=>{},setTimeout:()=>0,clearTimeout:()=>{}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
-assert(host.innerHTML.includes('0.7'));
+assert(host.innerHTML.includes('0.8'));
 for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}'`,context);
  const html=vm.runInContext('fullHeroSheet(selected())',context);
@@ -44,3 +44,14 @@ vm.runInContext('playLast(battle)',context);
 assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
 assert.equal(vm.runInContext('battle.index',context),0);
 console.log('Showcase and replay leave company state, hearts, XP, energy and saved battle unchanged.');
+
+vm.runInContext("startArtDemo('mage')",context);
+assert.equal(vm.runInContext('battle.heroes[0].class',context),2);
+assert(vm.runInContext('battle.result.events.some(e=>e.actions.some(a=>a.kind==="ignite"))',context));
+assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
+context.window.scrollY=543;let scrollCalls=[],focusOptions;
+context.window.scrollTo=(x,y)=>scrollCalls.push([x,y]);host.focus=options=>{focusOptions=options;};
+vm.runInContext("page='detail';render({preserveScroll:true,focusSlot:2})",context);
+assert.deepEqual(scrollCalls.at(-1),[0,543]);assert.equal(focusOptions.preventScroll,true);
+vm.runInContext("go('home')",context);assert.deepEqual(scrollCalls.at(-1),[0,0]);
+console.log('Mage showcase, preserved scroll/focus and normal navigation verified.');

@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.6
+# Hero Clash — prototype Web 0.8
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -85,3 +85,12 @@ Cette première passe conserve un costume et un visage fixes pour le Guerrier à
 Une conversion PNG → WebP sans perte a été vérifiée pixel par pixel. Le sprite classique reste disponible en cas d’échec de chargement. Vérifications : `npm test`, notamment état de démonstration/relecture sans modification de carrière et sélection des poses. `mobile-preview.html` contient un cadre de 390 × 844 pour vérifier la mise en page téléphone.
 
 Vérification navigateur : duel de démonstration ouvert, sprites chargés et affichés. Correction des canevas étirés ; proportions natives conservées, cadrage mobile de 540 × 400 contre 720 × 400 sur grand écran.
+
+
+## Version 0.8 — Mage et confort de sélection
+
+- Mage au bâton dans le style approuvé : attente, déplacement, incantation, réaction aux coups et chute. Costume et visage fixes pour cette première passe ; autres armes conservées dans le style classique.
+- Bouton **Essayer le Mage / Try the Mage** sur l’accueil, duel gratuit contre le Guerrier ; le duel Guerrier/Loup reste disponible. Les vrais Mages au bâton utilisent aussi les nouveaux sprites.
+- Nettoyage vert distinct pour conserver les violets de la robe ; projectiles de magie plus lisibles. Atlas WebP sans perte à partir de la génération originale.
+- Changer d’équipement conserve la position de défilement et le focus sur le sélecteur, tout en mettant à jour l’apparence et les valeurs. Les changements de page gardent leur navigation habituelle.
+- Aucun changement aux règles, classes, récompenses, statistiques ou sauvegardes.
