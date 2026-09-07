@@ -1,9 +1,10 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.17.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.18.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
+ ninja:[[177,77],[194,69],[194,69],[232,34],[214,47],[151,180]],
  boxer:[[177,76],[194,70],[194,70],[235,34],[214,43],[151,180]],
  necro:[[190,104],[190,76],[192,65],[230,42],[211,45],[135,168]],
  archer:[[190,104],[190,76],[192,65],[230,42],[211,45],[135,168]],
@@ -76,11 +77,13 @@ function prepareMageBodies(mage,rows,makeCanvas){
  });
 }
 
-export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null){
+export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
  if(archer)rows.archer=spriteRows(archer,4);
  if(necro)rows.necro=spriteRows(necro,4);
  if(boxer)rows.boxer=spriteRows(boxer,4);
+ if(ninja)rows.ninja=spriteRows(ninja,4);
+ if(koHeads)rows.koHeads=spriteRows(koHeads,6);
  function tintBodies(warrior,bands){return [warrior,...[1,2].map(tone=>{
   const c=makeCanvas(warrior.width,warrior.height),ctx=c.getContext('2d');ctx.drawImage(warrior,0,0);
   const p=ctx.getImageData(0,0,c.width,c.height),d=p.data;
@@ -96,6 +99,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   }
   ctx.putImageData(p,0,0);return c;
  })];}
+ const ninjaBodies=ninja?tintBodies(ninja,rows.ninja):null;
  const bodies=tintBodies(warrior,rows.warrior);
  const archerBodies=archer?tintBodies(archer,rows.archer):null;
  const necroBodies=necro?tintBodies(necro,rows.necro):null;
@@ -111,11 +115,11 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
-  const kind=h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
+  const kind=h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
+  const body=kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
@@ -132,15 +136,22 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   }
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
   {
-   const row=a.gender*3+a.face,[ht,hb]=rows.heads[row],cw=heads.width/4;
-   const neckX=(kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
-   const neckY=kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
+   const faceSheet=index===5&&koHeads?koHeads:heads;
+   const row=a.gender*3+a.face,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[row],cw=faceSheet.width/4;
+   const neckX=(kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
+   const neckY=kind==='ninja'?(index===5?bottom-49:top+15):kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
    const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair];
-   const sx=edges[0]*heads.width/1024,sw=(edges[1]-edges[0])*heads.width/1024;
-   ctx.drawImage(heads,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);ctx.restore();
+   const sx=edges[0]*faceSheet.width/1024,sw=(edges[1]-edges[0])*faceSheet.width/1024;
+   ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);
+   // Small cloth mask is a code-native equipment layer, below the eyelids.
+   if(kind==='ninja'){
+    ctx.fillStyle='#272737';ctx.beginPath();ctx.moveTo(-7,-60);ctx.lineTo(70,-54);ctx.lineTo(64,-17);ctx.lineTo(22,-5);ctx.lineTo(-7,-28);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#444056';ctx.fillRect(1,-50,56,6);
+   }
+   ctx.restore();
   }
   if(weapon!==null){
    const [sx,sy,w,height,gx,gy,length]=weaponRects[weapon];
@@ -167,7 +178,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }
- return {rows,hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
+ return {rows,hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);

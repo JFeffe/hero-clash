@@ -98,3 +98,7 @@ Vérification navigateur : duel de démonstration ouvert, sprites chargés et af
 ## 0.17.0 — Familiers et tests
 
 Cinq familiers en pixel rétro détaillé, combat de démonstration pour les cinq classes modernisées et sélection du familier. Aperçu d’équipement complet : armes, tenues, familiers, objets, emplacements vides et animations. Voir [les notes de cette version](ART_FAMILIARS.md).
+
+## 0.18.0 — Ninja et expressions KO
+
+Ninja personnalisable, armes et tenues modulaires, démonstration et aperçu mis à jour. Les héros couchés ont les yeux fermés et une expression neutre. Les treize classes sont disponibles dans l’aperçu pour tester les KO. Voir [les notes de version](ART_NINJA.md).
