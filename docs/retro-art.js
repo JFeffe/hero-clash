@@ -1,5 +1,5 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.13.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.13.1';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
@@ -31,7 +31,7 @@ export function spriteRows(image,count){
 }
 
 // Mage atlas sockets and hair silhouettes, measured relative to each row.
-const mageNecks=[[145,78],[170,82],[164,82],[146,81],[125,102],[94,180]];
+const mageNecks=[[137,86],[162,90],[156,90],[138,89],[123,105],[98,180]];
 const mageMasks=[
  [[35,-18],[195,-18],[195,75],[170,92],[120,75],[101,67],[84,83],[76,112],[35,112]],
  [[35,-18],[205,-18],[205,81],[178,96],[142,80],[128,67],[111,66],[92,82],[35,103]],
@@ -102,11 +102,21 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
   const clipWidth=kind==='mage'&&index===4?240:kind==='mage'&&index===5?272:256;
+  // Draw a skin bridge behind the clothing: the Mage's removed fixed head
+  // also removed its neck. Clothing occludes the lower edge of this bridge.
+  if(kind==='mage'){
+   const nx=left+mageNecks[index][0],ny=index===5?bottom-40:top+mageNecks[index][1];
+   ctx.save();ctx.translate(nx-pivot,ny-baseline);
+   ctx.rotate(index===5?-Math.PI/2:index===4?.32:0);
+   ctx.fillStyle=['#e5a073','#a96845','#75432e'][a.face];ctx.fillRect(-12,-8,24,30);
+   ctx.fillStyle=['#b36d4c','#80472f','#512d23'][a.face];ctx.fillRect(-12,-8,6,30);
+   ctx.restore();
+  }
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
   {
    const row=a.gender*3+a.face,[ht,hb]=rows.heads[row],cw=heads.width/4;
-   const neckX=(kind==='warrior'?[135,138,128,127,115,38][index]:mageNecks[index][0])+left;
-   const neckY=kind==='warrior'?(index===5?top+147:top+8):(index===5?bottom-40:top+mageNecks[index][1]);
+   const neckX=(kind==='warrior'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
+   const neckY=kind==='warrior'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);

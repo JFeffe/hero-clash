@@ -5,7 +5,7 @@ import {appearanceFromLook} from '../docs/appearance.js';
 let draws=0,created=0;
 function canvas(width,height,bands=[]){
  const result={width,height};
- const ctx={imageSmoothingEnabled:true,save(){},restore(){},translate(...a){assert(a.every(Number.isFinite));},scale(...a){assert(a.every(Number.isFinite));},rotate(a){assert(Number.isFinite(a));},
+ const ctx={imageSmoothingEnabled:true,fillRect(){},save(){},restore(){},translate(...a){assert(a.every(Number.isFinite));},scale(...a){assert(a.every(Number.isFinite));},rotate(a){assert(Number.isFinite(a));},
   drawImage(source,...args){assert(source);assert(args.every(Number.isFinite));draws++;},putImageData(){},
   getImageData(){const data=new Uint8ClampedArray(width*height*4);for(const [top,bottom] of bands)for(let y=top;y<bottom;y++)data[y*width*4+3]=255;return {data};}};
  result.getContext=()=>ctx;return result;

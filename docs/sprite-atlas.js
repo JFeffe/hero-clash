@@ -1,8 +1,8 @@
-import {prepareRetro} from './retro-art.js?v=0.13.0';
+import {prepareRetro} from './retro-art.js?v=0.13.1';
 import {prepareWarriorBodies} from './warrior-identity.js';
 import {appearanceOf,validAppearance} from './appearance.js';
-import {drawWarriorGear} from './warrior-gear.js?v=0.13.0';
-import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.13.0';
+import {drawWarriorGear} from './warrior-gear.js?v=0.13.1';
+import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.13.1';
 let sheet=null,mageSheet=null,warriorBody=null,warriorWeapons=null,warriorHeads=null,warriorBodies=null,retro=null,pending;
 export const atlasReady=()=>Boolean(retro||sheet||mageSheet);
 function loadSheet(path,clean){return new Promise(resolve=>{const image=new Image();image.onload=()=>{
