@@ -1,16 +1,17 @@
+import {prepareRetro} from './retro-art.js?v=0.12.0';
 import {prepareWarriorBodies} from './warrior-identity.js';
 import {appearanceOf,validAppearance} from './appearance.js';
-import {drawWarriorGear} from './warrior-gear.js?v=0.11.0';
-import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.11.0';
-let sheet=null,mageSheet=null,warriorBody=null,warriorWeapons=null,warriorHeads=null,warriorBodies=null,pending;
-export const atlasReady=()=>Boolean(sheet||mageSheet);
+import {drawWarriorGear} from './warrior-gear.js?v=0.12.0';
+import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.12.0';
+let sheet=null,mageSheet=null,warriorBody=null,warriorWeapons=null,warriorHeads=null,warriorBodies=null,retro=null,pending;
+export const atlasReady=()=>Boolean(retro||sheet||mageSheet);
 function loadSheet(path,clean){return new Promise(resolve=>{const image=new Image();image.onload=()=>{
  try{const c=document.createElement('canvas');c.width=image.naturalWidth;c.height=image.naturalHeight;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,c.width,c.height);clean(pixels.data,c.width,c.height);ctx.putImageData(pixels,0,0);resolve(c);}
  catch(error){console.warn('Sprite atlas unavailable; using classic art.',error);resolve(null);}
  };image.onerror=()=>resolve(null);image.src=new URL(path,import.meta.url).href;});}
 export function loadAtlas(){
  if(pending)return pending;if(typeof Image==='undefined')return Promise.resolve(false);
- pending=Promise.all([loadSheet('./assets/warrior-wolf-v1.webp',cleanSpriteMatte),loadSheet('./assets/mage-v1.webp',cleanGreenMatte),loadSheet('./assets/warrior-armors-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-weapons-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-heads-v1.png',cleanGreenMatte)]).then(([w,m,b,g,heads])=>{sheet=w;mageSheet=m;warriorBody=b;warriorWeapons=g;warriorHeads=heads;if(b&&heads){try{warriorBodies=prepareWarriorBodies(b,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});}catch(error){console.warn('Warrior identity unavailable',error);}}return Boolean(w||m||b);});return pending;
+ pending=Promise.all([loadSheet('./assets/warrior-wolf-v1.webp',cleanSpriteMatte),loadSheet('./assets/mage-v1.webp',cleanGreenMatte),loadSheet('./assets/warrior-armors-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-weapons-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-heads-v1.png',cleanGreenMatte),loadSheet('./assets/warrior-retro-v1.png',cleanGreenMatte),loadSheet('./assets/mage-retro-v1.png',cleanGreenMatte),loadSheet('./assets/heads-retro-v1.png',cleanGreenMatte)]).then(([w,m,b,g,heads,rw,rm,rh])=>{if(rw&&rm&&rh&&g){try{retro=prepareRetro(rw,rm,rh,g,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});}catch(error){console.warn('Retro art unavailable',error);}}sheet=w;mageSheet=m;warriorBody=b;warriorWeapons=g;warriorHeads=heads;if(b&&heads){try{warriorBodies=prepareWarriorBodies(b,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});}catch(error){console.warn('Warrior identity unavailable',error);}}return Boolean(retro||w||m||b);});return pending;
 }
 const warriorFrames=[ [8,175,242,335,120,330], [256,195,255,315,128,310], [520,195,247,315,128,310], [770,140,310,370,128,365], [1064,195,215,315,120,310], [1280,430,255,80,128,75] ];
 const wolfFrames=[ [5,680,247,222,125,217], [257,744,264,158,130,153], [535,744,230,158,118,153], [777,704,248,151,124,193], [1035,755,230,147,118,142], [1280,817,250,85,125,80] ];
@@ -29,6 +30,7 @@ function draw(ctx,frames,index,x,y,scale,flip,time,fallen,image=sheet){
  ctx.imageSmoothingEnabled=false;ctx.drawImage(image,sx,sy,w,h,-px,-py+breathe,w,h);ctx.restore();
 }
 export function atlasWarrior(ctx,h,x,y,s,flip,time,fallen,pose){
+ if(retro&&h.class===0){retro.draw(ctx,h,animationFrame(time,pose,fallen),x,y+27*s-(s*27-24)*(Number(fallen)||0),s,flip,time);return true;}
  if(h.class===0&&warriorBody&&warriorWeapons){const custom=warriorBodies&&warriorHeads&&validAppearance(h.appearance);drawWarriorGear(ctx,custom?warriorBodies[appearanceOf(h).face]:warriorBody,warriorWeapons,h,animationFrame(time,pose,fallen),x,y+27*s-(s*27-24)*(Number(fallen)||0),s,flip,time,custom?warriorHeads:null);return true;}
  if(!sheet||h.class!==0||h.inventory[h.equipped[0]]?.id!==0)return false;
  const ground=y+27*s-(s*27-24)*(Number(fallen)||0),index=animationFrame(time,pose,fallen);
@@ -42,6 +44,7 @@ export function atlasWolf(ctx,h,x,y,s,flip,time,action,state={}){
 
 const mageFrames=[[55,20,385,485,195,478],[545,20,410,483,235,478],[1060,20,430,483,245,478],[20,525,460,470,230,455],[555,530,430,462,230,450],[1024,815,500,172,250,163]];
 export function atlasMage(ctx,h,x,y,s,flip,time,fallen,pose){
+ if(retro&&h.class===2){retro.draw(ctx,h,animationFrame(time,pose,fallen),x,y+27*s-(s*27-24)*(Number(fallen)||0),s,flip,time);return true;}
  if(!mageSheet||h.class!==2||h.inventory[h.equipped[0]]?.id!==3)return false;
  const ground=y+27*s-(s*27-24)*(Number(fallen)||0);
  draw(ctx,mageFrames,animationFrame(time,pose,fallen),x,ground,s*54/435,flip,time,fallen,mageSheet);return true;
