@@ -12,13 +12,13 @@ if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const h=engine.hero(1,4);h.inventory=[{id:14,level:1,rarity:0}];h.equipped=[-1,-1,0,-1];
 const backup={version:2,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
 const host={innerHTML:'',style:{}};
-const context=vm.createContext({...engine,...progression,...heroState,...art,B,console,crypto:webcrypto,
+const context=vm.createContext({...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:()=>{}},
  document:{querySelector:()=>host,querySelectorAll:()=>[],documentElement:{},addEventListener:()=>{}},
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
  cancelAnimationFrame:()=>{},requestAnimationFrame:()=>0,setInterval:()=>{},setTimeout:()=>0,clearTimeout:()=>{}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
-assert(host.innerHTML.includes('0.6'));
+assert(host.innerHTML.includes('0.7'));
 for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}'`,context);
  const html=vm.runInContext('fullHeroSheet(selected())',context);
@@ -34,3 +34,13 @@ for(const lang of ['fr','en']){
  }
 }
 console.log('French/English balance templates, displayed equipped damage, fixed Fairy healing, all item descriptions and old-save loading verified.');
+
+const careerBefore=vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context);
+vm.runInContext('startArtDemo()',context);
+assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
+assert.equal(vm.runInContext('battle.preview',context),true);
+assert(vm.runInContext('battle.result.events.some(e=>e.actions.some(a=>a.kind==="wolf"))',context));
+vm.runInContext('playLast(battle)',context);
+assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
+assert.equal(vm.runInContext('battle.index',context),0);
+console.log('Showcase and replay leave company state, hearts, XP, energy and saved battle unchanged.');

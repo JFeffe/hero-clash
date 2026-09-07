@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {animationFrame,loadAtlas,atlasReady} from '../docs/sprite-atlas.js';
+assert.equal(animationFrame(0,{}),0);
+assert.equal(animationFrame(0,{run:1}),1);
+assert.equal(animationFrame(.1,{run:1}),2);
+assert.equal(animationFrame(.3,{attack:1,run:1}),3);
+assert.equal(animationFrame(.3,{attack:1,hurt:1}),4);
+assert.equal(animationFrame(0,{},.2),4);
+assert.equal(animationFrame(0,{},1),5);
+assert.equal(await loadAtlas(),false);assert.equal(atlasReady(),false);
+console.log('Animation states and unavailable-image fallback verified.');

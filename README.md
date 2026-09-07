@@ -73,3 +73,13 @@ Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enfo
 Jouer : https://jfeffe.github.io/hero-clash/ — version **0.6** dans l’en-tête.
 
 Tests : `npm test`. Simulations reproductibles : voir le rapport et `balance/validate.py`.
+
+## Version 0.7 — Guerrier et Loup animés
+
+Première intégration de la direction artistique validée : Guerrier à l’épée et Loup, avec poses d’attente, course, attaque, recul et chute. Le rendu utilise un atlas original généré à partir de la planche approuvée, stocké sans perte dans `docs/assets/warrior-wolf-v1.webp`. La couleur magenta sert de transparence au chargement ; aucune découpe ni modification d’image n’a lieu pendant les images d’animation.
+
+Le bouton **Essayer le nouveau style / Try the new art** ouvre un duel de démonstration gratuit depuis l’accueil, avec relecture. Il ne remplace pas le dernier vrai combat et ne consomme ni énergie, ni cœur. Les nouveaux sprites sont aussi utilisés dans les vrais combats et les portraits correspondants.
+
+Cette première passe conserve un costume et un visage fixes pour le Guerrier à l’épée. Les autres armes du Guerrier, les douze autres classes et les autres familiers conservent le rendu précédent. Les bonus de l’équipement restent ceux de la v0.6, quelle que soit l’apparence. L’animation ne modifie aucun résultat du moteur. Le Loup est un compagnon sans barre de vie : sa pose au sol lorsque son maître tombe est uniquement visuelle.
+
+Une conversion PNG → WebP sans perte a été vérifiée pixel par pixel. Le sprite classique reste disponible en cas d’échec de chargement. Vérifications : `npm test`, notamment état de démonstration/relecture sans modification de carrière et sélection des poses. `mobile-preview.html` contient un cadre de 390 × 844 pour vérifier la mise en page téléphone.
