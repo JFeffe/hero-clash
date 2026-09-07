@@ -1,5 +1,5 @@
-import {acquireItem,resetArenaAfterBattle} from './hero-state.js?v=0.11.0';
-import {D,randomItem,applyResult,battleRewards} from './engine.js?v=0.11.0';
+import {acquireItem,resetArenaAfterBattle} from './hero-state.js?v=0.12.0';
+import {D,randomItem,applyResult,battleRewards} from './engine.js?v=0.12.0';
 export const rarity=it=>Number.isInteger(it.rarity)?Math.max(0,Math.min(2,it.rarity)):0;
 export const legacyPoints=h=>10+3*Math.max(0,h.level-1)+5*h.wins+h.draws;
 // The ledger is reconstructed from career records, never incremented during viewing/replay.

@@ -19,7 +19,7 @@ const context=vm.createContext({...appearance,...engine,...progression,...heroSt
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
  cancelAnimationFrame:()=>{},requestAnimationFrame:()=>0,setInterval:()=>{},setTimeout:()=>0,clearTimeout:()=>{}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
-assert(host.innerHTML.includes('0.11'));
+assert(host.innerHTML.includes('0.12'));
 for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}'`,context);
  const html=vm.runInContext('fullHeroSheet(selected())',context);
