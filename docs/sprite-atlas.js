@@ -1,3 +1,4 @@
+import {cleanSpriteMatte} from './sprite-matte.js?v=0.7.2';
 // Approved art, lossless WebP. Magenta is the runtime transparency key.
 // Bounds are measured from the generated sheet; origin is feet/paws, not the image centre.
 let sheet=null,pending;
@@ -7,7 +8,7 @@ export function loadAtlas(){
  if(typeof Image==='undefined')return Promise.resolve(false);
  pending=new Promise(resolve=>{const image=new Image();image.onload=()=>{
   try{const c=document.createElement('canvas');c.width=image.naturalWidth;c.height=image.naturalHeight;const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);const pixels=ctx.getImageData(0,0,c.width,c.height),d=pixels.data;
-   for(let i=0;i<d.length;i+=4){if(d[i]>180&&d[i+2]>150&&d[i+1]<115)d[i+3]=0;}
+   cleanSpriteMatte(d,c.width,c.height);
    ctx.putImageData(pixels,0,0);sheet=c;resolve(true);
   }catch(error){console.warn('Sprite atlas unavailable; using classic art.',error);resolve(false);}
  };image.onerror=()=>resolve(false);image.src=new URL('./assets/warrior-wolf-v1.webp',import.meta.url).href;});return pending;
