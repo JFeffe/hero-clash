@@ -1,9 +1,10 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.13.1';
+import {warriorEquipment} from './warrior-gear.js?v=0.14.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
+ archer:[[190,104],[190,76],[192,65],[230,42],[211,45],[135,168]],
  warrior:[[76,98],[143,78],[82,90],[225,43],[104,91],[150,168]],
  mage:[[83,146],[104,129],[132,121],[230,84],[96,130],[130,210]]
 };
@@ -73,12 +74,13 @@ function prepareMageBodies(mage,rows,makeCanvas){
  });
 }
 
-export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
+export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
- const bodies=[warrior,...[1,2].map(tone=>{
+ if(archer)rows.archer=spriteRows(archer,4);
+ function tintBodies(warrior,bands){return [warrior,...[1,2].map(tone=>{
   const c=makeCanvas(warrior.width,warrior.height),ctx=c.getContext('2d');ctx.drawImage(warrior,0,0);
   const p=ctx.getImageData(0,0,c.width,c.height),d=p.data;
-  for(const [top] of rows.warrior)for(let index=0;index<6;index++){
+  for(const [top] of bands)for(let index=0;index<6;index++){
    const nx=index*256+[135,138,128,127,115,38][index],ny=top+(index===5?147:8);
    for(let y=Math.max(0,ny-12);y<Math.min(c.height,ny+15);y++)for(let x=nx-14;x<nx+14;x++){
     const i=(y*c.width+x)*4,r=d[i],g=d[i+1],b=d[i+2];
@@ -89,15 +91,17 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
    }
   }
   ctx.putImageData(p,0,0);return c;
- })];
+ })];}
+ const bodies=tintBodies(warrior,rows.warrior);
+ const archerBodies=archer?tintBodies(archer,rows.archer):null;
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
-  const kind=h.class===0?'warrior':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
+  const kind=h.class===0?'warrior':h.class===1?'archer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='warrior'?bodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
+  const body=kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
@@ -115,8 +119,8 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
   {
    const row=a.gender*3+a.face,[ht,hb]=rows.heads[row],cw=heads.width/4;
-   const neckX=(kind==='warrior'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
-   const neckY=kind==='warrior'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
+   const neckX=(kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
+   const neckY=kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
@@ -130,17 +134,26 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
    // Fallen poses occupy only the last ~70 px of the row.
    if(index===5)hy=bottom-18;
    let angle=kind==='warrior'?(weapon===0||weapon===4?2.12:weapon===1?.48:.08):(weapon===1?Math.PI/2:weapon===0||weapon===4?.25:0);
-   if(index===3)angle=weapon===2?.08:weapon===3?.45:Math.PI/2;
+   if(index===3)angle=weapon===2?(kind==='archer'?0:.08):weapon===3?.45:Math.PI/2;
    if(index===5)angle=Math.PI/2;
    const k=250*length/height;
    ctx.save();ctx.translate(hx-pivot,hy-baseline);ctx.rotate(angle);ctx.scale(k,k);
-   ctx.drawImage(weapons,sx,sy,w,height,sx-gx,sy-gy,w,height);ctx.restore();
+   if(kind==='archer'&&weapon===2){
+    // Mirror the bow so its limbs face the target; draw its string separately.
+    ctx.scale(-1,1);ctx.drawImage(weapons,sx,sy,84,height,sx-gx,sy-gy,84,height);
+   }else ctx.drawImage(weapons,sx,sy,w,height,sx-gx,sy-gy,w,height);
+   ctx.restore();
+   if(kind==='archer'&&weapon===2&&index!==5){
+    const bx=hx-pivot,by=hy-baseline,pull=index===3?left+85-pivot:bx-17;
+    ctx.strokeStyle='#e8d6ab';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(bx-13,by-83);ctx.lineTo(pull,by+10);ctx.lineTo(bx-13,by+78);ctx.stroke();
+    if(index===3){ctx.strokeStyle='#b99255';ctx.beginPath();ctx.moveTo(pull,by+10);ctx.lineTo(bx+32,by+10);ctx.stroke();ctx.fillStyle='#e7e8df';ctx.fillRect(bx+28,by+7,9,6);}
+   }
    ctx.drawImage(body,hx-7,hy-7,14,14,hx-7-pivot,hy-7-baseline,14,14);
   }
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }
- return {rows,draw(ctx,h,index,x,ground,s,flip,time=0){
+ return {rows,hasArcher:Boolean(archer),draw(ctx,h,index,x,ground,s,flip,time=0){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);
