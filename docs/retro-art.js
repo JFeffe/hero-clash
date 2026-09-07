@@ -1,5 +1,5 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.19.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.19.1';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
@@ -176,8 +176,17 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);
    // Small cloth mask is a code-native equipment layer, below the eyelids.
    if(kind==='ninja'){
-    ctx.fillStyle='#272737';ctx.beginPath();ctx.moveTo(-7,-60);ctx.lineTo(70,-54);ctx.lineTo(64,-17);ctx.lineTo(22,-5);ctx.lineTo(-7,-28);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#444056';ctx.fillRect(1,-50,56,6);
+    ctx.fillStyle='#272737';ctx.beginPath();
+    if(a.gender===0){
+     // Wrap the broader male cheek and jaw, with a strap below the ear.
+     ctx.moveTo(-38,-77);ctx.lineTo(-22,-77);ctx.lineTo(-12,-61);
+     ctx.lineTo(29,-53);ctx.lineTo(76,-53);ctx.lineTo(68,-8);
+     ctx.lineTo(20,-5);ctx.lineTo(-24,-29);
+    }else{
+     ctx.moveTo(-7,-60);ctx.lineTo(70,-54);ctx.lineTo(64,-17);ctx.lineTo(22,-5);ctx.lineTo(-7,-28);
+    }
+    ctx.closePath();ctx.fill();
+    ctx.fillStyle='#444056';ctx.fillRect(a.gender===0?-12:1,-50,a.gender===0?74:56,6);
    }
    ctx.restore();
   }
