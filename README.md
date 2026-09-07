@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.5
+# Hero Clash — prototype Web 0.6
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -59,3 +59,17 @@ Additional verification: `node tests/rewards.test.js`. Browser/device QA not per
 - Each Graveyard card displays the career's company-point contribution.
 
 Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enforcement, all battle outcomes resetting it, per-hero isolation, reload and equipment notice checks. Local save schema stays version 2 with revision 5 additions. Browser/device visual QA was not performed in this update.
+
+## Version 0.6 — Équilibrage
+
+[Rapport chiffré complet](BALANCE_REPORT.md) : 5 481 216 combats comparatifs et de validation, en plus du réglage. Dans la validation indépendante, les classes obtiennent 48,4–51,1 % de score, les équipements 47,1–52,8 % ; la Fée 49,0 %. Un nul vaut un demi-point.
+
+- Deux avantages et deux désavantages par classe (+8 % de dégâts), sans victoire garantie.
+- Fée : soin fixe selon niveau d’acquisition et rareté, sans amplification par les PV maximum.
+- Bases d’attaque de classe ajustées, bouclier du Soldat médiéval et soin du Moine réduits.
+- Équipements et progression de rareté revus ; descriptions FR/EN et statistiques équipées concordantes.
+- Sauvegardes et héros existants conservés ; leurs objets appliquent les nouveaux effets.
+
+Jouer : https://jfeffe.github.io/hero-clash/ — version **0.6** dans l’en-tête.
+
+Tests : `npm test`. Simulations reproductibles : voir le rapport et `balance/validate.py`.

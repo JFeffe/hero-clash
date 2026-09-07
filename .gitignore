@@ -1,0 +1,5 @@
+
+# Reproducible raw balance runs; summary and matrix are checked in.
+/balance/*.json
+!/balance/summary.json
+/balance/tune.py
