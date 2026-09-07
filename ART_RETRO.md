@@ -15,3 +15,7 @@ Référence : planche validée « 01 — Pixel rétro raffiné », utilisée pou
 - Guerrier : six colonnes (repos, deux courses, attaque, blessure, mort) et quatre rangées (plaque, veste tactique, tunique, cuir noir). Corps sans tête, cape rouge, mains vides pour raccorder les armes séparément.
 - Mage : même organisation ; femme adulte aux cheveux violets, cape violette, accents turquoise, quatre tenues et mains vides.
 - Visages : quatre colonnes de coiffures (court châtain, boucles noires, queue blonde, carré argenté), six rangées d’identités (trois hommes et trois femmes avec trois teints), orientation trois quarts droite et cadrage cohérent.
+
+## 0.12.1 — Résolution affinée
+
+La grille de composition passe de 4:1 à 2:1 (320 × 224 au lieu de 160 × 112). Deux fois plus de pixels par axe conservent davantage de détails des sources pour les visages, les tenues et les armes. La taille à l’écran et les points de raccord restent identiques ; le rendu reste sans lissage.

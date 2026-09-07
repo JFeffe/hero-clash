@@ -1,8 +1,8 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.12.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.12.1';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
-// onto a 4:1 pixel grid once, then shared by portraits and combat.
+// onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
  warrior:[[76,98],[143,78],[82,90],[225,43],[104,91],[150,168]],
  mage:[[83,146],[104,129],[132,121],[230,84],[96,130],[130,210]]
@@ -52,10 +52,10 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
   const kind=h.class===0?'warrior':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,...(h.class===0?[a.gender,a.face,a.hair]:[])].join(':');
   if(cache.has(key))return cache.get(key);
-  const c=makeCanvas(160,112),ctx=c.getContext('2d');
+  const c=makeCanvas(320,224),ctx=c.getContext('2d');
   const body=kind==='warrior'?bodies[a.face]:mage,[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
-  ctx.imageSmoothingEnabled=false;ctx.translate(80,96);ctx.scale(.25,.25);
+  ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
   const clipWidth=kind==='mage'&&index===4?240:kind==='mage'&&index===5?272:256;
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
@@ -90,6 +90,6 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);
-  ctx.scale(flip?-unit:unit,unit);ctx.drawImage(frame,-80,-96);ctx.restore();
+  ctx.scale(flip?-unit:unit,unit);ctx.drawImage(frame,-80,-96,160,112);ctx.restore();
  }};
 }
