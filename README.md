@@ -83,3 +83,5 @@ Le bouton **Essayer le nouveau style / Try the new art** ouvre un duel de démon
 Cette première passe conserve un costume et un visage fixes pour le Guerrier à l’épée. Les autres armes du Guerrier, les douze autres classes et les autres familiers conservent le rendu précédent. Les bonus de l’équipement restent ceux de la v0.6, quelle que soit l’apparence. L’animation ne modifie aucun résultat du moteur. Le Loup est un compagnon sans barre de vie : sa pose au sol lorsque son maître tombe est uniquement visuelle.
 
 Une conversion PNG → WebP sans perte a été vérifiée pixel par pixel. Le sprite classique reste disponible en cas d’échec de chargement. Vérifications : `npm test`, notamment état de démonstration/relecture sans modification de carrière et sélection des poses. `mobile-preview.html` contient un cadre de 390 × 844 pour vérifier la mise en page téléphone.
+
+Vérification navigateur : duel de démonstration ouvert, sprites chargés et affichés. Correction des canevas étirés ; proportions natives conservées, cadrage mobile de 540 × 400 contre 720 × 400 sur grand écran.
