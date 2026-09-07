@@ -71,4 +71,15 @@ assert.equal(vm.runInContext('candidate.appearance.gender',context),1);
 assert.equal(vm.runInContext('candidate.name',context),'Ariane');
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
+// Knight controls must persist on existing heroes and work before recruitment.
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';game.heroes[0].class=4;page='detail';render()`,context);
+ assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Chevalier':'Knight appearance'));
+ await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
+ assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
+}
+vm.runInContext('candidate=hero(1,4);page="recruit";render()',context);
+await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
+assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
+assert.equal(vm.runInContext('candidate.name',context),'Ariane');
 console.log(`${count} identity/loadout/pose/direction renders; cosmetic-only combat, old saves, import validation, FR/EN controls, recruitment name and scroll retention verified.`);

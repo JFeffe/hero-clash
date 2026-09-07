@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.8
+# Hero Clash — prototype Web 0.19.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -70,7 +70,7 @@ Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enfo
 - Équipements et progression de rareté revus ; descriptions FR/EN et statistiques équipées concordantes.
 - Sauvegardes et héros existants conservés ; leurs objets appliquent les nouveaux effets.
 
-Jouer : https://jfeffe.github.io/hero-clash/ — version **0.6** dans l’en-tête.
+Jouer : https://jfeffe.github.io/hero-clash/ — version **0.19.0** dans l’en-tête.
 
 Tests : `npm test`. Simulations reproductibles : voir le rapport et `balance/validate.py`.
 
@@ -102,3 +102,10 @@ Cinq familiers en pixel rétro détaillé, combat de démonstration pour les cin
 ## 0.18.0 — Ninja et expressions KO
 
 Ninja personnalisable, armes et tenues modulaires, démonstration et aperçu mis à jour. Les héros couchés ont les yeux fermés et une expression neutre. Les treize classes sont disponibles dans l’aperçu pour tester les KO. Voir [les notes de version](ART_NINJA.md).
+
+
+## 0.19.0 — Knight et quatre armures
+
+Le Knight (classe 4, « Soldat médiéval » en français) rejoint les classes modernisées : armure de plates argent et or, veste tactique, tunique légère et cuir noir, avec tissu bleu royal. Les portraits, le recrutement, les combats et l’aperçu partagent les 24 identités, six armes et poses KO aux yeux fermés. Le bouclier au lion est un calque visuel de classe, présent avec les armes à une main ou sans arme ; il est retiré avec le fusil, l’arc et le bâton.
+
+Le combat test propose maintenant sept classes modernisées et cinq familiers. L’aperçu conserve les treize classes, dont sept modernisées. Aucun changement d’équilibrage, d’inventaire ou de format de sauvegarde. Détails des sources et de la validation dans `ART_KNIGHT.md`.

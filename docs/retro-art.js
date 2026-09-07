@@ -1,9 +1,10 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.18.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.19.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
+ knight:[[177,77],[194,69],[194,69],[232,34],[214,47],[151,180]],
  ninja:[[177,77],[194,69],[194,69],[232,34],[214,47],[151,180]],
  boxer:[[177,76],[194,70],[194,70],[235,34],[214,43],[151,180]],
  necro:[[190,104],[190,76],[192,65],[230,42],[211,45],[135,168]],
@@ -11,6 +12,7 @@ const grips={
  warrior:[[76,98],[143,78],[82,90],[225,43],[104,91],[150,168]],
  mage:[[83,146],[104,129],[132,121],[230,84],[96,130],[130,210]]
 };
+const knightOffhand=[[82,78],[94,78],[94,78],[80,68],[116,79],[120,180]];
 const weaponRects=[
  [170,0,175,500,256,402,.60],[715,0,120,502,775,340,.66],
  [1220,0,105,502,1257,260,.68],[195,512,115,490,254,805,.83],
@@ -77,12 +79,13 @@ function prepareMageBodies(mage,rows,makeCanvas){
  });
 }
 
-export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null){
+export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null,knight=null,knightShield=null){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
  if(archer)rows.archer=spriteRows(archer,4);
  if(necro)rows.necro=spriteRows(necro,4);
  if(boxer)rows.boxer=spriteRows(boxer,4);
  if(ninja)rows.ninja=spriteRows(ninja,4);
+ if(knight)rows.knight=spriteRows(knight,4);
  if(koHeads)rows.koHeads=spriteRows(koHeads,6);
  function tintBodies(warrior,bands){return [warrior,...[1,2].map(tone=>{
   const c=makeCanvas(warrior.width,warrior.height),ctx=c.getContext('2d');ctx.drawImage(warrior,0,0);
@@ -100,6 +103,23 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   ctx.putImageData(p,0,0);return c;
  })];}
  const ninjaBodies=ninja?tintBodies(ninja,rows.ninja):null;
+ const knightBodies=knight?[knight,...[1,2].map(tone=>{
+  const c=makeCanvas(knight.width,knight.height),ctx=c.getContext('2d');ctx.drawImage(knight,0,0);
+  const p=ctx.getImageData(0,0,c.width,c.height),d=p.data,f=tone===1?[.80,.66,.58]:[.57,.43,.37];
+  // Only exposed neck/chest and fingertips; keep gold trim and blue cloth intact.
+  for(const [top,bottom] of rows.knight)for(let frame=0;frame<6;frame++){
+   const neck=[[130,18],[139,18],[135,18],[122,18],[102,18],[33,bottom-top-49]][frame];
+   const points=[neck,grips.knight[frame],knightOffhand[frame]];
+   for(let j=0;j<points.length;j++){
+    const [px,py]=points[j],nx=frame*256+px,ny=j&&frame===5?bottom-18:top+py;
+    for(let y=Math.max(top,ny-14);y<Math.min(bottom,ny+(j?14:30));y++)for(let x=nx-15;x<nx+15;x++){
+     const i=(y*c.width+x)*4,r=d[i],g=d[i+1],b=d[i+2];
+     if(d[i+3]&&r>150&&g>80&&b>50&&r>g*1.2&&g>b*1.15&&r-g<105&&g-b<70){d[i]=r*f[0];d[i+1]=g*f[1];d[i+2]=b*f[2];}
+    }
+   }
+  }
+  ctx.putImageData(p,0,0);return c;
+ })]:null;
  const bodies=tintBodies(warrior,rows.warrior);
  const archerBodies=archer?tintBodies(archer,rows.archer):null;
  const necroBodies=necro?tintBodies(necro,rows.necro):null;
@@ -115,11 +135,11 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
-  const kind=h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
+  const kind=h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
+  const body=kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
@@ -135,11 +155,19 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    ctx.restore();
   }
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
+  // The class shield follows the free forearm. Two-handed weapons leave it off.
+  // This is a cosmetic part of the Knight, never an extra inventory/stat item.
+  if(kind==='knight'&&knightShield&&(weapon===null||[0,4,5].includes(weapon))){
+   const [hx,hy]=knightOffhand[index];
+   ctx.save();ctx.translate(left+hx-pivot,index===5?bottom-32-baseline:top+hy-baseline);
+   ctx.rotate(index===5?-Math.PI/2:index===4?-.28:.08);
+   ctx.drawImage(knightShield,338,109,590,1008,-37,-48,75,128);ctx.restore();
+  }
   {
    const faceSheet=index===5&&koHeads?koHeads:heads;
    const row=a.gender*3+a.face,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[row],cw=faceSheet.width/4;
-   const neckX=(kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
-   const neckY=kind==='ninja'?(index===5?bottom-49:top+15):kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
+   const neckX=(kind==='knight'?[130,139,135,122,102,33][index]:kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
+   const neckY=kind==='knight'?(index===5?bottom-49:top+15):kind==='ninja'?(index===5?bottom-49:top+15):kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
@@ -178,7 +206,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }
- return {rows,hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
+ return {rows,hasKnight:Boolean(knight),hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);

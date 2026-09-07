@@ -2,7 +2,7 @@
   "name": "hero-clash-mobile",
   "private": true,
   "type": "module",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "scripts": {
     "test": "node --test tests/*.test.js",
     "balance": "node balance/simulate.mjs n=60 items=6240 compat=1"
