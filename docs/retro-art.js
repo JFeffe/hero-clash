@@ -1,5 +1,5 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.16.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.17.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.

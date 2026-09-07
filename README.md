@@ -94,3 +94,7 @@ Vérification navigateur : duel de démonstration ouvert, sprites chargés et af
 - Nettoyage vert distinct pour conserver les violets de la robe ; projectiles de magie plus lisibles. Atlas WebP sans perte à partir de la génération originale.
 - Changer d’équipement conserve la position de défilement et le focus sur le sélecteur, tout en mettant à jour l’apparence et les valeurs. Les changements de page gardent leur navigation habituelle.
 - Aucun changement aux règles, classes, récompenses, statistiques ou sauvegardes.
+
+## 0.17.0 — Familiers et tests
+
+Cinq familiers en pixel rétro détaillé, combat de démonstration pour les cinq classes modernisées et sélection du familier. Aperçu d’équipement complet : armes, tenues, familiers, objets, emplacements vides et animations. Voir [les notes de cette version](ART_FAMILIARS.md).
