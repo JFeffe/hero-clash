@@ -45,6 +45,15 @@ await events.change({target:{dataset:{appearance:'hair'},value:'2'}});
 assert.equal(vm.runInContext('candidate.name',context),'Ariane');assert.equal(vm.runInContext('candidate.appearance.hair',context),2);
 vm.runInContext('actions.confirm()',context);assert.equal(saved.heroes.at(-1).name,'Ariane');assert.equal(saved.heroes.at(-1).appearance.hair,2);
 assert(vm.runInContext('validSave(game)',context));
+// Mage controls must persist through save/reload and recruitment as well.
+vm.runInContext('game.heroes[0].class=2;game.selected=game.heroes[0].id;page="detail";render()',context);
+assert(nodes.app.innerHTML.includes('Apparence du Mage'));
+await events.change({target:{dataset:{appearance:'face'},value:'2'}});
+assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
+vm.runInContext('candidate=hero(1,2);page="recruit";render()',context);
+await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
+assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
+assert.equal(vm.runInContext('candidate.name',context),'Ariane');
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
 console.log(`${count} identity/loadout/pose/direction renders; cosmetic-only combat, old saves, import validation, FR/EN controls, recruitment name and scroll retention verified.`);

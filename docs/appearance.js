@@ -1,4 +1,4 @@
-// Shared, class-independent identity. Rendering is enabled for the Warrior first.
+// Shared, class-independent identity. Rendering is enabled for the Warrior and Mage.
 export const APPEARANCE_OPTIONS={
  gender:[['Homme','Man'],['Femme','Woman']],
  face:[['Visage 1 · teint clair','Face 1 · light complexion'],['Visage 2 · teint hâlé','Face 2 · medium complexion'],['Visage 3 · teint foncé','Face 3 · dark complexion']],

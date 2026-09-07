@@ -1,5 +1,5 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.12.1';
+import {warriorEquipment} from './warrior-gear.js?v=0.13.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
@@ -30,6 +30,49 @@ export function spriteRows(image,count){
  return bands;
 }
 
+// Mage atlas sockets and hair silhouettes, measured relative to each row.
+const mageNecks=[[145,78],[170,82],[164,82],[146,81],[125,102],[94,180]];
+const mageMasks=[
+ [[35,-18],[195,-18],[195,75],[170,92],[120,75],[101,67],[84,83],[76,112],[35,112]],
+ [[35,-18],[205,-18],[205,81],[178,96],[142,80],[128,67],[111,66],[92,82],[35,103]],
+ [[30,-18],[207,-18],[207,80],[180,95],[137,79],[120,69],[104,82],[30,108]],
+ [[30,-18],[190,-18],[190,76],[158,94],[123,78],[103,65],[83,78],[72,99],[30,108]],
+ [[28,-18],[177,-18],[177,79],[151,95],[107,94],[88,103],[78,132],[28,144]],
+ [[-16,126],[79,126],[89,143],[94,170],[85,198],[82,216],[-16,239]]
+];
+function inside(x,y,polygon){
+ let hit=false;
+ for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
+  const [ax,ay]=polygon[i],[bx,by]=polygon[j];
+  if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax)hit=!hit;
+ }
+ return hit;
+}
+function prepareMageBodies(mage,rows,makeCanvas){
+ return [0,1,2].map(tone=>{
+  const c=makeCanvas(mage.width,mage.height),ctx=c.getContext('2d');ctx.drawImage(mage,0,0);
+  const p=ctx.getImageData(0,0,c.width,c.height),d=p.data;
+  for(let armor=0;armor<4;armor++){
+   const [top,bottom]=rows[armor];
+   for(let frame=0;frame<6;frame++){
+    for(let y=top;y<bottom;y++)for(let x=Math.max(0,frame*256-16);x<Math.min(c.width,(frame+1)*256);x++){
+     const lx=x-frame*256,ly=y-top,i=(y*c.width+x)*4;
+     // The fallen body stays close to the bottom of its row.
+     const maskY=frame===5?ly-(bottom-top-231):ly;
+     if(inside(lx,maskY,mageMasks[frame])){d[i+3]=0;continue;}
+     const r=d[i],g=d[i+1],b=d[i+2];
+     // Exposed skin is peach; purple fabric, gold trim and armor are excluded.
+     if(tone&&d[i+3]&&r>110&&g>65&&b>45&&r>g*1.2&&g>b*1.2&&r-g<100&&g-b<85){
+      const f=tone===1?[.80,.66,.58]:[.57,.43,.37];
+      d[i]=r*f[0];d[i+1]=g*f[1];d[i+2]=b*f[2];
+     }
+    }
+   }
+  }
+  ctx.putImageData(p,0,0);return c;
+ });
+}
+
 export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
  const bodies=[warrior,...[1,2].map(tone=>{
@@ -47,23 +90,24 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas){
   }
   ctx.putImageData(p,0,0);return c;
  })];
+ const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
   const kind=h.class===0?'warrior':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
-  const key=[kind,armor,weapon,index,...(h.class===0?[a.gender,a.face,a.hair]:[])].join(':');
+  const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='warrior'?bodies[a.face]:mage,[top,bottom]=rows[kind][armor];
+  const body=kind==='warrior'?bodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='mage'&&index===5?left-16:left;
   const clipWidth=kind==='mage'&&index===4?240:kind==='mage'&&index===5?272:256;
   ctx.drawImage(body,clipLeft,top,clipWidth,bottom-top,clipLeft-pivot,top-baseline,clipWidth,bottom-top);
-  if(kind==='warrior'){
+  {
    const row=a.gender*3+a.face,[ht,hb]=rows.heads[row],cw=heads.width/4;
-   const neckX=[135,138,128,127,115,38][index]+left;
-   const neckY=index===5?top+147:top+8;
-   const angle=index===5?-Math.PI/2:index===4?-.32:0;
+   const neckX=(kind==='warrior'?[135,138,128,127,115,38][index]:mageNecks[index][0])+left;
+   const neckY=kind==='warrior'?(index===5?top+147:top+8):(index===5?bottom-40:top+mageNecks[index][1]);
+   const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
    const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair];
