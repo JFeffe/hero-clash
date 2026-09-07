@@ -7,3 +7,5 @@
 
 /* Keep the source aspect ratio: stretched canvases deform the approved art. */
 .arena{width:100%;height:auto;aspect-ratio:auto}.portrait{height:auto}.hero-card canvas{width:112px;height:auto}.empty-state canvas{height:auto}.class-list canvas{height:auto}
+
+.appearance-controls{min-width:0;margin:18px 0 0;padding:16px;border:1px solid var(--line);border-radius:10px}.appearance-controls legend{padding:0 6px;color:var(--gold);font-weight:700}.appearance-grid{display:grid;gap:12px;margin-top:12px}.appearance-grid label{display:grid;gap:6px}.appearance-grid select{width:100%;min-width:0;min-height:44px}@media(min-width:700px){.appearance-grid{grid-template-columns:1fr 1fr}.appearance-grid label:last-child{grid-column:1/-1}}

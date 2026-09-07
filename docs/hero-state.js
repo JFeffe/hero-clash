@@ -1,4 +1,4 @@
-import {D,hero,pick,clamp} from './engine.js';
+import {D,hero,pick,clamp} from './engine.js?v=0.11.0';
 export function newArena(h){let classes=D.CLASSES.map((_,i)=>i);return {rerollUsed:false,opponents:[-1,0,1].map(delta=>{const cls=pick(classes);classes=classes.filter(c=>c!==cls);return hero(clamp(h.level+delta,1,20),cls);})};}
 export function ensureArena(h){if(!h.arena)h.arena=newArena(h);return h.arena;}
 export function rerollArena(h){const arena=ensureArena(h);if(arena.rerollUsed)return false;h.arena=newArena(h);h.arena.rerollUsed=true;return true;}
