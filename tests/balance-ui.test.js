@@ -58,11 +58,11 @@ vm.runInContext("go('home')",context);assert.deepEqual(scrollCalls.at(-1),[0,0])
 console.log('Mage showcase, preserved scroll/focus and normal navigation verified.');
 
 // Every modernized class and familiar can be demonstrated without settlement.
-for(const cls of [0,1,2,4,6,10,12])for(const petId of [-1,10,11,12,13,14]){
+for(const cls of [0,1,2,4,6,7,10,12])for(const petId of [-1,10,11,12,13,14]){
  vm.runInContext(`startArtDemo(${cls},${petId})`,context);
  assert.equal(vm.runInContext('battle.heroes[0].class',context),cls);
  assert.equal(vm.runInContext('battle.heroes[0].inventory[battle.heroes[0].equipped[2]]?.id??-1',context),petId);
  assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
  assert(vm.runInContext('battle.result.events.length>0',context));
 }
-console.log('All 42 class/familiar showcases preserve the company save.');
+console.log('All 48 class/familiar showcases preserve the company save.');

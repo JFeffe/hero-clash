@@ -1,4 +1,4 @@
-// Shared, class-independent identity. Appearance controls are enabled for the Warrior, Archer, Mage, Knight, Ninja, Necromancer and Boxer.
+// Shared, class-independent identity. Appearance controls are enabled for the Warrior, Archer, Mage, Knight, Ninja, Monk, Necromancer and Boxer.
 export const APPEARANCE_OPTIONS={
  gender:[['Homme','Man'],['Femme','Woman']],
  face:[['Visage 1 · teint clair','Face 1 · light complexion'],['Visage 2 · teint hâlé','Face 2 · medium complexion'],['Visage 3 · teint foncé','Face 3 · dark complexion']],

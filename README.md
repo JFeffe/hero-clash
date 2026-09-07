@@ -109,3 +109,7 @@ Ninja personnalisable, armes et tenues modulaires, démonstration et aperçu mis
 Le Knight (classe 4, « Soldat médiéval » en français) rejoint les classes modernisées : armure de plates argent et or, veste tactique, tunique légère et cuir noir, avec tissu bleu royal. Les portraits, le recrutement, les combats et l’aperçu partagent les 24 identités, six armes et poses KO aux yeux fermés. Le bouclier au lion est un calque visuel de classe, présent avec les armes à une main ou sans arme ; il est retiré avec le fusil, l’arc et le bâton.
 
 Le combat test propose maintenant sept classes modernisées et cinq familiers. L’aperçu conserve les treize classes, dont sept modernisées. Aucun changement d’équilibrage, d’inventaire ou de format de sauvegarde. Détails des sources et de la validation dans `ART_KNIGHT.md`.
+
+## 0.20.0 — Moine personnalisable
+
+Le Moine rejoint les huit classes modernisées : quatre armures, six poses, six armes et mode sans arme, visages/coiffures hommes et femmes, KO aux yeux fermés. Disponible dans le combat test gratuit et l’aperçu des équipements. Détails : [ART_MONK.md](ART_MONK.md).
