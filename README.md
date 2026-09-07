@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.3
+# Hero Clash — prototype Web 0.4
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -40,3 +40,11 @@ node tests/progression.test.js
 ```
 
 Le menu Options contient des outils de prototype (énergie, XP, équipements, sélection de classe). Ils sont destinés aux essais et ne restaurent pas les cœurs.
+
+## Version 0.4
+
+More than 2,000 first/family-name combinations, preserving existing hero names. Level rewards show all five current base stats and equipped combat HP/crit/dodge, class skill, and current gear for item offers.
+
+Opponent cards display an exact pre-fight XP/loot quote for win/loss/draw. Lower-level opponents: XP ×0.75, loot 25/10/15%; equal: XP ×1, loot 40/20/30%; higher: XP ×1.75, loot 65/35/45%. Loss XP stays half of victory XP and draws three quarters. Quote is calculated using the hero's level before XP is granted; a level-up during settlement cannot change it. Loot still requires survival and is added unequipped. Cost remains 20 energy; defeats still remove one heart.
+
+Additional verification: `node tests/rewards.test.js`. Browser/device QA not performed for this update.
