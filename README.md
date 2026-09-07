@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.4
+# Hero Clash — prototype Web 0.5
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -48,3 +48,14 @@ More than 2,000 first/family-name combinations, preserving existing hero names. 
 Opponent cards display an exact pre-fight XP/loot quote for win/loss/draw. Lower-level opponents: XP ×0.75, loot 25/10/15%; equal: XP ×1, loot 40/20/30%; higher: XP ×1.75, loot 65/35/45%. Loss XP stays half of victory XP and draws three quarters. Quote is calculated using the hero's level before XP is granted; a level-up during settlement cannot change it. Loot still requires survival and is added unequipped. Cost remains 20 energy; defeats still remove one heart.
 
 Additional verification: `node tests/rewards.test.js`. Browser/device QA not performed for this update.
+
+## Version 0.5
+
+- French/English stat glossary under Settings → Rules.
+- Three opponents saved per hero. Navigation, reload, language changes and switching heroes retain them. One free Reroll per hero between fights, shown at the top of the arena. Every resolved battle refreshes the surviving hero's opponents and restores the Reroll, before playback. Replays never touch this state.
+- New item badges per equipment slot, set by loot, level-up item choices and prototype grants. Opening a slot selector clears only its badge; notices survive reload and do not equip items automatically. Existing inventories start without unread badges.
+- Level-up reward screen shows all base stats, equipped combat values, class ability/advantages and every current equipment slot with item effects.
+- Shop preview: 10/20/50/100 energy and 1/3 Rerolls, fictional demo-credit prices, every purchase disabled. Company points cannot be spent.
+- Each Graveyard card displays the career's company-point contribution.
+
+Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enforcement, all battle outcomes resetting it, per-hero isolation, reload and equipment notice checks. Local save schema stays version 2 with revision 5 additions. Browser/device visual QA was not performed in this update.
