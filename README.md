@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.19.0
+# Hero Clash — prototype Web 0.23.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -121,3 +121,10 @@ Le Trooper rejoint les neuf classes modernisées : quatre armures, deux phases d
 ## 0.22.0 — Engineer personnalisable
 
 L’Ingénieur rejoint les dix classes modernisées : tenue orange et bleu pétrole, lunettes en laiton, quatre armures, six armes, 24 apparences et KO aux yeux fermés. Disponible au combat test et dans l’aperçu d’équipement. Détails : [ART_ENGINEER.md](ART_ENGINEER.md).
+
+## Version 0.23.0 — Berserker
+
+- Berserker modulaire : fourrure, cuir, étoffe rouge et peintures de guerre.
+- Quatre armures, six armes et 24 apparences ; six poses avec yeux fermés au KO.
+- Ajout au combat test et à l’aperçu des équipements ; 11 classes modernisées.
+- Furie et sauvegardes conservées. Voir `ART_BERSERKER.md`.
