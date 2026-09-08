@@ -74,3 +74,21 @@ const savedCareer=vm.runInContext("JSON.stringify(game,(k,v)=>['energy','energy_
 vm.runInContext('game=JSON.parse(JSON.stringify(game));migrate(game);go("opponents")',context);assert(vm.runInContext('validSave(game)',context));
 vm.runInContext('go("temple")',context);assert(!/NaN|undefined/.test(host.innerHTML));
 console.log('Career arena FR/EN, real settlement, replay, reload, import and Temple templates verified.');
+
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';go('pool')`,context);
+ assert.equal((host.innerHTML.match(/<details class="panel">/g)||[]).length,10);
+ assert(!/NaN|undefined/.test(host.innerHTML));
+ assert(vm.runInContext('selected().career.pool.members.every(o=>poolPage().includes(o.name))',context));
+}
+vm.runInContext('game.heroes.push(hero());game.selected=game.heroes[1].id;go("pool")',context);
+assert.equal(vm.runInContext('selected().career.pool.played',context),0);
+let preReset=vm.runInContext('JSON.stringify(game)',context);
+context.confirm=()=>false;vm.runInContext('resetAccount()',context);assert.equal(vm.runInContext('JSON.stringify(game)',context),preReset);
+context.confirm=()=>true;context.localStorage.setItem=()=>{throw Error('Storage full');};
+vm.runInContext('resetAccount()',context);assert.equal(vm.runInContext('JSON.stringify(game)',context),preReset);
+let persisted;context.localStorage.setItem=(key,value)=>{persisted=JSON.parse(value);};
+vm.runInContext('resetAccount()',context);
+assert.equal(persisted.heroes.length,0);assert.equal(persisted.graveyard.length,0);assert.equal(persisted.temple.length,0);assert.equal(persisted.company_points,0);assert.equal(persisted.lastBattle,null);assert.equal(persisted.selected,null);
+assert.equal(vm.runInContext('page',context),'home');assert.equal(vm.runInContext('battle',context),null);
+console.log('Ten-member pool, selected hero, reset cancellation, storage failure rollback and persisted fresh start verified.');
