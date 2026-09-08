@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {hero} from '../docs/engine.js';
+import {migrate} from '../docs/progression.js';
+import {ensureArena} from '../docs/hero-state.js';
+import {buyPack,useEnergy,spendArenaReroll,spendRecruitReroll,validWallet} from '../docs/wallet.js';
+const h=hero(),g=migrate({heroes:[h],graveyard:[]});assert.deepEqual(g.wallet,{energy:0,reroll:0});
+for(let i=0;i<30;i++)assert(buyPack(g,3));assert.equal(g.wallet.energy,3000);assert.equal(g.company_points,0);
+h.energy=95;h.energy_time=Date.now()/1000;const before=g.wallet.energy,used=useEnergy(g,h,20);assert(used>4.9&&used<=5);assert.equal(h.energy,100);assert.equal(g.wallet.energy,before-used);assert.equal(useEnergy(g,h,20),0);assert.equal(useEnergy(g,hero(),20),0);assert.equal(useEnergy(g,h,-10),0);
+ensureArena(h);const pool=structuredClone(h.career.pool);assert(spendArenaReroll(g,h));assert.equal(g.wallet.reroll,0);assert(!spendArenaReroll(g,h));assert.deepEqual(h.career.pool,pool);
+assert(buyPack(g,5));assert.equal(g.wallet.reroll,3);assert(spendArenaReroll(g,h));assert.equal(g.wallet.reroll,2);assert.deepEqual(h.career.pool,pool);
+const recruit=spendRecruitReroll(g);assert.equal(recruit.level,1);assert.equal(g.wallet.reroll,1);spendRecruitReroll(g);assert.equal(spendRecruitReroll(g),null);assert.equal(g.wallet.reroll,0);
+const saved=JSON.parse(JSON.stringify(g));migrate(saved);assert.deepEqual(saved.wallet,g.wallet);assert(!validWallet({energy:-1,reroll:0}));assert(!validWallet({energy:0,reroll:.5}));assert(!buyPack(g,99));
+console.log('Wallet packs, capped transfers, free and paid arena rerolls, recruitment, empty balances and migration verified.');

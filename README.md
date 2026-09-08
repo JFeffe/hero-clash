@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.26.1
+# Hero Clash — prototype Web 0.27.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -159,3 +159,7 @@ Joker personnalisable : tenue violette et bordeaux, motifs losanges, chapeau à 
 Accès au pool depuis la fiche du héros et l’arène : dix portraits, cœurs, rencontres et fiches détaillées. Changement du héros sélectionné disponible dans le pool. Réinitialisation de la sauvegarde locale dans Options → Règles du prototype, avec confirmation, conservation de la langue et restauration de l’état précédent si l’écriture échoue.
 
 La même version affiche le portrait et les statistiques équipées du héros sélectionné dans le choix du duel, avec sa fiche complète dépliable. L’étage et le compteur de combats sont mis en évidence sur sa fiche et les cartes de la compagnie. Énergie et progression inchangées.
+
+## Version 0.27 — Réserves de compagnie
+
+Deux soldes persistants : énergie et relances. Achat gratuit illimité de lots au Shop ; points de compagnie inchangés. Transfert d’énergie depuis la fiche, limité à la quantité manquante jusqu’à 100. Première relance d’arène gratuite, suivantes à 1 point ; relance de recrutement à 1 point, premier tirage gratuit. Anciennes sauvegardes initialisées à zéro ; export/import et reset incluent les réserves. Coût des combats et récupération naturelle inchangés.

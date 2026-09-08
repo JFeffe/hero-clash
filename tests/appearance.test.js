@@ -1,3 +1,4 @@
+import * as wallet from '../docs/wallet.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -32,7 +33,7 @@ assert.equal(headCalls,count);
 
 const h=engine.hero(1,0),backup={version:2,lang:'fr',heroes:[h],graveyard:[],selected:h.id};
 const events={},nodes={app:{innerHTML:''},name:{value:'Ariane'},focus:{focus(){}}};let saved,scroll;
-const context=vm.createContext({...engine,...progression,...heroState,...art,...appearance,B,console,crypto,structuredClone,performance,
+const context=vm.createContext({...wallet,...engine,...progression,...heroState,...art,...appearance,B,console,crypto,structuredClone,performance,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:(key,value)=>{saved=JSON.parse(value);}},
  document:{querySelector:s=>s==='#hero-name'?nodes.name:s.startsWith('[data-appearance')?nodes.focus:nodes.app,querySelectorAll:()=>[],documentElement:{},addEventListener:(type,fn)=>{events[type]=fn;}},
  window:{scrollY:432,matchMedia:()=>({matches:false}),addEventListener(){},scrollTo:(x,y)=>{scroll=y;}},
