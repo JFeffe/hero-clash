@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.23.0
+# Hero Clash — prototype Web 0.24.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -70,7 +70,7 @@ Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enfo
 - Équipements et progression de rareté revus ; descriptions FR/EN et statistiques équipées concordantes.
 - Sauvegardes et héros existants conservés ; leurs objets appliquent les nouveaux effets.
 
-Jouer : https://jfeffe.github.io/hero-clash/ — version **0.22.0** dans l’en-tête.
+Jouer : https://jfeffe.github.io/hero-clash/ — version **0.24.0** dans l’en-tête.
 
 Tests : `npm test`. Simulations reproductibles : voir le rapport et `balance/validate.py`.
 
@@ -128,3 +128,7 @@ L’Ingénieur rejoint les dix classes modernisées : tenue orange et bleu pétr
 - Quatre armures, six armes et 24 apparences ; six poses avec yeux fermés au KO.
 - Ajout au combat test et à l’aperçu des équipements ; 11 classes modernisées.
 - Furie et sauvegardes conservées. Voir `ART_BERSERKER.md`.
+
+## Version 0.24.0 — Joker
+
+Joker personnalisable : tenue violette et bordeaux, motifs losanges, chapeau à grelots suivant les têtes et le KO. Quatre armures, six armes et 24 apparences. Ajout au combat test gratuit et à l’aperçu des équipements. Carte folle et équilibrage conservés.
