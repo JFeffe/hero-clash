@@ -1,4 +1,4 @@
-import {appearanceFromLook} from './appearance.js?v=0.25.0';
+import {appearanceFromLook} from './appearance.js?v=0.26.0';
 import {BALANCE as B} from './balance.js';
 import {DATA as D} from './data.js';
 export {D};

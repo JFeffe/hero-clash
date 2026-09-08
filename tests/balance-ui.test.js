@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import {webcrypto} from 'node:crypto';
 import * as appearance from '../docs/appearance.js';
+import * as career from '../docs/career.js';
 import * as engine from '../docs/engine.js';
 import * as progression from '../docs/progression.js';
 import * as heroState from '../docs/hero-state.js';
@@ -13,7 +14,7 @@ if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const h=engine.hero(1,4);h.inventory=[{id:14,level:1,rarity:0}];h.equipped=[-1,-1,0,-1];
 const backup={version:2,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
 const host={innerHTML:'',style:{}};
-const context=vm.createContext({...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
+const context=vm.createContext({...career,...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:()=>{}},
  document:{querySelector:()=>host,querySelectorAll:()=>[],documentElement:{},addEventListener:()=>{}},
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
@@ -66,3 +67,10 @@ for(const cls of [0,1,2,3,4,5,6,7,8,9,10,11,12])for(const petId of [-1,10,11,12,
  assert(vm.runInContext('battle.result.events.length>0',context));
 }
 console.log('All 78 class/familiar showcases preserve the company save.');
+
+for(const lang of ['fr','en']){vm.runInContext(`game.lang='${lang}';go('opponents')`,context);assert(host.innerHTML.includes('/ 15'));assert(!/NaN|undefined/.test(host.innerHTML));assert(vm.runInContext('validSave(JSON.parse(JSON.stringify(game)))',context));}
+vm.runInContext('startFight(0)',context);assert.equal(vm.runInContext('selected().career.pool.played',context),1);
+const savedCareer=vm.runInContext("JSON.stringify(game,(k,v)=>['energy','energy_time'].includes(k)?undefined:v)",context);vm.runInContext('playLast()',context);assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>['energy','energy_time'].includes(k)?undefined:v)",context),savedCareer);
+vm.runInContext('game=JSON.parse(JSON.stringify(game));migrate(game);go("opponents")',context);assert(vm.runInContext('validSave(game)',context));
+vm.runInContext('go("temple")',context);assert(!/NaN|undefined/.test(host.innerHTML));
+console.log('Career arena FR/EN, real settlement, replay, reload, import and Temple templates verified.');

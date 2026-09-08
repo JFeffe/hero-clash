@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.25.0
+# Hero Clash — prototype Web 0.26.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -140,3 +140,16 @@ Joker personnalisable : tenue violette et bordeaux, motifs losanges, chapeau à 
 - Quatre tenues, six armes réelles du jeu et mains nues ; six poses du moteur et yeux fermés au KO.
 - Les 13 classes sont disponibles dans le combat test et l’aperçu des équipements.
 - Sauvegardes et équilibrage conservés. Détails : [ART_ALIEN.md](ART_ALIEN.md).
+
+## Version 0.26 — Carrières par étages
+
+- 15 étages, 10 rondes de cinq duels par étage ; pool individuel de 10 héros.
+- Jusqu’à trois adversaires admissibles et deux rencontres maximum par paire ; relance gratuite conservée.
+- Neuf héros générés de niveau proche, copies locales indépendantes. Pas encore de connexion aux héros de vrais joueurs.
+- Copies éliminées conservées comme fantômes : force et statistiques figées, santé de combat normale. Le résultat compte pour le survivant.
+- Après dix combats, montée égale aux cœurs restants (arrivée plafonnée à 15), puis récupération d’un cœur, maximum cinq.
+- Dix combats survivants à l’étage 15 : retraite au Temple. À zéro cœur : arrêt immédiat au Graveyard.
+- Énergie inchangée : 20 par duel, maximum 100, récupération de 1/minute. Les autres duels du pool ne coûtent aucune énergie supplémentaire.
+- Anciennes carrières actives démarrent à l’étage 1, en conservant équipement, XP, statistiques, cœurs et énergie.
+- Sauvegarde locale et export/import conservent le pool, le calendrier, les rencontres et le Temple.
+- Validation : tests de parcours, fantômes, rencontres, retraite, migration, énergie et interface FR/EN.
