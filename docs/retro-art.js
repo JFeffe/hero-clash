@@ -1,9 +1,10 @@
 import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.20.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.21.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
+ trooper:[[181,77],[196,71],[193,71],[232,34],[214,44],[151,180]],
  knight:[[177,77],[194,69],[194,69],[232,34],[214,47],[151,180]],
  ninja:[[177,77],[194,69],[194,69],[232,34],[214,47],[151,180]],
  boxer:[[177,76],[194,70],[194,70],[235,34],[214,43],[151,180]],
@@ -92,13 +93,14 @@ function prepareMageBodies(mage,rows,makeCanvas){
  });
 }
 
-export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null,knight=null,knightShield=null,monk=null){
+export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null,knight=null,knightShield=null,monk=null,trooper=null){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
  if(archer)rows.archer=spriteRows(archer,4);
  if(necro)rows.necro=spriteRows(necro,4);
  if(boxer)rows.boxer=spriteRows(boxer,4);
  if(ninja)rows.ninja=spriteRows(ninja,4);
  if(knight)rows.knight=spriteRows(knight,4);
+ if(trooper)rows.trooper=spriteRows(trooper,4);
  if(monk)rows.monk=spriteRows(monk,4);
  if(koHeads)rows.koHeads=spriteRows(koHeads,6);
  function tintBodies(warrior,bands){return [warrior,...[1,2].map(tone=>{
@@ -163,14 +165,22 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   }
   ctx.putImageData(p,0,0);return c;
  })]:null;
+ const trooperBodies=trooper?[trooper,...[1,2].map(tone=>{
+  const c=makeCanvas(trooper.width,trooper.height),ctx=c.getContext('2d');ctx.drawImage(trooper,0,0);
+  const p=ctx.getImageData(0,0,c.width,c.height),d=p.data,f=tone===1?[.80,.66,.58]:[.57,.43,.37];
+  for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2];
+   if(d[i+3]&&r>150&&g>85&&b>45&&r>g*1.2&&g>b*1.2&&r-g<105&&g-b<85){d[i]=r*f[0];d[i+1]=g*f[1];d[i+2]=b*f[2];}
+  }
+  ctx.putImageData(p,0,0);return c;
+ })]:null;
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
-  const kind=h.class===7?'monk':h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
+  const kind=h.class===3?'trooper':h.class===7?'monk':h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='monk'?monkBodies[a.face]:kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
+  const body=kind==='trooper'?trooperBodies[a.face]:kind==='monk'?monkBodies[a.face]:kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='monk'&&index===4?left+8:kind==='mage'&&index===5?left-16:left;
@@ -197,8 +207,8 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   {
    const faceSheet=index===5&&koHeads?koHeads:heads;
    const row=a.gender*3+a.face,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[row],cw=faceSheet.width/4;
-   const neckX=(kind==='monk'?monkNecks[armor][index][0]:kind==='knight'?[130,139,135,122,102,33][index]:kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
-   const neckY=kind==='monk'?monkNecks[armor][index][1]:kind==='knight'?(index===5?bottom-49:top+15):kind==='ninja'?(index===5?bottom-49:top+15):kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
+   const neckX=(kind==='trooper'?[130,139,130,122,102,33][index]:kind==='monk'?monkNecks[armor][index][0]:kind==='knight'?[130,139,135,122,102,33][index]:kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
+   const neckY=kind==='trooper'?(index===5?bottom-49:top+15):kind==='monk'?monkNecks[armor][index][1]:kind==='knight'?(index===5?bottom-49:top+15):kind==='ninja'?(index===5?bottom-49:top+15):kind==='boxer'?(index===5?bottom-46:top+15):kind!=='mage'?(index===5?top+147:top+15):(index===5?bottom-40:top+mageNecks[index][1]);
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
@@ -246,7 +256,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }
- return {rows,hasMonk:Boolean(monk),hasKnight:Boolean(knight),hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
+ return {rows,hasTrooper:Boolean(trooper),hasMonk:Boolean(monk),hasKnight:Boolean(knight),hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);

@@ -70,7 +70,7 @@ Run `node tests/hero-state.test.js` for persisted opponent sets, one-Reroll enfo
 - Équipements et progression de rareté revus ; descriptions FR/EN et statistiques équipées concordantes.
 - Sauvegardes et héros existants conservés ; leurs objets appliquent les nouveaux effets.
 
-Jouer : https://jfeffe.github.io/hero-clash/ — version **0.19.0** dans l’en-tête.
+Jouer : https://jfeffe.github.io/hero-clash/ — version **0.21.0** dans l’en-tête.
 
 Tests : `npm test`. Simulations reproductibles : voir le rapport et `balance/validate.py`.
 
@@ -113,3 +113,7 @@ Le combat test propose maintenant sept classes modernisées et cinq familiers. L
 ## 0.20.0 — Moine personnalisable
 
 Le Moine rejoint les huit classes modernisées : quatre armures, six poses, six armes et mode sans arme, visages/coiffures hommes et femmes, KO aux yeux fermés. Disponible dans le combat test gratuit et l’aperçu des équipements. Détails : [ART_MONK.md](ART_MONK.md).
+
+## 0.21.0 — Trooper personnalisable
+
+Le Trooper rejoint les neuf classes modernisées : quatre armures, deux phases de course, attaque, blessure et KO aux yeux fermés, six armes et 24 apparences. Ajout au combat test et à l’aperçu des équipements. Détails : [ART_TROOPER.md](ART_TROOPER.md).
