@@ -1,4 +1,4 @@
-import {appearanceOf} from './appearance.js';
+import {appearanceOf} from './appearance.js?v=0.25.0';
 
 // Atlas-space sockets; heads rotate with the hurt/fallen pose, not the screen.
 export const HEAD_SOCKETS=[

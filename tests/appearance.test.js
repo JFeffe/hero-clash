@@ -129,3 +129,16 @@ vm.runInContext('candidate=hero(1,5);page="recruit";render()',context);
 await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
 assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
 assert.equal(vm.runInContext('candidate.name',context),'Ariane');
+
+// Alien labels, persistence and recruitment use the shared save format.
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';game.heroes[0].class=11;page='detail';render()`,context);
+ assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence de l’Alien':'Alien appearance'));
+ assert(nodes.app.innerHTML.includes(lang==='fr'?'Crâne lisse':'Smooth dome'));
+ await events.change({target:{dataset:{appearance:'face'},value:'2'}});
+ assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
+}
+vm.runInContext('candidate=hero(1,11);page="recruit";render()',context);
+await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
+assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
+assert.equal(vm.runInContext('candidate.name',context),'Ariane');

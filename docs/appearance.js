@@ -8,3 +8,8 @@ export function validAppearance(a){return !!a&&typeof a==='object'&&Object.entri
 export function appearanceFromLook(look=0){const n=Number.isFinite(look)?Math.abs(Math.trunc(look)):0;return {gender:n%2,face:Math.floor(n/2)%3,hair:Math.floor(n/6)%4};}
 export function appearanceOf(h){return validAppearance(h.appearance)?{...h.appearance}:{gender:0,face:0,hair:0};}
 export function setAppearance(h,key,value){if(!Object.hasOwn(APPEARANCE_OPTIONS,key)||!Number.isInteger(value)||value<0||value>=APPEARANCE_OPTIONS[key].length)return false;h.appearance={...appearanceOf(h),[key]:value};return true;}
+
+export const ALIEN_APPEARANCE_OPTIONS={gender:APPEARANCE_OPTIONS.gender,
+ face:[['Vert clair','Light green'],['Turquoise','Teal'],['Vert sombre','Dark green']],
+ hair:[['Crâne lisse','Smooth dome'],['Crâne strié','Ridged dome'],['Crête marine','Navy crest'],['Mèche ivoire','Ivory hair']]};
+export const appearanceOptions=h=>h.class===11?ALIEN_APPEARANCE_OPTIONS:APPEARANCE_OPTIONS;

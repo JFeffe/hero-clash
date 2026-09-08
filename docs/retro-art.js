@@ -1,9 +1,10 @@
-import {appearanceOf} from './appearance.js';
-import {warriorEquipment} from './warrior-gear.js?v=0.24.0';
+import {appearanceOf} from './appearance.js?v=0.25.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.25.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
 const grips={
+ alien:[[181,77],[196,71],[193,71],[232,34],[214,44],[151,180]],
  joker:[[181,77],[196,71],[193,71],[232,34],[214,44],[151,180]],
  berserker:[[181,77],[196,71],[193,71],[232,34],[214,44],[151,180]],
  engineer:[[181,77],[196,71],[193,71],[232,34],[214,44],[151,180]],
@@ -96,7 +97,7 @@ function prepareMageBodies(mage,rows,makeCanvas){
  });
 }
 
-export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null,knight=null,knightShield=null,monk=null,trooper=null,engineer=null,berserker=null,joker=null){
+export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,necro=null,boxer=null,ninja=null,koHeads=null,knight=null,knightShield=null,monk=null,trooper=null,engineer=null,berserker=null,joker=null,alien=null,alienHeads=null){
  const rows={warrior:spriteRows(warrior,4),mage:spriteRows(mage,4),heads:spriteRows(heads,6)};
  if(archer)rows.archer=spriteRows(archer,4);
  if(necro)rows.necro=spriteRows(necro,4);
@@ -212,14 +213,26 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   }
   ctx.putImageData(p,0,0);return c;
  })]:null;
+ // Alien skin variants preserve the ivory suit, cyan lights and dark eyes.
+ function alienTints(source){return [source,...[1,2].map(tone=>{
+  const c=makeCanvas(source.width,source.height),ctx=c.getContext('2d');ctx.drawImage(source,0,0);
+  const p=ctx.getImageData(0,0,c.width,c.height),d=p.data;
+  for(let i=0;i<d.length;i+=4)if(d[i+3]&&d[i+1]>d[i]*1.12&&d[i+1]>d[i+2]*1.15){
+   if(tone===1){d[i]*=.72;d[i+2]=Math.min(255,d[i+2]*1.65);}else{d[i]*=.70;d[i+1]*=.76;d[i+2]*=.72;}
+  }
+  ctx.putImageData(p,0,0);return c;
+ })];}
+ const hasAlien=Boolean(alien&&alienHeads);
+ if(hasAlien){rows.alien=spriteRows(alien,4);rows.alienHeads=spriteRows(alienHeads,4);}
+ const alienBodies=hasAlien?alienTints(alien):null,alienFaces=hasAlien?alienTints(alienHeads):null;
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
  function composite(h,index){
-  const kind=h.class===5?'joker':h.class===9?'berserker':h.class===8?'engineer':h.class===3?'trooper':h.class===7?'monk':h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
+  const kind=h.class===11?'alien':h.class===5?'joker':h.class===9?'berserker':h.class===8?'engineer':h.class===3?'trooper':h.class===7?'monk':h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
   const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
   if(cache.has(key))return cache.get(key);
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
-  const body=kind==='joker'?jokerBodies[a.face]:kind==='berserker'?berserkerBodies[a.face]:kind==='engineer'?engineerBodies[a.face]:kind==='trooper'?trooperBodies[a.face]:kind==='monk'?monkBodies[a.face]:kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
+  const body=kind==='alien'?alienBodies[a.face]:kind==='joker'?jokerBodies[a.face]:kind==='berserker'?berserkerBodies[a.face]:kind==='engineer'?engineerBodies[a.face]:kind==='trooper'?trooperBodies[a.face]:kind==='monk'?monkBodies[a.face]:kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
   const clipLeft=kind==='monk'&&index===4?left+8:kind==='mage'&&index===5?left-16:left;
@@ -243,7 +256,13 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    ctx.rotate(index===5?-Math.PI/2:index===4?-.28:.08);
    ctx.drawImage(knightShield,338,109,590,1008,-37,-48,75,128);ctx.restore();
   }
-  {
+  if(kind==='alien'){
+   const faceSheet=alienFaces[a.face],row=a.gender+(index===5?2:0),[ht,hb]=rows.alienHeads[row],cw=faceSheet.width/4;
+   const nx=left+[130,139,130,122,102,33][index],ny=index===5?bottom-49:top+15;
+   const k=80/(hb-ht);
+   ctx.save();ctx.translate(nx-pivot,ny-baseline);ctx.rotate(index===5?-Math.PI/2:index===4?-.32:0);ctx.scale(k,k);
+   ctx.drawImage(faceSheet,a.hair*cw,ht,cw,hb-ht,-cw*.54,-(hb-ht)+5,cw,hb-ht);ctx.restore();
+  }else{
    const faceSheet=index===5&&koHeads?koHeads:heads;
    const row=a.gender*3+a.face,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[row],cw=faceSheet.width/4;
    const neckX=((kind==='joker'||kind==='berserker'||kind==='engineer'||kind==='trooper')?[130,139,130,122,102,33][index]:kind==='monk'?monkNecks[armor][index][0]:kind==='knight'?[130,139,135,122,102,33][index]:kind==='ninja'?[130,139,135,122,102,33][index]:kind==='boxer'?[130,139,135,122,102,38][index]:kind!=='mage'?[130,133,123,122,110,38][index]:mageNecks[index][0])+left;
@@ -322,7 +341,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }
- return {rows,hasJoker:Boolean(joker),hasBerserker:Boolean(berserker),hasEngineer:Boolean(engineer),hasTrooper:Boolean(trooper),hasMonk:Boolean(monk),hasKnight:Boolean(knight),hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
+ return {rows,hasAlien,hasJoker:Boolean(joker),hasBerserker:Boolean(berserker),hasEngineer:Boolean(engineer),hasTrooper:Boolean(trooper),hasMonk:Boolean(monk),hasKnight:Boolean(knight),hasNinja:Boolean(ninja),hasKO:Boolean(koHeads),hasArcher:Boolean(archer),hasNecro:Boolean(necro),hasBoxer:Boolean(boxer),draw(ctx,h,index,x,ground,s,flip,time=0){
   const frame=composite(h,index),unit=s*54/64;
   const bob=index===0?Math.round(Math.sin(time*3)):0;
   ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(x,ground+bob*unit);

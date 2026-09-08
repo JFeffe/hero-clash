@@ -1,4 +1,4 @@
-# Hero Clash — prototype Web 0.24.0
+# Hero Clash — prototype Web 0.25.0
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 
@@ -132,3 +132,11 @@ L’Ingénieur rejoint les dix classes modernisées : tenue orange et bleu pétr
 ## Version 0.24.0 — Joker
 
 Joker personnalisable : tenue violette et bordeaux, motifs losanges, chapeau à grelots suivant les têtes et le KO. Quatre armures, six armes et 24 apparences. Ajout au combat test gratuit et à l’aperçu des équipements. Carte folle et équilibrage conservés.
+
+## Version 0.25.0 — Alien
+
+- Alien modernisé : combinaison marine et ivoire, détails cyan et têtes extraterrestres dédiées.
+- 24 apparences : deux genres, trois couleurs de peau et quatre variantes de crâne/coiffure.
+- Quatre tenues, six armes réelles du jeu et mains nues ; six poses du moteur et yeux fermés au KO.
+- Les 13 classes sont disponibles dans le combat test et l’aperçu des équipements.
+- Sauvegardes et équilibrage conservés. Détails : [ART_ALIEN.md](ART_ALIEN.md).

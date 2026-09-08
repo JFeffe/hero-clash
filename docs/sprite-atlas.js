@@ -1,9 +1,9 @@
-import {FAMILIARS,prepareFamiliars} from './familiar-art.js?v=0.24.0';
-import {prepareRetro} from './retro-art.js?v=0.24.0';
+import {FAMILIARS,prepareFamiliars} from './familiar-art.js?v=0.25.0';
+import {prepareRetro} from './retro-art.js?v=0.25.0';
 import {prepareWarriorBodies} from './warrior-identity.js';
-import {appearanceOf,validAppearance} from './appearance.js';
-import {drawWarriorGear} from './warrior-gear.js?v=0.24.0';
-import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.24.0';
+import {appearanceOf,validAppearance} from './appearance.js?v=0.25.0';
+import {drawWarriorGear} from './warrior-gear.js?v=0.25.0';
+import {cleanSpriteMatte,cleanGreenMatte} from './sprite-matte.js?v=0.25.0';
 let sheet=null,mageSheet=null,warriorBody=null,warriorWeapons=null,warriorHeads=null,warriorBodies=null,retro=null,familiars=null,pending;
 export const atlasReady=()=>Boolean(retro||sheet||mageSheet);
 function loadSheet(path,clean){return new Promise(resolve=>{const image=new Image();image.onload=()=>{
@@ -12,7 +12,7 @@ function loadSheet(path,clean){return new Promise(resolve=>{const image=new Imag
  };image.onerror=()=>resolve(null);image.src=new URL(path,import.meta.url).href;});}
 export function loadAtlas(){
  if(pending)return pending;if(typeof Image==='undefined')return Promise.resolve(false);
- pending=Promise.all([loadSheet('./assets/warrior-wolf-v1.webp',cleanSpriteMatte),loadSheet('./assets/mage-v1.webp',cleanGreenMatte),loadSheet('./assets/warrior-armors-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-weapons-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-heads-v1.png',cleanGreenMatte),loadSheet('./assets/warrior-retro-v1.png',cleanGreenMatte),loadSheet('./assets/mage-retro-v1.png',cleanGreenMatte),loadSheet('./assets/heads-retro-v1.png',cleanGreenMatte),loadSheet('./assets/archer-retro-v1.png',cleanSpriteMatte),loadSheet('./assets/necro-retro-v1.png',cleanGreenMatte),loadSheet('./assets/boxer-retro-v1.png',cleanGreenMatte),loadSheet('./assets/ninja-retro-v1.png',cleanGreenMatte),loadSheet('./assets/heads-ko-v1.png',cleanGreenMatte),loadSheet('./assets/knight-retro-v1.png',cleanGreenMatte),loadSheet('./assets/knight-shield-v1.png',cleanGreenMatte),loadSheet('./assets/monk-retro-v1.png',cleanGreenMatte),loadSheet('./assets/trooper-retro-v1.png',cleanGreenMatte),loadSheet('./assets/engineer-retro-v1.png',cleanGreenMatte),loadSheet('./assets/berserker-retro-v1.png',cleanGreenMatte),loadSheet('./assets/joker-retro-v1.png',cleanGreenMatte),...FAMILIARS.map(name=>loadSheet(`./assets/${name}-retro-v1.png`,name==='cat'||name==='raven'?cleanGreenMatte:()=>{}))]).then(([w,m,b,g,heads,rw,rm,rh,ra,rn,rb,ri,rk,rt,rs,rmonk,rtrooper,rengineer,rberserker,rjoker,...pets])=>{try{familiars=prepareFamiliars(pets);}catch(error){console.warn("Familiar art unavailable",error);}if(rw&&rm&&rh&&g){try{retro=prepareRetro(rw,rm,rh,g,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;},ra,rn,rb,ri,rk,rt,rs,rmonk,rtrooper,rengineer,rberserker,rjoker);}catch(error){console.warn('Retro art unavailable',error);}}sheet=w;mageSheet=m;warriorBody=b;warriorWeapons=g;warriorHeads=heads;if(b&&heads){try{warriorBodies=prepareWarriorBodies(b,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});}catch(error){console.warn('Warrior identity unavailable',error);}}return Boolean(retro||w||m||b);});return pending;
+ pending=Promise.all([loadSheet('./assets/warrior-wolf-v1.webp',cleanSpriteMatte),loadSheet('./assets/mage-v1.webp',cleanGreenMatte),loadSheet('./assets/warrior-armors-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-weapons-v1.webp',cleanSpriteMatte),loadSheet('./assets/warrior-heads-v1.png',cleanGreenMatte),loadSheet('./assets/warrior-retro-v1.png',cleanGreenMatte),loadSheet('./assets/mage-retro-v1.png',cleanGreenMatte),loadSheet('./assets/heads-retro-v1.png',cleanGreenMatte),loadSheet('./assets/archer-retro-v1.png',cleanSpriteMatte),loadSheet('./assets/necro-retro-v1.png',cleanGreenMatte),loadSheet('./assets/boxer-retro-v1.png',cleanGreenMatte),loadSheet('./assets/ninja-retro-v1.png',cleanGreenMatte),loadSheet('./assets/heads-ko-v1.png',cleanGreenMatte),loadSheet('./assets/knight-retro-v1.png',cleanGreenMatte),loadSheet('./assets/knight-shield-v1.png',cleanGreenMatte),loadSheet('./assets/monk-retro-v1.png',cleanGreenMatte),loadSheet('./assets/trooper-retro-v1.png',cleanGreenMatte),loadSheet('./assets/engineer-retro-v1.png',cleanGreenMatte),loadSheet('./assets/berserker-retro-v1.png',cleanGreenMatte),loadSheet('./assets/joker-retro-v1.png',cleanGreenMatte),loadSheet('./assets/alien-retro-v1.png',cleanSpriteMatte),loadSheet('./assets/alien-heads-v1.png',cleanSpriteMatte),...FAMILIARS.map(name=>loadSheet(`./assets/${name}-retro-v1.png`,name==='cat'||name==='raven'?cleanGreenMatte:()=>{}))]).then(([w,m,b,g,heads,rw,rm,rh,ra,rn,rb,ri,rk,rt,rs,rmonk,rtrooper,rengineer,rberserker,rjoker,ralien,ralienHeads,...pets])=>{try{familiars=prepareFamiliars(pets);}catch(error){console.warn("Familiar art unavailable",error);}if(rw&&rm&&rh&&g){try{retro=prepareRetro(rw,rm,rh,g,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;},ra,rn,rb,ri,rk,rt,rs,rmonk,rtrooper,rengineer,rberserker,rjoker,ralien,ralienHeads);}catch(error){console.warn('Retro art unavailable',error);}}sheet=w;mageSheet=m;warriorBody=b;warriorWeapons=g;warriorHeads=heads;if(b&&heads){try{warriorBodies=prepareWarriorBodies(b,(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;});}catch(error){console.warn('Warrior identity unavailable',error);}}return Boolean(retro||w||m||b);});return pending;
 }
 const warriorFrames=[ [8,175,242,335,120,330], [256,195,255,315,128,310], [520,195,247,315,128,310], [770,140,310,370,128,365], [1064,195,215,315,120,310], [1280,430,255,80,128,75] ];
 const wolfFrames=[ [5,680,247,222,125,217], [257,744,264,158,130,153], [535,744,230,158,118,153], [777,704,248,151,124,193], [1035,755,230,147,118,142], [1280,817,250,85,125,80] ];
@@ -102,5 +102,10 @@ export function atlasBerserker(ctx,h,x,y,s,flip,time,fallen,pose){
 
 export function atlasJoker(ctx,h,x,y,s,flip,time,fallen,pose){
  if(h.class!==5||!retro?.hasJoker)return false;
+ retro.draw(ctx,h,animationFrame(time,pose,fallen),x,y+27*s-(s*27-24)*(Number(fallen)||0),s,flip,time);return true;
+}
+
+export function atlasAlien(ctx,h,x,y,s,flip,time,fallen,pose){
+ if(h.class!==11||!retro?.hasAlien)return false;
  retro.draw(ctx,h,animationFrame(time,pose,fallen),x,y+27*s-(s*27-24)*(Number(fallen)||0),s,flip,time);return true;
 }
