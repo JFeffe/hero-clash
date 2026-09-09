@@ -1,4 +1,19 @@
-# Hero Clash — prototype Web 0.27.0
+# Hero Clash — Le Bastion des Serments · 0.28.0
+
+**[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.0 — Le Bastion des Serments
+
+- Refonte médiévale des pages existantes : compagnie, recrutement, fiche/équipement, adversaires, pool, combat/résultat, récompenses, boutique, Graveyard, mémorial, Temple, classes et options.
+- Pierre ardoise, panneaux ivoire, accents bordeaux et laiton. Les 13 classes, leurs sprites, leurs équipements et toutes les règles restent les mêmes.
+- Cinq cartes de héros avec accès direct à la fiche ou au combat ; tour illustrée affichant l’étage du héros sélectionné. Les PV de duel restent distincts des cinq cœurs de carrière.
+- Quatre décors avec spectateurs : fondations (1–5), grandes tribunes (6–10), galeries des nuages (11–14), dôme ouvert sur le ciel (15). Une relecture utilise l’étage du duel enregistré, même après une promotion.
+- Navigation latérale sur grand écran, navigation basse sur téléphone, cartes et formulaires adaptatifs. Français/anglais conservés, défilement conservé lors des changements d’équipement.
+- Sauvegarde locale et format d’export inchangés. Aucune réinitialisation nécessaire ; outils de prototype toujours dans Options.
+
+Validation : 15 tests Node réussis ; contrôles navigateur Chromium aux largeurs 320, 390, 768 et 1440 px, incluant les quatre arènes, les relectures, le recrutement, l’équipement, la boutique et la sauvegarde. Voir [le compte rendu de vérification](QA_BASTION.md).
+
+Les cinq nouvelles images WebP représentent environ 760 Kio au total. Aucun service ni dépendance JavaScript de production ajouté. Voir [la direction artistique et les assets](ART_BASTION.md).
 
 Jeu de combats automatiques en pixel art, adapté au téléphone et au PC. Interface français/anglais.
 

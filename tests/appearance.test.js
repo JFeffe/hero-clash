@@ -1,3 +1,4 @@
+import * as bastion from '../docs/bastion.js';
 import * as wallet from '../docs/wallet.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -32,10 +33,10 @@ for(let identity=0;identity<24;identity++)for(let armor=6;armor<=9;armor++)for(l
 assert.equal(headCalls,count);
 
 const h=engine.hero(1,0),backup={version:2,lang:'fr',heroes:[h],graveyard:[],selected:h.id};
-const events={},nodes={app:{innerHTML:''},name:{value:'Ariane'},focus:{focus(){}}};let saved,scroll;
-const context=vm.createContext({...wallet,...engine,...progression,...heroState,...art,...appearance,B,console,crypto,structuredClone,performance,
+const events={},nodes={app:{innerHTML:'',setAttribute(){}},name:{value:'Ariane'},focus:{focus(){}}};let saved,scroll;
+const context=vm.createContext({...bastion,...wallet,...engine,...progression,...heroState,...art,...appearance,B,console,crypto,structuredClone,performance,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:(key,value)=>{saved=JSON.parse(value);}},
- document:{querySelector:s=>s==='#hero-name'?nodes.name:s.startsWith('[data-appearance')?nodes.focus:nodes.app,querySelectorAll:()=>[],documentElement:{},addEventListener:(type,fn)=>{events[type]=fn;}},
+ document:{body:{dataset:{}},querySelector:s=>s==='#hero-name'?nodes.name:s.startsWith('[data-appearance')?nodes.focus:nodes.app,querySelectorAll:()=>[],documentElement:{},addEventListener:(type,fn)=>{events[type]=fn;}},
  window:{scrollY:432,matchMedia:()=>({matches:false}),addEventListener(){},scrollTo:(x,y)=>{scroll=y;}},
  cancelAnimationFrame(){},requestAnimationFrame:()=>0,setInterval(){},setTimeout:()=>0,clearTimeout(){}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);

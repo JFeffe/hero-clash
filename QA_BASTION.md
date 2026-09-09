@@ -1,0 +1,33 @@
+# Validation du Bastion — 0.28.0
+
+## Tests automatisés
+
+`npm test` : **15 fichiers de tests réussis, 0 échec**.
+
+La suite couvre notamment les règles de combat, les récompenses, les pools, la progression, les anciennes sauvegardes, la boutique, l’apparence, 104 832 rendus rétro et 78 démonstrations classe/familier sans mutation de sauvegarde. Le nouveau test `tests/bastion.test.js` vérifie les frontières 5/6, 10/11 et 14/15, le cache d’images, la gestion d’une image indisponible et le cadrage sans déformation des arènes larges/étroites.
+
+Les deux hôtes DOM de tests existants ont reçu les nouvelles dépendances visuelles et les méthodes DOM correspondantes ; leurs assertions de jeu restent actives.
+
+## Navigateur
+
+Vérification locale avec Chromium headless et Playwright, données de test isolées de toute partie utilisateur. Les largeurs mobiles utilisent l’émulation tactile. Aucun appareil physique ni Safari iOS n’a été utilisé.
+
+| Largeur | Vérifications |
+| --- | --- |
+| 320 px | Nom de héros long, compagnie, fiche, changement d’équipement sans saut de défilement, adversaires, relance, pool déplié, boutique, Graveyard, Temple, options, outils de prototype, 13 classes, anglais et rechargement |
+| 390 px | Mêmes parcours, captures visuelles, recrutement de la cinquième place avec conservation du nom et de l’apparence |
+| 768 px | Menus sur tablette, grilles intermédiaires, contrôles accessibles et absence de défilement horizontal |
+| 1440 px | Navigation latérale, cinq héros, comparaison des adversaires, tous les menus et captures visuelles |
+
+69 contrôles de pages/largeurs ont réussi sans débordement horizontal, contrôle hors écran, valeur `undefined`/`NaN`, erreur JavaScript ou ressource HTTP manquante.
+
+Les combats ont été exécutés aux étages 1, 6, 11 et 15. Résultat, bouton Continuer et relecture ont été exercés ; l’enregistrement du duel reste identique après relecture. Les captures montrent les tribunes et l’oculus ouvert du sommet, avec les sprites existants.
+
+12 contrôles complémentaires ont vérifié les états avec données : Graveyard rempli, mémorial, champion du Temple, choix de récompense, aperçu des équipements et première création sans sauvegarde. Ils ont également réussi sans erreur ni débordement.
+
+## Compatibilité
+
+- Même clé et même schéma de sauvegarde ; aucun reset, aucune migration visuelle des données.
+- Moteur de combat, progression, équipement et atlases de personnages inchangés.
+- Images WebP locales, sans police ou bibliothèque distante en production.
+- Liens et versions d’entrée actualisés pour le cache GitHub Pages.

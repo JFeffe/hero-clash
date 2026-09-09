@@ -1,3 +1,4 @@
+import * as bastion from '../docs/bastion.js';
 import * as wallet from '../docs/wallet.js';
 // Render production templates with a minimal DOM host; this is not device/visual QA.
 import assert from 'node:assert/strict';
@@ -14,10 +15,10 @@ import {BALANCE as B} from '../docs/balance.js';
 if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const h=engine.hero(1,4);h.inventory=[{id:14,level:1,rarity:0}];h.equipped=[-1,-1,0,-1];
 const backup={version:2,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
-const host={innerHTML:'',style:{}};
-const context=vm.createContext({...wallet,...career,...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
+const host={innerHTML:'',style:{},setAttribute(){}};
+const context=vm.createContext({...bastion,...wallet,...career,...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:()=>{}},
- document:{querySelector:()=>host,querySelectorAll:()=>[],documentElement:{},addEventListener:()=>{}},
+ document:{body:{dataset:{}},querySelector:()=>host,querySelectorAll:()=>[],documentElement:{},addEventListener:()=>{}},
  window:{matchMedia:()=>({matches:false}),addEventListener:()=>{},scrollTo:()=>{}},
  cancelAnimationFrame:()=>{},requestAnimationFrame:()=>0,setInterval:()=>{},setTimeout:()=>0,clearTimeout:()=>{}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
