@@ -31,3 +31,10 @@ Les combats ont été exécutés aux étages 1, 6, 11 et 15. Résultat, bouton C
 - Moteur de combat, progression, équipement et atlases de personnages inchangés.
 - Images WebP locales, sans police ou bibliothèque distante en production.
 - Liens et versions d’entrée actualisés pour le cache GitHub Pages.
+
+
+## Révision 0.28.1
+
+Contrôles ciblés de la compagnie, de la boutique, des nouvelles cartes du Temple et des fiches de champion à 1366×720, 1440×900, 2048×900, 390×844 et 320×700. Les tests DOM couvrent les chiffres regroupés par héros, le nom et le décor de la bannière, la lecture seule des champions et la présence des six lots achetables.
+
+La compagnie et la boutique utilisent des cartes horizontales sur téléphone. Le choix d’une carte et le retrait d’un cadeau sont contrôlés dans le navigateur, avec conservation de la position horizontale après achat. Les panneaux secondaires dépliés et les longues listes peuvent nécessiter un défilement ; le contenu n’est pas coupé pour forcer une hauteur fixe.

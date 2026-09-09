@@ -103,3 +103,20 @@ for(const lang of ['fr','en']){
  assert.equal((settings.match(/data-action="reset-account"/g)||[]).length,1);
 }
 console.log('Demo, equipment preview and reset grouped under Prototype tools in FR/EN.');
+
+// Compact company progression stays hero-specific, and Temple sheets are read-only.
+vm.runInContext("game.heroes=[hero(2,0),hero(3,2)];game.selected=game.heroes[0].id;ensureCareer(game.heroes[0]).floor=6;ensureCareer(game.heroes[1]).floor=11;game.heroes[0].wins=4;game.heroes[0].losses=2;game.heroes[0].draws=1;game.heroes[0].career.pool.played=7;page='home'",context);
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}'`,context);
+ const html=vm.runInContext('companyCard(selected())',context);
+ assert(html.includes('4 / 2 / 1'));assert(html.includes('7 / 10'));assert(html.includes('6/15'));
+ const banner=vm.runInContext('sceneBanner()',context);assert(banner.includes(vm.runInContext('selected().name',context)));assert(banner.includes('scene-middle'));
+ vm.runInContext('game.temple=[structuredClone(game.heroes[1])];game.temple[0].retired_at=Date.now();game.temple[0].career.floor=15;memorialId=game.temple[0].id',context);
+ const before=vm.runInContext('JSON.stringify(game.temple)',context);
+ assert(vm.runInContext('temple()',context).includes('data-action="champion"'));
+ assert(vm.runInContext('temple()',context).includes('data-portrait'));
+ const sheet=vm.runInContext('champion()',context);assert(sheet.includes('data-page="temple"'));assert(!sheet.includes('data-equip='));
+ assert.equal(vm.runInContext('JSON.stringify(game.temple)',context),before);
+ const store=vm.runInContext('shop()',context);assert.equal((store.match(/data-action="buy-pack"/g)||[]).length,6);assert.equal((store.match(/data-action="shop-page"/g)||[]).length,6);
+}
+console.log('Grouped per-hero progress, selected-hero banner, read-only champion cards/sheets and all six shop packs verified.');

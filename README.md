@@ -1,6 +1,15 @@
-# Hero Clash — Le Bastion des Serments · 0.28.0
+# Hero Clash — Le Bastion des Serments · 0.28.1
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.1 — Interface compacte et boutique
+
+- Compagnie compacte : cinq héros et la tour sur une seule vue d’ordinateur ; cartes horizontales et accès direct par nom sur téléphone.
+- Niveau, étage, bilan victoires/défaites/nuls et combats de l’étage regroupés. La bannière précise le nom du héros sélectionné dont elle suit l’étage.
+- Temple présenté en cartes avec portraits comme le Graveyard, avec une fiche de champion en lecture seule.
+- Boutique à six lots conservés : cartes dorées/violettes, éclats, boutons cadeaux verts et accès horizontal sur mobile. Aucun prix, montant ou mécanisme modifié.
+- Fiche de héros plus compacte : équipement sur deux colonnes sur ordinateur ; apparence et transfert d’énergie dépliables.
+- Position horizontale conservée après un achat ou le rafraîchissement automatique de la compagnie.
 
 ## Version 0.28.0 — Le Bastion des Serments
 

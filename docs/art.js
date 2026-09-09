@@ -1,4 +1,4 @@
-import {drawBastionBackdrop} from './bastion.js?v=0.28.0';
+import {drawBastionBackdrop} from './bastion.js?v=0.28.1';
 import {atlasAlien,atlasJoker,atlasBerserker,atlasEngineer,atlasTrooper,atlasMonk,atlasKnight,koAtlasReady,atlasNinja,atlasFamiliar,atlasWarrior,atlasWolf,atlasMage,atlasArcher,atlasNecro,atlasBoxer} from './sprite-atlas.js?v=0.27.2';
 export {loadAtlas,atlasReady,familiarStatus} from './sprite-atlas.js?v=0.27.2';
 // Canvas port of the existing desktop pixel_view.gd art.
