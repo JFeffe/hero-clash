@@ -93,3 +93,12 @@ vm.runInContext('resetAccount()',context);
 assert.equal(persisted.heroes.length,0);assert.equal(persisted.graveyard.length,0);assert.equal(persisted.temple.length,0);assert.equal(persisted.company_points,0);assert.equal(persisted.lastBattle,null);assert.equal(persisted.selected,null);
 assert.equal(vm.runInContext('page',context),'home');assert.equal(vm.runInContext('battle',context),null);
 console.log('Ten-member pool, selected hero, reset cancellation, storage failure rollback and persisted fresh start verified.');
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}'`,context);
+ const main=vm.runInContext('home()',context),settings=vm.runInContext('options()',context);
+ assert(!main.includes('id="demo-class"'));assert(!main.includes('warrior-preview.html'));
+ const tools=settings.slice(settings.indexOf(lang==='fr'?'Outils de prototype':'Prototype tools'));
+ assert(tools.includes('id="demo-class"'));assert(tools.includes('warrior-preview.html'));assert(tools.includes('data-action="reset-account"'));
+ assert.equal((settings.match(/data-action="reset-account"/g)||[]).length,1);
+}
+console.log('Demo, equipment preview and reset grouped under Prototype tools in FR/EN.');

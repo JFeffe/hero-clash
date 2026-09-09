@@ -329,7 +329,11 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    if(kind==='archer'&&weapon===2){
     // Mirror the bow so its limbs face the target; draw its string separately.
     ctx.scale(-1,1);ctx.drawImage(weapons,sx,sy,84,height,sx-gx,sy-gy,84,height);
-   }else ctx.drawImage(weapons,sx,sy,w,height,sx-gx,sy-gy,w,height);
+   }else {
+    // The source bow faces left; mirror around its grip before hero mirroring.
+    if(weapon===2)ctx.scale(-1,1);
+    ctx.drawImage(weapons,sx,sy,w,height,sx-gx,sy-gy,w,height);
+   }
    ctx.restore();
    if(kind==='archer'&&weapon===2&&index!==5){
     const bx=hx-pivot,by=hy-baseline,pull=index===3?left+85-pivot:bx-17;

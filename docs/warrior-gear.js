@@ -29,6 +29,7 @@ export function drawWarriorGear(ctx,body,gear,h,index,x,ground,s,flip,time=0,hea
   if(index===5)angle=Math.PI/2;
   const k=bodyHeight*length/ht;
   ctx.save();ctx.translate(hx-pivot,hy-baseline);ctx.rotate(angle);ctx.scale(k,k);
+  if(weapon===2)ctx.scale(-1,1);
   ctx.drawImage(gear,sx,sy,w,ht,sx-gx,sy-gy,w,ht);ctx.restore();
   // Reapply the actual glove over the grip, not a painted replacement hand.
   ctx.drawImage(body,hx-8,hy-7,16,14,hx-8-pivot,hy-7-baseline,16,14);
