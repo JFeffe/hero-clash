@@ -1,6 +1,13 @@
-# Hero Clash — Le Bastion des Serments · 0.28.3
+# Hero Clash — Le Bastion des Serments · 0.28.4
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.4 — Portraits adaptatifs et sélection directe
+
+- Personnages et familiers agrandis dans un cadre qui suit l’espace disponible. Le dessin garde ses proportions et se redimensionne avec la carte.
+- Toutes les informations et les cinq caractéristiques sont regroupées à gauche du portrait.
+- Cliquer sur une carte sélectionne son héros sans quitter Company. La bannière et la tour se mettent à jour, la sélection est sauvegardée et la position horizontale est conservée.
+- Sélection également accessible au clavier ; les boutons « Voir le héros » et « Combattre » gardent leurs fonctions.
 
 ## Version 0.28.3 — Vitrail de guilde
 

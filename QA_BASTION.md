@@ -54,3 +54,11 @@ Direction 02 appliquée uniquement aux cartes Company. Palette turquoise/indigo/
 Contrôles Chromium à 1366×720, 1440×900, 768×900, 390×844 et 320×700 : cinq cartes présentes, héros sélectionné, progression, badges de récompense et de nouvel équipement, absence de chevauchement entre le portrait/les informations et les statistiques, actions dans la carte, navigation vers la fiche et le combat. Cartes horizontales sur tablette/téléphone. Les contrôles couvrent le cas avec les deux badges simultanément.
 
 Test ciblé `node --test tests/balance-ui.test.js` réussi : modèles FR/EN, données de progression, récompenses, navigation et sauvegarde. Aucun changement du moteur de combat.
+
+## Révision 0.28.4 — Portraits adaptatifs et sélection directe
+
+Les portraits Company sont dessinés dans la taille réelle du cadre avec un rapport de pixels adapté à l’écran. Les limites visibles du héros et du familier sont calculées avant mise à l’échelle, sans déformation. Un ResizeObserver actualise le dessin au redimensionnement et est déconnecté au changement de page.
+
+Contrôles Chromium : 2048×900, 1366×720, 390×844 et 320×700, avec récompense et nouvel équipement simultanés. Vérifications de la position des statistiques à gauche, des limites des informations et des boutons, de la hauteur de page, du clic de sélection sans navigation, de la sélection au clavier, de la conservation du défilement horizontal, de la bannière et de la sélection après rechargement. Redimensionnement supplémentaire à 2048×1200 avec un familier : la hauteur de dessin passe de 180 à 330 pixels avec son cadre. Captures inspectées sur grand écran et téléphone.
+
+Test ciblé `tests/balance-ui.test.js` réussi, incluant sélection sans changement de page, état aria-pressed et rejet d’un identifiant absent. Les boutons de fiche et de combat restent distincts du bouton de sélection qui couvre la carte. Aucun changement des règles de progression ou de combat.

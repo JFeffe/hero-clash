@@ -134,3 +134,13 @@ for(const lang of ['fr','en']){
  assert(itemReward.includes('data-index="-1"'));
 }
 console.log('Compact reward templates retain all five stat choices, item choices, skip and full reference in FR/EN.');
+
+host.focus=()=>{};
+vm.runInContext("page='home';game.selected=game.heroes[0].id;actions['company-select']({dataset:{id:game.heroes[1].id}})",context);
+assert.equal(vm.runInContext('page',context),'home');
+assert.equal(vm.runInContext('game.selected===game.heroes[1].id',context),true);
+assert(host.innerHTML.includes('aria-pressed="true"'));
+const companySelected=vm.runInContext('game.selected',context);
+vm.runInContext("actions['company-select']({dataset:{id:'missing'}})",context);
+assert.equal(vm.runInContext('game.selected',context),companySelected);
+console.log('Company selection stays on home, exposes pressed state and ignores missing heroes.');
