@@ -144,3 +144,25 @@ const companySelected=vm.runInContext('game.selected',context);
 vm.runInContext("actions['company-select']({dataset:{id:'missing'}})",context);
 assert.equal(vm.runInContext('game.selected',context),companySelected);
 console.log('Company selection stays on home, exposes pressed state and ignores missing heroes.');
+
+vm.runInContext("game.heroes[0].career.floor=6;game.heroes[0].career.pool.played=8;game.heroes[1].career.floor=7;game.heroes[1].career.pool.played=1",context);
+const originalOrder=vm.runInContext('game.heroes.map(h=>h.id).join()',context);
+assert.equal(vm.runInContext('companyOrder()[0].id===game.heroes[1].id',context),true);
+vm.runInContext('game.heroes[1].career.floor=6',context);
+assert.equal(vm.runInContext('companyOrder()[0].id===game.heroes[0].id',context),true);
+vm.runInContext('game.heroes[1].career.pool.played=8',context);
+assert.equal(vm.runInContext('companyOrder().map(h=>h.id).join()',context),originalOrder);
+assert.equal(vm.runInContext('game.heroes.map(h=>h.id).join()',context),originalOrder);
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';selected().class=8`,context);
+ const arena=vm.runInContext('arenaHero(selected())',context);
+ assert(arena.indexOf('offense-summary')<arena.indexOf('hero-card'));
+ assert(arena.includes(lang==='fr'?'Intelligence · magie':'Intelligence · magic'));
+ assert(arena.includes(lang==='fr'?'Tourelle':'Turret'));
+ const detail=vm.runInContext('detail()',context);
+ assert(!detail.includes('data-appearance='));assert(!detail.includes('energy-disclosure'));
+ assert(detail.includes('energy-transfer'));assert(!detail.includes('Shared reserve:'));assert(!detail.includes('Seule l’énergie manquante'));
+ vm.runInContext('startArtDemo()',context);
+ const battle=vm.runInContext('battlePage()',context);assert.equal((battle.match(new RegExp((lang==='fr'?'Niv.':'Lv.')+' 5','g'))||[]).length,2);
+}
+console.log('Company sorting, creation-only appearance, offensive summary, battle levels and direct energy controls verified.');

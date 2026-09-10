@@ -40,107 +40,24 @@ const context=vm.createContext({...bastion,...wallet,...engine,...progression,..
  window:{scrollY:432,matchMedia:()=>({matches:false}),addEventListener(){},scrollTo:(x,y)=>{scroll=y;}},
  cancelAnimationFrame(){},requestAnimationFrame:()=>0,setInterval(){},setTimeout:()=>0,clearTimeout(){}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
-for(const lang of ['en','fr']){vm.runInContext(`game.lang='${lang}';page='detail';render()`,context);assert(nodes.app.innerHTML.includes('data-appearance="gender"'));assert(!/NaN|undefined/.test(nodes.app.innerHTML));}
-await events.change({target:{dataset:{appearance:'gender'},value:'1'}});assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-vm.runInContext('candidate=hero(1,0);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'2'}});
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');assert.equal(vm.runInContext('candidate.appearance.hair',context),2);
-vm.runInContext('actions.confirm()',context);assert.equal(saved.heroes.at(-1).name,'Ariane');assert.equal(saved.heroes.at(-1).appearance.hair,2);
-assert(vm.runInContext('validSave(game)',context));
-vm.runInContext('game.heroes[0].class=1;game.selected=game.heroes[0].id;page="detail";render()',context);
-assert(nodes.app.innerHTML.includes('Apparence de l’Archer'));
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(saved.heroes[0].appearance.hair,3);assert.equal(scroll,432);
-// Mage controls must persist through save/reload and recruitment as well.
-vm.runInContext('game.heroes[0].class=2;game.selected=game.heroes[0].id;page="detail";render()',context);
-assert(nodes.app.innerHTML.includes('Apparence du Mage'));
-await events.change({target:{dataset:{appearance:'face'},value:'2'}});
-assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
-vm.runInContext('candidate=hero(1,2);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-// Boxer identity controls work in both languages and preserve scroll/save state.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=12;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Boxeur':'Boxer appearance'));
- await events.change({target:{dataset:{appearance:'face'},value:'2'}});
- assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
+
+for(let cls=0;cls<13;cls++)for(const lang of ['en','fr']){
+ vm.runInContext(`game.lang='${lang}';game.heroes[0].class=${cls};page='detail';render()`,context);
+ assert(!nodes.app.innerHTML.includes('data-appearance='));
+ const before=vm.runInContext('JSON.stringify(game.heroes[0].appearance)',context);
+ await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
+ await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
+ assert.equal(vm.runInContext('JSON.stringify(game.heroes[0].appearance)',context),before);
+ vm.runInContext(`candidate=hero(1,${cls});page='recruit';render()`,context);
+ assert(nodes.app.innerHTML.includes('data-appearance="gender"'));
+ await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
+ assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
+ assert.equal(vm.runInContext('candidate.name',context),'Ariane');
 }
-vm.runInContext('candidate=hero(1,12);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
-assert.equal(vm.runInContext('candidate.appearance.gender',context),1);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
+vm.runInContext('actions.confirm()',context);
+assert.equal(saved.heroes.at(-1).appearance.hair,3);
+assert.equal(saved.heroes.at(-1).name,'Ariane');
+assert(vm.runInContext('validSave(game)',context));
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
-// Knight controls must persist on existing heroes and work before recruitment.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=4;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Chevalier':'Knight appearance'));
- await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
- assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,4);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-// Monk controls must persist on existing heroes and work before recruitment.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=7;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Moine':'Monk appearance'));
- await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
- assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,7);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-console.log(`${count} identity/loadout/pose/direction renders; cosmetic-only combat, old saves, import validation, FR/EN controls, recruitment name and scroll retention verified.`);
-// Trooper controls must persist on existing heroes and work before recruitment.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=3;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Trooper':'Trooper appearance'));
- await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
- assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,3);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-
-// Berserker controls must persist on existing heroes and work before recruitment.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=9;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Berserker':'Berserker appearance'));
- await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
- assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,9);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-
-// Joker controls must persist on existing heroes and work before recruitment.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=5;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence du Joker':'Joker appearance'));
- await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
- assert.equal(saved.heroes[0].appearance.gender,1);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,5);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
-
-// Alien labels, persistence and recruitment use the shared save format.
-for(const lang of ['fr','en']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=11;page='detail';render()`,context);
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Apparence de l’Alien':'Alien appearance'));
- assert(nodes.app.innerHTML.includes(lang==='fr'?'Crâne lisse':'Smooth dome'));
- await events.change({target:{dataset:{appearance:'face'},value:'2'}});
- assert.equal(saved.heroes[0].appearance.face,2);assert.equal(scroll,432);
-}
-vm.runInContext('candidate=hero(1,11);page="recruit";render()',context);
-await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
-assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
-assert.equal(vm.runInContext('candidate.name',context),'Ariane');
+console.log('All 13 classes: appearance editable during recruitment, locked after creation; legacy saves remain valid.');

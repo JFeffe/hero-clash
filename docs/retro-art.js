@@ -273,47 +273,15 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair];
    const sx=edges[0]*faceSheet.width/1024,sw=(edges[1]-edges[0])*faceSheet.width/1024;
    ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);
-   if(kind==='joker'){
-    // Follow the personalized head, including its rotation when knocked out.
-    const hy=-(hb-ht)+25;
-    ctx.fillStyle='#211c30';ctx.beginPath();
-    ctx.moveTo(-78,hy+25);ctx.lineTo(-91,hy-13);ctx.lineTo(-53,hy-55);
-    ctx.lineTo(-9,hy-29);ctx.lineTo(33,hy-54);ctx.lineTo(85,hy-17);
-    ctx.lineTo(88,hy+25);ctx.lineTo(56,hy+5);ctx.lineTo(36,hy+19);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#643b86';ctx.beginPath();ctx.moveTo(-73,hy+13);ctx.lineTo(-81,hy-11);ctx.lineTo(-52,hy-44);ctx.lineTo(-7,hy-20);ctx.lineTo(-4,hy+14);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#8f334e';ctx.beginPath();ctx.moveTo(-4,hy+14);ctx.lineTo(1,hy-20);ctx.lineTo(34,hy-43);ctx.lineTo(75,hy-12);ctx.lineTo(77,hy+12);ctx.lineTo(51,hy-5);ctx.lineTo(33,hy+12);ctx.closePath();ctx.fill();
-    ctx.fillStyle='#be8d43';ctx.fillRect(-67,hy+12,113,8);
-    for(const bx of [-88,80]){ctx.fillStyle='#6c4729';ctx.fillRect(bx-7,hy+17,18,20);ctx.fillStyle='#e2b752';ctx.fillRect(bx-5,hy+18,13,14);ctx.fillStyle='#ffe4a2';ctx.fillRect(bx-3,hy+19,5,5);}
-   }
+
    if(kind==='berserker'){
     ctx.fillStyle='#9f342e';
     const cheekY=a.gender===0?-59:-54;
     ctx.fillRect(37,cheekY,9,22);ctx.fillRect(51,cheekY+4,7,16);
    }
-   if(kind==='engineer'){
-    const gy=a.gender===0?-135:-142;
-    ctx.fillStyle='#30251f';ctx.fillRect(-36,gy,111,13);
-    for(const gx of [-17,35]){
-     ctx.fillStyle='#372b21';ctx.fillRect(gx-4,gy-13,39,40);
-     ctx.fillStyle='#be873d';ctx.fillRect(gx,gy-10,31,34);
-     ctx.fillStyle='#1b3546';ctx.fillRect(gx+6,gy-4,19,22);
-     ctx.fillStyle='#93cbce';ctx.fillRect(gx+8,gy-2,6,15);
-    }
-   }
-   // Small cloth mask is a code-native equipment layer, below the eyelids.
-   if(kind==='ninja'){
-    ctx.fillStyle='#272737';ctx.beginPath();
-    if(a.gender===0){
-     // Wrap the broader male cheek and jaw, with a strap below the ear.
-     ctx.moveTo(-38,-77);ctx.lineTo(-22,-77);ctx.lineTo(-12,-61);
-     ctx.lineTo(29,-53);ctx.lineTo(76,-53);ctx.lineTo(68,-8);
-     ctx.lineTo(20,-5);ctx.lineTo(-24,-29);
-    }else{
-     ctx.moveTo(-7,-60);ctx.lineTo(70,-54);ctx.lineTo(64,-17);ctx.lineTo(22,-5);ctx.lineTo(-7,-28);
-    }
-    ctx.closePath();ctx.fill();
-    ctx.fillStyle='#444056';ctx.fillRect(a.gender===0?-12:1,-50,a.gender===0?74:56,6);
-   }
+
+   // Personalized hair and faces stay unobstructed for every class.
+
    ctx.restore();
   }
   if(weapon!==null){

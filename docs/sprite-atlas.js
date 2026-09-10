@@ -1,5 +1,5 @@
 import {FAMILIARS,prepareFamiliars} from './familiar-art.js?v=0.27.2';
-import {prepareRetro} from './retro-art.js?v=0.27.2';
+import {prepareRetro} from './retro-art.js?v=0.28.6';
 import {prepareWarriorBodies} from './warrior-identity.js';
 import {appearanceOf,validAppearance} from './appearance.js?v=0.27.2';
 import {drawWarriorGear} from './warrior-gear.js?v=0.27.2';

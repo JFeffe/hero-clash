@@ -68,3 +68,9 @@ Test ciblé `tests/balance-ui.test.js` réussi, incluant sélection sans changem
 Le résultat de combat utilise désormais 96 % de la largeur disponible, jusqu’à 1760 px, avec une arène plus large et une hauteur adaptée à l’écran. Corps du bilan de 16 à 20 px, titres et butin agrandis, boutons de 48 px minimum sur ordinateur. Les règles de téléphone restent inchangées.
 
 Contrôles Chromium avec butin rare et promotion d’étage : 2048×900 (bilan de 1760 px, arène de 420 px de haut, texte de 20 px), 1366×720 (bilan de 1311 px, arène de 280 px, texte de 16 px), 390×844 et 320×700. Aucune barre de défilement de page dans ces cas. Revoir rétablit la présentation du duel et Continuer quitte le combat correctement. Test ciblé `tests/balance-ui.test.js` réussi.
+
+## Révision 0.28.6 — Compagnie et fiches clarifiées
+
+Suite complète : 15 fichiers de tests réussis, aucun échec. Tests DOM en français et anglais : tri décroissant étage/combats et stabilité des égalités, absence de mutation de l’ordre sauvegardé, résumé offensif avant le portrait, transfert direct, niveaux des deux combattants. Pour les 13 classes, apparence non modifiable après création, réglages de recrutement et sauvegarde conservés.
+
+Parcours Chromium à 1366×720, 390×844 et 320×700 : ordre Zara/Ninja/Arlo/Kira/Hana sur des données d’étages distincts, sélection conservée, absence des réglages d’apparence, transfert de 15 points avec contrôle du débit de la réserve et du gain du héros, résumé Intelligence/Tourelle, deux niveaux visibles pendant le combat et après affichage du résultat. Aucun échec JavaScript ni ressource HTTP manquante. Captures inspectées pour les accessoires retirés et le formulaire d’énergie mobile. Tests sur navigateur émulé, sans appareil physique.

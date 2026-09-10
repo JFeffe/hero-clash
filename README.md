@@ -1,6 +1,15 @@
-# Hero Clash — Le Bastion des Serments · 0.28.5
+# Hero Clash — Le Bastion des Serments · 0.28.6
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.6 — Compagnie et fiches clarifiées
+
+- Compagnie triée par étage décroissant, puis par nombre de combats joués sur cet étage ; sélection conservée.
+- Niveau des deux combattants affiché pendant le duel et dans son résultat.
+- Coiffes, masque du ninja et lunettes de l’ingénieur retirés du rendu ; cheveux et visages conservés.
+- Apparence réglable uniquement à la création du héros.
+- Attribut offensif, type de dégâts et compétence mis en évidence en haut de la fiche sélectionnée dans le choix d’adversaire.
+- Transfert d’énergie direct : icône, montant et confirmation, sans sous-menu ni texte redondant.
 
 ## Version 0.28.5 — Résultat de combat lisible
 

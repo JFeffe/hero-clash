@@ -1,6 +1,6 @@
-import {drawBastionBackdrop} from './bastion.js?v=0.28.5';
-import {atlasAlien,atlasJoker,atlasBerserker,atlasEngineer,atlasTrooper,atlasMonk,atlasKnight,koAtlasReady,atlasNinja,atlasFamiliar,atlasWarrior,atlasWolf,atlasMage,atlasArcher,atlasNecro,atlasBoxer} from './sprite-atlas.js?v=0.27.2';
-export {loadAtlas,atlasReady,familiarStatus} from './sprite-atlas.js?v=0.27.2';
+import {drawBastionBackdrop} from './bastion.js?v=0.28.6';
+import {atlasAlien,atlasJoker,atlasBerserker,atlasEngineer,atlasTrooper,atlasMonk,atlasKnight,koAtlasReady,atlasNinja,atlasFamiliar,atlasWarrior,atlasWolf,atlasMage,atlasArcher,atlasNecro,atlasBoxer} from './sprite-atlas.js?v=0.28.6';
+export {loadAtlas,atlasReady,familiarStatus} from './sprite-atlas.js?v=0.28.6';
 // Canvas port of the existing desktop pixel_view.gd art.
 export function sprite(ctx,h,x,y,s=3,flip=false,time=0,fallen=false,pose={}){if((!fallen||koAtlasReady())&&(atlasAlien(ctx,h,x,y,s,flip,time,fallen,pose)||atlasJoker(ctx,h,x,y,s,flip,time,fallen,pose)||atlasBerserker(ctx,h,x,y,s,flip,time,fallen,pose)||atlasEngineer(ctx,h,x,y,s,flip,time,fallen,pose)||atlasTrooper(ctx,h,x,y,s,flip,time,fallen,pose)||atlasMonk(ctx,h,x,y,s,flip,time,fallen,pose)||atlasKnight(ctx,h,x,y,s,flip,time,fallen,pose)||atlasNinja(ctx,h,x,y,s,flip,time,fallen,pose)||atlasBoxer(ctx,h,x,y,s,flip,time,fallen,pose)||atlasNecro(ctx,h,x,y,s,flip,time,fallen,pose)||atlasArcher(ctx,h,x,y,s,flip,time,fallen,pose)||atlasWarrior(ctx,h,x,y,s,flip,time,fallen,pose)||atlasMage(ctx,h,x,y,s,flip,time,fallen,pose)))return;ctx.save();ctx.translate(x,y);ctx.scale(flip?-s:s,s);if(fallen)ctx.rotate(-Math.PI/2*Math.min(1,Number(fallen)));else ctx.rotate((pose.attack??0)*.13-(pose.hurt??0)*.16);let cls=h.class,look=h.look,b=fallen?0:Math.round(Math.sin(time*4)*.6),ink='#111720',pale='#f2ddac',body=['#cd754a','#63b995','#a486dd','#7f9867','#a1b5c5','#d45b9b','#566582','#d1a15b','#cfad5d','#bc654a','#8b66ac','#74c0bb','#ce626b'][cls],hair=['#efc36c','#773f38','#3a283e','#ddd6c1','#bd5264'][look%5],skin=['#f0bc8b','#c48c64','#88583f'][Math.floor(look/5)%3];if(cls===11)skin='#a3d69a';let armor=h.inventory[h.equipped[1]]?.id;if(armor===6)body='#8eabb8';if(armor===7)body='#81966a';if(armor===9)body='#5f627f';const r=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);};
 r(-12,26,25,3,'#0a101a66');let stride=Math.round(Math.sin(time*20)*(pose.run??0)*3);r(-8,22+stride,7,5,ink);r(2,22-stride,7,5,ink);r(-6,18,5,6,'#343a53');r(2,18,5,6,'#343a53');r(-9,5+b,18,15,ink);r(-7,6+b,14,12,body);r(-7,15+b,14,3,'#644b44');r(-1,15+b,3,3,pale);r(-11,7+b,4,10,ink);r(-10,8+b,3,6,body);r(-10,14+b,3,3,skin);r(8,7+b,4,10,ink);r(8,8+b,3,6,body);r(8,14+b,3,3,skin);r(-8,-12+b,16,18,ink);r(-6,-10+b,12,14,skin);r(-7,-12+b,14,5,hair);r(-8,-8+b,4,7,hair);r(-5,-8+b,5,2,hair);r(2,-5+b,3,3,ink);r(2,-5+b,1,1,'#fff');r(5,b,3,2,skin);r(1,2+b,4,1,'#945b53');
@@ -9,19 +9,17 @@ r(-6,7+b,3,7,'#ffffff24');r(5,8+b,2,7,'#0000002b');r(-10,6+b,5,3,body);r(7,6+b,5
 let variant=Math.floor(look/15)%4;if(variant===1){r(-10,-7+b,3,14,hair);r(-11,4+b,4,3,hair);}if(variant===2){r(-5,-15+b,3,5,hair);r(0,-16+b,3,5,hair);}if(variant===3){r(-7,1+b,3,5,hair);r(-4,4+b,8,2,hair);}
 if((time+look*.013)%4.7<.13)r(2,-5+b,3,3,skin);if(pose.attack>.4)r(1,1+b,4,2,ink);
 if(armor===6){r(-7,7+b,14,2,'#d0e1e5');r(-6,10+b,12,1,'#667d8e');r(-6,13+b,12,1,'#667d8e');}if(armor===7){r(-6,9+b,4,5,'#485e46');r(2,9+b,4,5,'#485e46');}if(armor===9)r(-6,9+b,12,2,'#b4a0cd');
-switch(cls){case 0:r(-8,-13+b,16,4,'#b2bdc4');r(-9,-10+b,3,6,'#718b9e');break;
-case 1:r(-9,-12+b,17,4,body);r(-7,-17+b,12,5,body);r(-9,-18+b,3,7,pale);break;
-case 2:r(-11,-12+b,23,3,ink);r(-8,-15+b,17,3,body);r(-5,-21+b,11,7,body);r(-2,-25+b,6,5,body);r(-8,-14+b,16,2,pale);break;
-case 3:r(-9,-14+b,17,6,'#73805a');r(-10,-9+b,20,2,'#4e6047');r(-5,6+b,3,9,pale);r(-1,7+b,8,2,'#485c44');break;
-case 4:r(-8,-13+b,16,17,'#9caeb8');r(-5,-7+b,13,3,ink);r(-3,-2+b,1,4,ink);r(0,-2+b,1,4,ink);r(3,-2+b,1,4,ink);r(-1,-19+b,3,6,'#d7787b');break;
-case 5:r(-8,-15+b,17,5,'#b3569d');r(-12,-20+b,6,8,'#cf8ac0');r(5,-19+b,7,7,'#e3b953');r(-12,-22+b,3,3,pale);r(11,-20+b,3,3,pale);r(-3,7+b,5,5,pale);break;
-case 6:r(-8,-12+b,16,5,'#3c4b6a');r(-8,-2+b,17,6,'#3c4b6a');r(-10,-8+b,19,2,'#d37176');r(-15,-7+b,6,3,'#d37176');break;
-case 7:r(-6,-11+b,12,5,skin);r(-5,-7+b,1,1,ink);r(-2,-7+b,1,1,ink);for(let k=0;k<4;k++)r(-5+k*3,6+b+Math.abs(k-1),2,2,'#835849');break;
-case 8:r(-8,-13+b,16,5,'#aa8051');r(-5,-7+b,6,5,'#70d5d4');r(3,-7+b,6,5,'#70d5d4');r(-4,-6+b,3,2,pale);r(4,-6+b,3,2,pale);r(-5,7+b,3,7,'#4d5d6b');r(3,7+b,3,7,'#4d5d6b');break;
-case 9:r(-8,-13+b,16,5,'#b45d3c');r(-11,-18+b,4,10,pale);r(7,-18+b,4,10,pale);r(-6,3+b,10,4,'#b45d3c');r(-5,8+b,10,5,skin);break;
-case 10:r(-9,-14+b,18,5,'#695085');r(-9,-10+b,4,16,'#695085');r(2,-5+b,3,2,'#92e8bc');r(-3,7+b,6,5,pale);r(-2,8+b,1,2,ink);r(1,8+b,1,2,ink);break;
+// Class clothing details remain below the head; no hats, masks or goggles.
+switch(cls){
+case 3:r(-5,6+b,3,9,pale);r(-1,7+b,8,2,'#485c44');break;
+case 5:r(-3,7+b,5,5,pale);break;
+case 7:for(let k=0;k<4;k++)r(-5+k*3,6+b+Math.abs(k-1),2,2,'#835849');break;
+case 8:r(-5,7+b,3,7,'#4d5d6b');r(3,7+b,3,7,'#4d5d6b');break;
+case 9:r(-6,3+b,10,4,'#b45d3c');r(-5,8+b,10,5,skin);break;
+case 10:r(-3,7+b,6,5,pale);r(-2,8+b,1,2,ink);r(1,8+b,1,2,ink);break;
 case 11:r(-6,-12+b,12,5,skin);r(-5,-7+b,4,4,ink);r(3,-7+b,4,4,ink);r(-4,-19+b,2,7,skin);r(4,-19+b,2,7,skin);r(-5,-21+b,4,3,'#9ee9e7');r(-3,8+b,6,4,'#9ee9e7');break;
-case 12:r(-8,-9+b,16,2,'#e57a7b');r(-12,12+b,6,6,'#e75e68');r(8,12+b,6,6,'#e75e68');break;}
+case 12:r(-12,12+b,6,6,'#e75e68');r(8,12+b,6,6,'#e75e68');break;}
+
 if(fallen){
  // Closed eyelids and a neutral mouth, including class-specific faces.
  if(cls===11){r(-5,-7+b,4,4,skin);r(3,-7+b,4,4,skin);r(-5,-5+b,4,1,ink);r(3,-5+b,4,1,ink);}
