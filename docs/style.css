@@ -3771,3 +3771,19 @@ nav button.active:hover {
 .offense-summary .offense-skill { margin-top:6px; color:#ead39c; font-weight:650; }
 
 .offense-summary .offense-advantage { margin-top:6px; color:#fff; }
+
+/* Arena selection and equipment rarity */
+.floor-progress{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap;margin-top:12px}
+.floor-progress>small{border:1px solid #af956a;padding:8px 12px;border-radius:3px;font-weight:700;color:#273c46;font-size:14px;background:#eee5d3}
+.arena-vitals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.arena-vitals>div{padding:12px;background:#eee5d3;border:1px solid #c9b796;border-radius:4px;min-width:0}
+.arena-vitals small,.arena-vitals b{display:block}.arena-vitals b{margin-top:4px}.arena-vitals .arena-xp{grid-column:1/-1}
+.arena-toolbar{display:flex;flex-direction:column;gap:14px}
+.arena-selection{display:flex;align-items:end;gap:12px}.arena-selection label{flex:1;min-width:0}.arena-selection select{width:100%}
+.arena-resources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:12px;align-items:center}
+.arena-resources>div{background:#eee5d3;border:1px solid #c9b796;border-radius:4px;padding:10px 14px;min-width:0}
+.arena-resources small,.arena-resources b{display:block}.arena-resources b{font-size:20px;margin-top:4px;color:#243b48}
+.arena-reroll-note{margin:0}
+.item-rarity-0{color:inherit}.item-rarity-1{color:#175cab!important}.item-rarity-2{color:#8035a5!important}
+select option.item-rarity-0{color:#243b48}.item-name{font-weight:700}
+@media(max-width:600px){.arena-resources{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.arena-resources>button{grid-column:1/-1}.arena-resources>div{padding:9px 7px}.arena-resources b{font-size:17px}.arena-resources small{font-size:12px}.arena-selection{align-items:stretch;flex-direction:column}.arena-vitals{gap:8px}}
