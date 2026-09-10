@@ -1,8 +1,9 @@
 import {D,randomItem,hero,clamp,simulate,applyResult,battleRewards} from './engine.js?v=0.26.0';
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 // A complete double round-robin provides a feasible continuation after every choice.
+export function markBot(h){h.isBot=true;if(!h.name.startsWith('[BOT] '))h.name='[BOT] '+h.name;return h;}
 export function createPool(h){
- const members=Array.from({length:9},(_,i)=>hero(clamp(h.level+i%3-1,1,20)));
+ const members=Array.from({length:9},(_,i)=>markBot(hero(clamp(h.level+i%3-1,1,20))));
  const ring=[0,...shuffle(Array.from({length:9},(_,i)=>i+1))], rounds=[];
  for(let n=0;n<9;n++){rounds.push(Array.from({length:5},(_,i)=>[ring[i],ring[9-i]]));ring.splice(1,0,ring.pop());}
  return {members,remaining:shuffle([...rounds,...structuredClone(rounds)]),played:0,meetings:Array(9).fill(0),lastRound:[]};
