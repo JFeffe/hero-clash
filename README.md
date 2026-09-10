@@ -1,6 +1,12 @@
-# Hero Clash — Le Bastion des Serments · 0.28.2
+# Hero Clash — Le Bastion des Serments · 0.28.3
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.3 — Vitrail de guilde
+
+- Direction 02 appliquée aux cartes de Company : turquoise, indigo, or, portraits dans une arche et boutons de combat turquoise.
+- Progression regroupée, cœurs, énergie, caractéristiques, notifications et actions conservés. Le héros sélectionné est signalé par une coche et un contour lumineux.
+- Les cinq héros et leurs équipements utilisent les mêmes sprites. Disposition compacte et navigation horizontale sur téléphone conservées.
 
 ## Version 0.28.2 — Après-combat compact
 

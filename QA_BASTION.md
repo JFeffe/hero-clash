@@ -46,3 +46,11 @@ Après-combat vérifié dans Chromium à 1366×720, 390×844 et 320×700 : portr
 Suite complète : 15 tests réussis. Le test ciblé des modèles de récompense contrôle les cinq caractéristiques, les offres d’équipement, le bouton Passer et la conservation de la référence complète en français et en anglais.
 
 Propositions Company : page autonome `docs/company-designs.html`, aucun accès au stockage de la partie. Trois palettes et cinq classes au choix, vrais atlases de personnages et familiers. Capture de comparaison inspectée dans `docs/assets/company-design-options.png`. Ces propositions ne remplacent pas encore les cartes en jeu.
+
+## Révision 0.28.3 — Vitrail de guilde
+
+Direction 02 appliquée uniquement aux cartes Company. Palette turquoise/indigo/or, arche du portrait, cases de progression et statistiques sombres, boutons turquoise, coche et contour pour le héros sélectionné. Sprites, règles, progression et clé de sauvegarde inchangés.
+
+Contrôles Chromium à 1366×720, 1440×900, 768×900, 390×844 et 320×700 : cinq cartes présentes, héros sélectionné, progression, badges de récompense et de nouvel équipement, absence de chevauchement entre le portrait/les informations et les statistiques, actions dans la carte, navigation vers la fiche et le combat. Cartes horizontales sur tablette/téléphone. Les contrôles couvrent le cas avec les deux badges simultanément.
+
+Test ciblé `node --test tests/balance-ui.test.js` réussi : modèles FR/EN, données de progression, récompenses, navigation et sauvegarde. Aucun changement du moteur de combat.
