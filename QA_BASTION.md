@@ -62,3 +62,9 @@ Les portraits Company sont dessinés dans la taille réelle du cadre avec un rap
 Contrôles Chromium : 2048×900, 1366×720, 390×844 et 320×700, avec récompense et nouvel équipement simultanés. Vérifications de la position des statistiques à gauche, des limites des informations et des boutons, de la hauteur de page, du clic de sélection sans navigation, de la sélection au clavier, de la conservation du défilement horizontal, de la bannière et de la sélection après rechargement. Redimensionnement supplémentaire à 2048×1200 avec un familier : la hauteur de dessin passe de 180 à 330 pixels avec son cadre. Captures inspectées sur grand écran et téléphone.
 
 Test ciblé `tests/balance-ui.test.js` réussi, incluant sélection sans changement de page, état aria-pressed et rejet d’un identifiant absent. Les boutons de fiche et de combat restent distincts du bouton de sélection qui couvre la carte. Aucun changement des règles de progression ou de combat.
+
+## Révision 0.28.5 — Lisibilité du bilan sur ordinateur
+
+Le résultat de combat utilise désormais 96 % de la largeur disponible, jusqu’à 1760 px, avec une arène plus large et une hauteur adaptée à l’écran. Corps du bilan de 16 à 20 px, titres et butin agrandis, boutons de 48 px minimum sur ordinateur. Les règles de téléphone restent inchangées.
+
+Contrôles Chromium avec butin rare et promotion d’étage : 2048×900 (bilan de 1760 px, arène de 420 px de haut, texte de 20 px), 1366×720 (bilan de 1311 px, arène de 280 px, texte de 16 px), 390×844 et 320×700. Aucune barre de défilement de page dans ces cas. Revoir rétablit la présentation du duel et Continuer quitte le combat correctement. Test ciblé `tests/balance-ui.test.js` réussi.

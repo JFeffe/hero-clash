@@ -1,6 +1,12 @@
-# Hero Clash — Le Bastion des Serments · 0.28.4
+# Hero Clash — Le Bastion des Serments · 0.28.5
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.5 — Résultat de combat lisible
+
+- Sur ordinateur, le bilan utilise la largeur disponible au lieu de partager une colonne limitée à 1000 px.
+- Arène finale agrandie selon la hauteur d’écran, textes du bilan plus grands et boutons de 48 px minimum.
+- Présentation compacte sur téléphone conservée, ainsi que le journal dépliable et les actions Revoir/Continuer.
 
 ## Version 0.28.4 — Portraits adaptatifs et sélection directe
 
