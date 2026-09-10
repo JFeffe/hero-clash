@@ -3769,3 +3769,5 @@ nav button.active:hover {
 .offense-summary > p:first-child, .offense-summary > p:first-child b { color:#fff; }
 .offense-summary p { margin:0; font-size:14px; line-height:1.4; }
 .offense-summary .offense-skill { margin-top:6px; color:#ead39c; font-weight:650; }
+
+.offense-summary .offense-advantage { margin-top:6px; color:#fff; }
