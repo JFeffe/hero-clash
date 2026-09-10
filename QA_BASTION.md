@@ -38,3 +38,11 @@ Les combats ont été exécutés aux étages 1, 6, 11 et 15. Résultat, bouton C
 Contrôles ciblés de la compagnie, de la boutique, des nouvelles cartes du Temple et des fiches de champion à 1366×720, 1440×900, 2048×900, 390×844 et 320×700. Les tests DOM couvrent les chiffres regroupés par héros, le nom et le décor de la bannière, la lecture seule des champions et la présence des six lots achetables.
 
 La compagnie et la boutique utilisent des cartes horizontales sur téléphone. Le choix d’une carte et le retrait d’un cadeau sont contrôlés dans le navigateur, avec conservation de la position horizontale après achat. Les panneaux secondaires dépliés et les longues listes peuvent nécessiter un défilement ; le contenu n’est pas coupé pour forcer une hauteur fixe.
+
+## Révision 0.28.2
+
+Après-combat vérifié dans Chromium à 1366×720, 390×844 et 320×700 : portrait/arène réduits, bilan et boutons sans défilement vertical. Le format 320×700 a aussi été vérifié avec un butin rare et une promotion d’étage. Récompense de caractéristique : choix d’un point testé avec contrôle du changement sauvegardé. Équipements sur téléphone : cartes horizontales et action « Passer » séparée, vérifiées à 320×700. La fiche complète est ouverte sur ordinateur et dépliable sur téléphone ; son ouverture et celle du journal peuvent nécessiter un défilement.
+
+Suite complète : 15 tests réussis. Le test ciblé des modèles de récompense contrôle les cinq caractéristiques, les offres d’équipement, le bouton Passer et la conservation de la référence complète en français et en anglais.
+
+Propositions Company : page autonome `docs/company-designs.html`, aucun accès au stockage de la partie. Trois palettes et cinq classes au choix, vrais atlases de personnages et familiers. Capture de comparaison inspectée dans `docs/assets/company-design-options.png`. Ces propositions ne remplacent pas encore les cartes en jeu.

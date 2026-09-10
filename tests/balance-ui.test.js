@@ -120,3 +120,17 @@ for(const lang of ['fr','en']){
  const store=vm.runInContext('shop()',context);assert.equal((store.match(/data-action="buy-pack"/g)||[]).length,6);assert.equal((store.match(/data-action="shop-page"/g)||[]).length,6);
 }
 console.log('Grouped per-hero progress, selected-hero banner, read-only champion cards/sheets and all six shop packs verified.');
+
+// Reward decisions stay before the complete, read-only reference on both languages.
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}';selected().pending=[{type:'stat',level:3}]`,context);
+ const statReward=vm.runInContext('rewards()',context);
+ assert.equal((statReward.match(/data-action="reward"/g)||[]).length,5);
+ assert(statReward.indexOf('reward-options')<statReward.indexOf('reward-reference'));
+ assert(statReward.includes('combat-stats')&&statReward.includes('loadout'));
+ vm.runInContext("selected().pending=[{type:'item',level:5,offers:[{id:0,level:5,rarity:0},{id:14,level:5,rarity:2},{id:9,level:5,rarity:1}]}]",context);
+ const itemReward=vm.runInContext('rewards()',context);
+ assert.equal((itemReward.match(/data-action="reward"/g)||[]).length,4);
+ assert(itemReward.includes('data-index="-1"'));
+}
+console.log('Compact reward templates retain all five stat choices, item choices, skip and full reference in FR/EN.');

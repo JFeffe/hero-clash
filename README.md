@@ -1,6 +1,12 @@
-# Hero Clash — Le Bastion des Serments · 0.28.1
+# Hero Clash — Le Bastion des Serments · 0.28.2
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.28.2 — Après-combat compact
+
+- Image du combat terminé réduite ; bilan et actions à côté sur ordinateur.
+- Récompenses : portrait compact, choix immédiatement accessibles et statistiques en colonnes. Sur téléphone, la fiche complète est dépliable.
+- [Trois propositions de cartes Company](https://jfeffe.github.io/hero-clash/company-designs.html) : Acier & bannières, Vitrail de guilde et Carte de tournoi. Comparaison avec cinq classes et les vrais sprites, sans accéder à la sauvegarde. Les cartes de Company en jeu restent celles de la version précédente en attendant le choix artistique.
 
 ## Version 0.28.1 — Interface compacte et boutique
 
