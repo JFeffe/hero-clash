@@ -3766,5 +3766,6 @@ nav button.active:hover {
 .energy-transfer #energy-amount { width:88px; min-width:0; min-height:36px; margin:0; padding:6px 8px; }
 .energy-transfer button { min-width:40px; min-height:36px; padding:6px 10px; }
 .offense-summary { padding:12px; margin-bottom:12px; background:#213c49; border:1px solid #b7a16c; border-left:4px solid #d9bd78; color:#f3efe3; }
+.offense-summary > p:first-child, .offense-summary > p:first-child b { color:#fff; }
 .offense-summary p { margin:0; font-size:14px; line-height:1.4; }
 .offense-summary .offense-skill { margin-top:6px; color:#ead39c; font-weight:650; }
