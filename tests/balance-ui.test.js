@@ -14,7 +14,7 @@ import * as art from '../docs/art.js';
 import {BALANCE as B} from '../docs/balance.js';
 if(!globalThis.crypto)globalThis.crypto=webcrypto;
 const h=engine.hero(1,4);h.inventory=[{id:14,level:1,rarity:0}];h.equipped=[-1,-1,0,-1];
-const backup={version:2,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
+const backup={version:2,ruleset:engine.RULESET,revision:5,lang:'en',heroes:[h],graveyard:[],selected:h.id};
 const host={innerHTML:'',style:{},setAttribute(){}};
 const context=vm.createContext({...bastion,...wallet,...career,...appearance,...engine,...progression,...heroState,...art,B,console,structuredClone,performance,crypto:webcrypto,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:()=>{}},
@@ -27,17 +27,17 @@ for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}'`,context);
  const html=vm.runInContext('fullHeroSheet(selected())',context);
  assert(!/NaN|undefined/.test(html));
- const f=engine.fighter(h),expected=((7+f.classAttack+h.stats[0]*1.45)*f.physical).toFixed(1);
+ const f=engine.fighter(h),expected=((7+f.classAttack+h.stats[2]*1.45)*f.magic).toFixed(1);
  assert(html.includes(expected));assert(html.includes('1.90'));
  const settings=vm.runInContext('options()',context);assert(settings.includes(lang==='en'?'fixed amount of HP':'nombre fixe de PV'));
  assert(!settings.includes('rare: +5% speed'));assert(!settings.includes('rare : vitesse +5 %'));
  const classes=vm.runInContext('classes()',context);assert(classes.includes(lang==='en'?'Weak against':'Désavantage contre'));
- for(let id=0;id<19;id++)for(let tier=0;tier<3;tier++){
+ for(let id=0;id<engine.D.ITEMS.length;id++)for(let tier=0;tier<3;tier++){
  const text=vm.runInContext(`itemText({id:${id},level:20,rarity:${tier}})`,context);
  assert(!/NaN|undefined/.test(text));
  }
 }
-console.log('French/English balance templates, displayed equipped damage, fixed Fairy healing, all item descriptions and old-save loading verified.');
+console.log('French/English balance templates, displayed equipped damage, fixed Fairy healing, all item descriptions and current ruleset save loading verified.');
 
 const careerBefore=vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context);
 vm.runInContext('startArtDemo()',context);
@@ -61,14 +61,14 @@ vm.runInContext("go('home')",context);assert.deepEqual(scrollCalls.at(-1),[0,0])
 console.log('Mage showcase, preserved scroll/focus and normal navigation verified.');
 
 // Every modernized class and familiar can be demonstrated without settlement.
-for(const cls of [0,1,2,3,4,5,6,7,8,9,10,11,12])for(const petId of [-1,10,11,12,13,14]){
+for(const cls of engine.D.ACTIVE_CLASSES)for(const petId of [-1,10,11,12,13,14]){
  vm.runInContext(`startArtDemo(${cls},${petId})`,context);
  assert.equal(vm.runInContext('battle.heroes[0].class',context),cls);
  assert.equal(vm.runInContext('battle.heroes[0].inventory[battle.heroes[0].equipped[2]]?.id??-1',context),petId);
  assert.equal(vm.runInContext("JSON.stringify(game,(k,v)=>k==='energy_time'?undefined:v)",context),careerBefore);
  assert(vm.runInContext('battle.result.events.length>0',context));
 }
-console.log('All 78 class/familiar showcases preserve the company save.');
+console.log('All active class/familiar showcases preserve the company save.');
 
 for(const lang of ['fr','en']){vm.runInContext(`game.lang='${lang}';go('opponents')`,context);assert(host.innerHTML.includes('/ 15'));assert(!/NaN|undefined/.test(host.innerHTML));assert(vm.runInContext('validSave(JSON.parse(JSON.stringify(game)))',context));}
 vm.runInContext('startFight(0)',context);assert.equal(vm.runInContext('selected().career.pool.played',context),1);
@@ -157,7 +157,7 @@ for(const lang of ['fr','en']){
  vm.runInContext(`game.lang='${lang}';selected().class=8`,context);
  const arena=vm.runInContext('arenaHero(selected())',context);
  assert(arena.indexOf('offense-summary')<arena.indexOf('hero-card'));
- assert(arena.includes(lang==='fr'?'Intelligence · magie':'Intelligence · magic'));
+ assert(arena.includes(lang==='fr'?'Force · physique':'Strength · physical'));
  assert(arena.includes(lang==='fr'?'Tourelle':'Turret'));
  const detail=vm.runInContext('detail()',context);
  assert(!detail.includes('data-appearance='));assert(!detail.includes('energy-disclosure'));

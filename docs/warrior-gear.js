@@ -1,3 +1,4 @@
+import {WEAPON_SPRITES,drawNewWeapon,equipmentAssets} from './equipment-art.js';
 import {drawWarriorHead} from './warrior-identity.js';
 // Body poses and hand sockets share atlas coordinates. Equipment is selected by
 // item ID, never inventory position or rarity, so existing saves work unchanged.
@@ -12,7 +13,7 @@ const weapons=[// source rectangle, grip, displayed length relative to body heig
 export function warriorEquipment(h){
  const weapon=h.inventory?.[h.equipped?.[0]]?.id;
  const armor=h.inventory?.[h.equipped?.[1]]?.id;
- return {weapon:Number.isInteger(weapon)&&weapon>=0&&weapon<6?weapon:null,armor:armor>=6&&armor<=9?armor-6:2};
+ return {weapon:Number.isInteger(weapon)&&weapon>=0&&(weapon<6||WEAPON_SPRITES[weapon])?weapon:null,armor:armor>=6&&armor<=9?armor-6:2};
 }
 export function drawWarriorGear(ctx,body,gear,h,index,x,ground,s,flip,time=0,heads=null){
  const {weapon,armor}=warriorEquipment(h),[top,bottom,baseline]=rows[armor], [left,right]=columns[index];
@@ -22,7 +23,8 @@ export function drawWarriorGear(ctx,body,gear,h,index,x,ground,s,flip,time=0,hea
  ctx.save();ctx.translate(x,ground+breathe*scale);ctx.scale(flip?-scale:scale,scale);ctx.imageSmoothingEnabled=false;
  ctx.drawImage(body,left,top,right-left,bottom-top,left-pivot,top-baseline,right-left,bottom-top);
  if(heads)drawWarriorHead(ctx,heads,h,armor,index,pivot,baseline);
- if(weapon!==null){
+ if(weapon!==null&&equipmentAssets.weapons&&WEAPON_SPRITES[weapon]){const [hx,hy]=hands[armor][index];drawNewWeapon(ctx,weapon,hx-pivot,hy-baseline,index);}
+ else if(weapon!==null&&weapons[weapon]){
   const [sx,sy,w,ht,gx,gy,length]=weapons[weapon];const [hx,hy]=hands[armor][index];
   let angle=weapon===0||weapon===4?2.12:weapon===1?.48:weapon===5?.35:.08;
   if(index===3)angle=weapon===2?.08:weapon===3?.65:Math.PI/2;

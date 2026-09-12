@@ -1,1 +1,43 @@
-export const BALANCE = {"classAttack": [-4.044, 4.156, -0.674, 0.142, -4.666, 8.104, 3.854, 2.72, 0.3, -3.456, 0.461, 1.158, -2.053], "advantage": 1.08, "knightShield": 0.06, "monkHeal": 0.05, "wolfBase": 4.5, "wolfLevel": 0.3, "dogFlatShred": 2, "potionPositiveChance": 0.75, "ravenBonus": 0.06, "classAttackGrowth": [0.229, 0.39, 0.935, -0.298, -1.11, 0.404, -0.696, -1.132, 0.724, 0.217, 0.716, 0.279, -0.662], "rarityAccuracy": 0, "raritySpeed": 0, "heavyRarityStep": 0.075};
+export const BALANCE = {
+  "classAttack": [
+    -3.581,
+    5.2,
+    -0.824,
+    0.705,
+    -2.81,
+    8.104,
+    3.216,
+    0.007,
+    0.45,
+    -4.031,
+    0.461,
+    1.158,
+    -2.053
+  ],
+  "advantage": 1.08,
+  "knightShield": 0.06,
+  "monkHeal": 0.05,
+  "wolfBase": 4.5,
+  "wolfLevel": 0.3,
+  "dogFlatShred": 2,
+  "potionPositiveChance": 0.75,
+  "ravenBonus": 0.06,
+  "classAttackGrowth": [
+    -0.496,
+    -0.466,
+    0.56,
+    0.389,
+    -0.329,
+    0.404,
+    -0.727,
+    -0.532,
+    0.643,
+    0.217,
+    0.716,
+    0.279,
+    -0.662
+  ],
+  "rarityAccuracy": 0,
+  "raritySpeed": 0,
+  "heavyRarityStep": 0.075
+};

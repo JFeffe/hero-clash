@@ -1,6 +1,16 @@
-# Hero Clash — Le Bastion des Serments · 0.28.6
+# Hero Clash — Le Bastion des Serments · 0.29.0
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.29.0 — Classes et équipements
+
+- 9 classes actives ; Joker, Nécromancien, Alien et Boxeur en pause.
+- 35 équipements : 15 armes, 8 armures, 6 familiers et 6 objets.
+- Quatre emplacements remplis dès le recrutement ; armes et armures limitées aux choix autorisés pour la classe.
+- Paladin remplace Knight ; Ingénieur en Force/Distance. La classe détermine la portée et l'attribut offensif.
+- Sprites partagés pour les armes, nouvelles armures animées et tortue ; objets visibles à la ceinture et effets discrets en combat.
+- Force et Intelligence apportent aussi une résistance à tous les héros ; brûlure et saignement plafonnés.
+- Nouvelle partie pour cette refonte ; ancienne sauvegarde conservée séparément dans le navigateur, anciens exports incompatibles.
 
 ## Version 0.28.6 — Compagnie et fiches clarifiées
 

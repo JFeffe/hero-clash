@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict';
 import {D,fighter,simulate,value} from '../docs/engine.js';
 // A fair directed counter graph: exactly two strengths and two weaknesses each.
-for(let c=0;c<13;c++){
+for(const c of D.ACTIVE_CLASSES){
  assert.equal(new Set(D.ADVANTAGES[c]).size,2);
  assert.equal(D.ADVANTAGES.filter(row=>row.includes(c)).length,2);
  for(const target of D.ADVANTAGES[c]){assert.notEqual(target,c);assert(!D.ADVANTAGES[target].includes(c));}
 }
 function hero(cls,endurance,rarity=0){return {class:cls,level:20,name:'Regression',stats:[...D.BASE[cls]].map((n,i)=>i===3?endurance:n),inventory:[{id:14,level:20,rarity}],equipped:[-1,-1,0,-1]};}
-for(let cls=0;cls<13;cls++)for(let tier=0;tier<3;tier++){
+for(const cls of D.ACTIVE_CLASSES)for(let tier=0;tier<3;tier++){
  const light=hero(cls,3,tier),tank=hero(cls,25,tier),enemy=hero(9,20);enemy.equipped=[-1,-1,-1,-1];
  const saved=JSON.stringify([light,tank]);
  const results=[simulate(light,enemy,61891),simulate(tank,enemy,61891)];

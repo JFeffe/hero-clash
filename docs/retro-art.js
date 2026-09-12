@@ -1,5 +1,6 @@
-import {appearanceOf} from './appearance.js?v=0.26.0';
-import {warriorEquipment} from './warrior-gear.js?v=0.26.0';
+import {equipmentAssets,newArmorRow,drawNewWeapon,drawHeldObject,WEAPON_SPRITES} from './equipment-art.js';
+import {appearanceOf} from './appearance.js?v=0.29.0';
+import {warriorEquipment} from './warrior-gear.js?v=0.29.0';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
@@ -227,10 +228,42 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
  const alienBodies=hasAlien?alienTints(alien):null,alienFaces=hasAlien?alienTints(alienHeads):null;
  const mageBodies=prepareMageBodies(mage,rows.mage,makeCanvas);
  const cache=new Map();
+ const newRows=equipmentAssets.armors?spriteRows(equipmentAssets.armors,4):null;
+ const newBodies=newRows?tintBodies(equipmentAssets.armors,newRows):null;
+ // Match exposed hands to the selected face without recoloring cloth or metal.
+ if(newBodies)for(let tone=1;tone<3;tone++){
+  const c=newBodies[tone],ctx=c.getContext('2d'),p=ctx.getImageData(0,0,c.width,c.height),d=p.data,factors=tone===1?[.80,.66,.58]:[.57,.43,.37];
+  for(const [top,bottom] of newRows)for(let frame=0;frame<6;frame++){
+   const front=[[196,96],[194,65],[194,65],[228,42],[214,42],[150,bottom-top-18]][frame],back=[[68,97],[98,87],[74,88],[80,90],[104,91],[110,bottom-top-25]][frame];
+   for(const [px,py] of [front,back])for(let y=top+py-15;y<top+py+15;y++)for(let x=frame*256+px-15;x<frame*256+px+15;x++){
+    if(x<0||x>=c.width||y<0||y>=c.height)continue;const i=(y*c.width+x)*4,r=d[i],g=d[i+1],b=d[i+2];
+    if(d[i+3]&&r>175&&g>90&&r-g>32&&r-g<110&&g-b>18&&g-b<80){d[i]=r*factors[0];d[i+1]=g*factors[1];d[i+2]=b*factors[2];}
+   }
+  }ctx.putImageData(p,0,0);
+ }
+
+ function newComposite(h,index,a,row){
+  const c=makeCanvas(320,224),ctx=c.getContext('2d'),body=newBodies[a.face],[top,bottom]=newRows[row],left=index*256,pivot=left+128,baseline=bottom-1;
+  ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
+  ctx.drawImage(body,left,top,256,bottom-top,left-pivot,top-baseline,256,bottom-top);
+  const faceSheet=index===5&&koHeads?koHeads:heads,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[a.gender*3+a.face],cw=faceSheet.width/4;
+  const nx=left+[134,137,123,125,113,44][index],ny=index===5?bottom-45:top+10,k=76/(hb-ht);
+  ctx.save();ctx.translate(nx-pivot,ny-baseline);ctx.rotate(index===5?-Math.PI/2:index===4?-.32:0);ctx.scale(k,k);
+  const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair],sx=edges[0]*faceSheet.width/1024,sw=(edges[1]-edges[0])*faceSheet.width/1024;
+  ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);ctx.restore();
+  const hand=[[196,96],[194,65],[194,65],[228,42],[214,42],[150,176]][index],off=[[68,97],[98,87],[74,88],[80,90],[104,91],[110,169]][index],hx=left+hand[0],hy=index===5?bottom-18:top+hand[1],weapon=h.inventory[h.equipped[0]]?.id;
+  if(!drawNewWeapon(ctx,weapon,hx-pivot,hy-baseline,index,[left+off[0]-pivot,index===5?bottom-24-baseline:top+off[1]-baseline])&&weaponRects[weapon]){
+   const [sx,sy,w,ht,gx,gy,length]=weaponRects[weapon],k=250*length/ht;
+   ctx.save();ctx.translate(hx-pivot,hy-baseline);ctx.rotate(index===5?Math.PI/2:index===3?Math.PI/2:weapon===1?Math.PI/2:.25);ctx.scale(k,k);ctx.drawImage(weapons,sx,sy,w,ht,sx-gx,sy-gy,w,ht);ctx.restore();
+  }
+  if(weapon!==26)ctx.drawImage(body,hx-6,hy-6,12,12,hx-6-pivot,hy-6-baseline,12,12);
+  drawHeldObject(ctx,h,index===5?28:16,index===5?-38:top+85-baseline,index);
+  return c;
+ }
  function composite(h,index){
   const kind=h.class===11?'alien':h.class===5?'joker':h.class===9?'berserker':h.class===8?'engineer':h.class===3?'trooper':h.class===7?'monk':h.class===4?'knight':h.class===6?'ninja':h.class===0?'warrior':h.class===1?'archer':h.class===10?'necro':h.class===12?'boxer':'mage',a=appearanceOf(h),{weapon,armor}=warriorEquipment(h);
-  const key=[kind,armor,weapon,index,a.gender,a.face,a.hair].join(':');
-  if(cache.has(key))return cache.get(key);
+  const row=newArmorRow(h),object=h.inventory?.[h.equipped?.[3]]?.id;const key=[kind,armor,row,weapon,object,index,a.gender,a.face,a.hair].join(':');
+  if(cache.has(key))return cache.get(key);if(row>=0&&newBodies){const c=newComposite(h,index,a,row);if(cache.size>=384)cache.delete(cache.keys().next().value);cache.set(key,c);return c;}
   const c=makeCanvas(320,224),ctx=c.getContext('2d');
   const body=kind==='alien'?alienBodies[a.face]:kind==='joker'?jokerBodies[a.face]:kind==='berserker'?berserkerBodies[a.face]:kind==='engineer'?engineerBodies[a.face]:kind==='trooper'?trooperBodies[a.face]:kind==='monk'?monkBodies[a.face]:kind==='knight'?knightBodies[a.face]:kind==='ninja'?ninjaBodies[a.face]:kind==='warrior'?bodies[a.face]:kind==='archer'?archerBodies[a.face]:kind==='necro'?necroBodies[a.face]:kind==='boxer'?boxerBodies[a.face]:mageBodies[a.face],[top,bottom]=rows[kind][armor];
   const left=index*256,pivot=left+128,baseline=bottom-1;
@@ -284,7 +317,12 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
 
    ctx.restore();
   }
-  if(weapon!==null){
+  if(weapon!==null&&equipmentAssets.weapons&&WEAPON_SPRITES[weapon]){
+   let [hx,hy]=kind==='monk'?monkHands[armor][index]:grips[kind][index];hx+=left;if(kind!=='monk')hy+=top;if(index===5&&kind!=='monk')hy=bottom-18;
+   const ox=left+[78,98,78,80,104,110][index],oy=index===5?bottom-25:top+[100,90,95,98,98,155][index];
+   drawNewWeapon(ctx,weapon,hx-pivot,hy-baseline,index,[ox-pivot,oy-baseline]);
+   if(weapon!==26)ctx.drawImage(body,hx-7,hy-7,14,14,hx-7-pivot,hy-7-baseline,14,14);
+  }else if(weapon!==null&&weaponRects[weapon]){
    const [sx,sy,w,height,gx,gy,length]=weaponRects[weapon];
    let [hx,hy]=kind==='monk'?monkHands[armor][index]:grips[kind][index];hx+=left;if(kind!=='monk')hy+=top;
    // Fallen poses occupy only the last ~70 px of the row.
@@ -310,6 +348,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    }
    ctx.drawImage(body,hx-7,hy-7,14,14,hx-7-pivot,hy-7-baseline,14,14);
   }
+  drawHeldObject(ctx,h,index===5?28:12,index===5?-35:top+100-baseline,index);
   if(cache.size>=384)cache.delete(cache.keys().next().value);
   cache.set(key,c);return c;
  }

@@ -1,0 +1,43 @@
+{
+  "seed": 20260912,
+  "matchesPerPair": 500,
+  "rarities": "equal common/uncommon/rare",
+  "statAllocation": "uniform random legal level-ups",
+  "equipment": "uniform within each class pool; all four slots",
+  "drawScore": 0.5,
+  "levels": {
+    "1": {
+      "Guerrier": 49.48,
+      "Archer": 50.58,
+      "Mage": 52.2,
+      "Trooper": 48.13,
+      "Paladin": 49,
+      "Ninja": 50.52,
+      "Moine": 51.24,
+      "Ingénieur": 49.65,
+      "Berserker": 49.21
+    },
+    "10": {
+      "Guerrier": 49.56,
+      "Archer": 49.83,
+      "Mage": 49.34,
+      "Trooper": 49.66,
+      "Paladin": 48.02,
+      "Ninja": 50,
+      "Moine": 50.86,
+      "Ingénieur": 52,
+      "Berserker": 50.72
+    },
+    "20": {
+      "Guerrier": 47.13,
+      "Archer": 48.52,
+      "Mage": 49.06,
+      "Trooper": 51.85,
+      "Paladin": 49.19,
+      "Ninja": 50.91,
+      "Moine": 51.14,
+      "Ingénieur": 51.8,
+      "Berserker": 50.4
+    }
+  }
+}

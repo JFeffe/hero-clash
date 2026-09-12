@@ -13,7 +13,7 @@ import {drawWarriorGear} from '../docs/warrior-gear.js';
 
 const {appearanceFromLook,appearanceOf,setAppearance,validAppearance}=appearance;
 assert.equal(new Set(Array.from({length:24},(_,i)=>JSON.stringify(appearanceFromLook(i)))).size,24);
-for(let cls=0;cls<13;cls++)assert(validAppearance(engine.hero(1,cls).appearance));
+for(const cls of engine.D.ACTIVE_CLASSES)assert(validAppearance(engine.hero(1,cls).appearance));
 const legacy=engine.hero(1,0);delete legacy.appearance;
 const before=JSON.stringify(legacy);
 assert.deepEqual(appearanceOf(legacy),{gender:0,face:0,hair:0});assert.equal(JSON.stringify(legacy),before);
@@ -32,7 +32,7 @@ for(let identity=0;identity<24;identity++)for(let armor=6;armor<=9;armor++)for(l
 }
 assert.equal(headCalls,count);
 
-const h=engine.hero(1,0),backup={version:2,lang:'fr',heroes:[h],graveyard:[],selected:h.id};
+const h=engine.hero(1,0),backup={version:2,ruleset:engine.RULESET,lang:'fr',heroes:[h],graveyard:[],selected:h.id};
 const events={},nodes={app:{innerHTML:'',setAttribute(){}},name:{value:'Ariane'},focus:{focus(){}}};let saved,scroll;
 const context=vm.createContext({...bastion,...wallet,...engine,...progression,...heroState,...art,...appearance,B,console,crypto,structuredClone,performance,
  localStorage:{getItem:()=>JSON.stringify(backup),setItem:(key,value)=>{saved=JSON.parse(value);}},
@@ -41,8 +41,8 @@ const context=vm.createContext({...bastion,...wallet,...engine,...progression,..
  cancelAnimationFrame(){},requestAnimationFrame:()=>0,setInterval(){},setTimeout:()=>0,clearTimeout(){}});
 vm.runInContext(fs.readFileSync('docs/app.js','utf8').replace(/^import .*;\n/gm,''),context);
 
-for(let cls=0;cls<13;cls++)for(const lang of ['en','fr']){
- vm.runInContext(`game.lang='${lang}';game.heroes[0].class=${cls};page='detail';render()`,context);
+for(const cls of engine.D.ACTIVE_CLASSES)for(const lang of ['en','fr']){
+ vm.runInContext(`game.lang='${lang}';game.heroes[0].class=${cls};game.heroes[0].inventory=hero(1,${cls}).inventory;page='detail';render()`,context);
  assert(!nodes.app.innerHTML.includes('data-appearance='));
  const before=vm.runInContext('JSON.stringify(game.heroes[0].appearance)',context);
  await events.change({target:{dataset:{appearance:'gender'},value:'1'}});
@@ -60,4 +60,4 @@ assert.equal(saved.heroes.at(-1).name,'Ariane');
 assert(vm.runInContext('validSave(game)',context));
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
-console.log('All 13 classes: appearance editable during recruitment, locked after creation; legacy saves remain valid.');
+console.log('All active classes: appearance editable during recruitment, locked after creation; legacy saves remain valid.');

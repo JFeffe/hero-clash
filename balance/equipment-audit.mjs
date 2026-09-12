@@ -1,0 +1,10 @@
+// Reproducible broad-pool audit, not a guarantee for every optimized loadout.
+import fs from 'node:fs';
+import {D,hero,simulate} from '../docs/engine.js';
+import {BALANCE as B} from '../docs/balance.js';
+const tune=process.argv.includes('--tune');
+function audit(level,n,seed){let state=seed;const old=Math.random;Math.random=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};const scores=Object.fromEntries(D.ACTIVE_CLASSES.map(c=>[c,{wins:0,games:0}]));try{for(let ai=0;ai<D.ACTIVE_CLASSES.length;ai++)for(let bi=ai+1;bi<D.ACTIVE_CLASSES.length;bi++)for(let k=0;k<n;k++){const ca=D.ACTIVE_CLASSES[ai],cb=D.ACTIVE_CLASSES[bi],a=hero(level,ca),b=hero(level,cb);for(const h of [a,b]){h.inventory.forEach(it=>it.rarity=k%3);}const flip=k%2,r=simulate(...(flip?[b,a]:[a,b]),(Math.random()*2**32)>>>0),winner=r.winner<0?-1:r.winner^flip;for(const [i,c] of [ca,cb].entries()){scores[c].games++;scores[c].wins+=winner<0?.5:winner===i?1:0;}}}finally{Math.random=old;}return Object.fromEntries(Object.entries(scores).map(([c,v])=>[c,v.wins/v.games]));}
+if(tune){for(let iter=0;iter<8;iter++){const low=audit(1,100,15731),high=audit(20,100,95117);for(const c of D.ACTIVE_CLASSES){const delta=(.5-low[c])*10;B.classAttack[c]+=delta;B.classAttackGrowth[c]+=(.5-high[c])*10-delta;}}for(const key of ['classAttack','classAttackGrowth'])B[key]=B[key].map(x=>Math.round(x*1000)/1000);fs.writeFileSync('docs/balance.js',`export const BALANCE = ${JSON.stringify(B,null,2)};\n`);}
+const result={seed:20260912,matchesPerPair:500,rarities:'equal common/uncommon/rare',statAllocation:'uniform random legal level-ups',equipment:'uniform within each class pool; all four slots',drawScore:.5,levels:{}};
+for(const level of [1,10,20]){const rates=audit(level,500,20260912+level);result.levels[level]=Object.fromEntries(D.ACTIVE_CLASSES.map(c=>[D.CLASSES[c],+(rates[c]*100).toFixed(2)]));}
+fs.writeFileSync('balance/equipment-audit.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result.levels));
