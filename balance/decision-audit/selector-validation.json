@@ -1,0 +1,49 @@
+{
+  "snapshots": 360,
+  "heldoutDuelsPerSnapshot": 18,
+  "heldoutAutomaticScore": 0.6693672839506173,
+  "heldoutSmartScore": 0.7121141975308642,
+  "improved": 160,
+  "equal": 121,
+  "worse": 79,
+  "changed": 293,
+  "byClass": {
+    "Guerrier": {
+      "automatic": 0.6520833333333333,
+      "smart": 0.6805555555555556
+    },
+    "Archer": {
+      "automatic": 0.6305555555555555,
+      "smart": 0.6722222222222223
+    },
+    "Mage": {
+      "automatic": 0.6166666666666667,
+      "smart": 0.6805555555555556
+    },
+    "Trooper": {
+      "automatic": 0.6652777777777777,
+      "smart": 0.7326388888888888
+    },
+    "Paladin": {
+      "automatic": 0.7097222222222223,
+      "smart": 0.7666666666666667
+    },
+    "Ninja": {
+      "automatic": 0.6805555555555556,
+      "smart": 0.6694444444444444
+    },
+    "Moine": {
+      "automatic": 0.7152777777777778,
+      "smart": 0.7388888888888889
+    },
+    "Ingénieur": {
+      "automatic": 0.6486111111111111,
+      "smart": 0.7180555555555556
+    },
+    "Berserker": {
+      "automatic": 0.7055555555555556,
+      "smart": 0.75
+    }
+  },
+  "checks": "Legal inventory, nondecreasing training score, untouched hero progression/inventory/stats, deterministic selection and untouched career RNG"
+}
