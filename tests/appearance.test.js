@@ -49,15 +49,15 @@ for(const cls of engine.D.ACTIVE_CLASSES)for(const lang of ['en','fr']){
  await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
  assert.equal(vm.runInContext('JSON.stringify(game.heroes[0].appearance)',context),before);
  vm.runInContext(`candidate=hero(1,${cls});page='recruit';render()`,context);
- assert(nodes.app.innerHTML.includes('data-appearance="gender"'));
+ assert(!nodes.app.innerHTML.includes('data-appearance='));
+ const rolled=vm.runInContext('JSON.stringify(candidate.appearance)',context);
  await events.change({target:{dataset:{appearance:'hair'},value:'3'}});
- assert.equal(vm.runInContext('candidate.appearance.hair',context),3);
- assert.equal(vm.runInContext('candidate.name',context),'Ariane');
+ assert.equal(vm.runInContext('JSON.stringify(candidate.appearance)',context),rolled);
 }
 vm.runInContext('actions.confirm()',context);
-assert.equal(saved.heroes.at(-1).appearance.hair,3);
+assert.deepEqual(saved.heroes.at(-1).appearance,JSON.parse(vm.runInContext('JSON.stringify(game.heroes.at(-1).appearance)',context)));
 assert.equal(saved.heroes.at(-1).name,'Ariane');
 assert(vm.runInContext('validSave(game)',context));
 vm.runInContext('game.heroes[0].appearance.hair=99',context);assert(!vm.runInContext('validSave(game)',context));
 vm.runInContext('delete game.heroes[0].appearance',context);assert(vm.runInContext('validSave(game)',context));
-console.log('All active classes: appearance editable during recruitment, locked after creation; legacy saves remain valid.');
+console.log('All active classes: random appearance preserved during recruitment and after creation; legacy saves remain valid.');

@@ -1,6 +1,6 @@
 import {equipmentAssets,newArmorRow,drawNewWeapon,drawHeldObject,WEAPON_SPRITES} from './equipment-art.js';
-import {appearanceOf} from './appearance.js?v=0.29.0';
-import {warriorEquipment} from './warrior-gear.js?v=0.29.0';
+import {appearanceOf} from './appearance.js?v=0.29.1';
+import {warriorEquipment} from './warrior-gear.js?v=0.29.1';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.
@@ -242,6 +242,18 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   }ctx.putImageData(p,0,0);
  }
 
+ // Anchor each hairstyle to its own bottom edge instead of the tallest hair in its row.
+ // Shared row bounds left short hairstyles floating above the collar.
+ const headBounds=new Map();
+ function drawHumanHead(ctx,sheet,row,hair,ht,hb,cw){
+  const key=[sheet===koHeads,row,hair].join(':');let bounds=headBounds.get(key);
+  if(!bounds){const edges=[[16,250],[268,504],[505,764],[780,1015]][hair],sx=Math.floor(edges[0]*sheet.width/1024),sw=Math.floor((edges[1]-edges[0])*sheet.width/1024),pixels=sheet.getContext('2d').getImageData(sx,ht,sw,hb-ht).data;let bottom=hb-ht;
+   while(bottom>1){let found=false;for(let x=0;x<sw;x++)if(pixels[((bottom-1)*sw+x)*4+3]>128){found=true;break;}if(found)break;bottom--;}
+   bounds={sx,sw,bottom};headBounds.set(key,bounds);
+  }
+  const {sx,sw,bottom}=bounds;
+  ctx.drawImage(sheet,sx,ht,sw,bottom,sx-hair*cw-cw*.47,-bottom+12,sw,bottom);
+ }
  function newComposite(h,index,a,row){
   const c=makeCanvas(320,224),ctx=c.getContext('2d'),body=newBodies[a.face],[top,bottom]=newRows[row],left=index*256,pivot=left+128,baseline=bottom-1;
   ctx.imageSmoothingEnabled=false;ctx.translate(160,192);ctx.scale(.5,.5);
@@ -249,8 +261,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
   const faceSheet=index===5&&koHeads?koHeads:heads,[ht,hb]=(index===5&&koHeads?rows.koHeads:rows.heads)[a.gender*3+a.face],cw=faceSheet.width/4;
   const nx=left+[134,137,123,125,113,44][index],ny=index===5?bottom-45:top+10,k=76/(hb-ht);
   ctx.save();ctx.translate(nx-pivot,ny-baseline);ctx.rotate(index===5?-Math.PI/2:index===4?-.32:0);ctx.scale(k,k);
-  const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair],sx=edges[0]*faceSheet.width/1024,sw=(edges[1]-edges[0])*faceSheet.width/1024;
-  ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);ctx.restore();
+  drawHumanHead(ctx,faceSheet,a.gender*3+a.face,a.hair,ht,hb,cw);ctx.restore();
   const hand=[[196,96],[194,65],[194,65],[228,42],[214,42],[150,176]][index],off=[[68,97],[98,87],[74,88],[80,90],[104,91],[110,169]][index],hx=left+hand[0],hy=index===5?bottom-18:top+hand[1],weapon=h.inventory[h.equipped[0]]?.id;
   if(!drawNewWeapon(ctx,weapon,hx-pivot,hy-baseline,index,[left+off[0]-pivot,index===5?bottom-24-baseline:top+off[1]-baseline])&&weaponRects[weapon]){
    const [sx,sy,w,ht,gx,gy,length]=weaponRects[weapon],k=250*length/ht;
@@ -303,9 +314,7 @@ export function prepareRetro(warrior,mage,heads,weapons,makeCanvas,archer=null,n
    const angle=index===5?-Math.PI/2:index===4?(kind==='mage'?.32:-.32):0;
    const k=76/(hb-ht);
    ctx.save();ctx.translate(neckX-pivot,neckY-baseline);ctx.rotate(angle);ctx.scale(k,k);
-   const edges=[[16,250],[268,504],[505,764],[780,1015]][a.hair];
-   const sx=edges[0]*faceSheet.width/1024,sw=(edges[1]-edges[0])*faceSheet.width/1024;
-   ctx.drawImage(faceSheet,sx,ht,sw,hb-ht,sx-a.hair*cw-cw*.47,-(hb-ht)+4,sw,hb-ht);
+   drawHumanHead(ctx,faceSheet,row,a.hair,ht,hb,cw);
 
    if(kind==='berserker'){
     ctx.fillStyle='#9f342e';

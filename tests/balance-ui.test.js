@@ -166,3 +166,10 @@ for(const lang of ['fr','en']){
  const battle=vm.runInContext('battlePage()',context);assert.equal((battle.match(new RegExp((lang==='fr'?'Niv.':'Lv.')+' 5','g'))||[]).length,2);
 }
 console.log('Company sorting, creation-only appearance, offensive summary, battle levels and direct energy controls verified.');
+vm.runInContext('battle={speed:1}',context);
+for(const speed of [2,3,1]){vm.runInContext('actions.speed({})',context);assert.equal(vm.runInContext('battle.speed',context),speed);}
+for(const lang of ['fr','en']){
+ vm.runInContext(`game.lang='${lang}'`,context);
+ const html=vm.runInContext(`cycleSummary({from:1,floor:4,remainingHearts:3,hearts:4,wins:8,losses:2,draws:0,results:Array.from({length:10},(_,i)=>({opponent:'<bot>',winner:i<8?0:1}))})`,context);
+ assert.equal((html.match(/<li>/g)||[]).length,10);assert(html.includes('&lt;bot&gt;'));assert(html.includes('1 → 4'));assert(html.includes('+1 ♥ (4/5)'));
+}

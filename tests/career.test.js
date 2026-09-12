@@ -26,3 +26,19 @@ const save=JSON.parse(JSON.stringify(old));assert.deepEqual(ensureArena(save),ol
 save.energy=19;const before=structuredClone(save);assert.throws(()=>settle({heroes:[save],graveyard:[]},save,result(0),save.arena.opponents[0]));assert.deepEqual(save,before);
 save.energy=0;save.energy_time=Date.now()/1000-60;energy(save);assert(save.energy>=1&&save.energy<1.1);
 console.log('Pools, scheduling, ghosts, progression, retirement, death, migration and unchanged energy verified.');
+// Tenth-battle loss must be deducted before calculating the climb and recovery.
+for(const losses of [0,1,3,4,5]){
+ const h=hero(),g={heroes:[h],graveyard:[]};ensureArena(h);
+ let out;
+ for(let n=0;n<10;n++){
+  h.energy=100;h.pending=[];
+  out=settle(g,h,result(n>=10-losses?1:0),ensureArena(h).opponents[0],()=>.999);
+ }
+ const s=out.transition.summary;
+ assert.equal(s.results.length,10);assert.equal(s.wins,10-losses);assert.equal(s.losses,losses);
+ assert.equal(s.remainingHearts,5-losses);
+ assert.equal(s.floor,losses===5?1:6-losses);
+ assert.equal(s.hearts,losses===5?0:Math.min(5,6-losses));
+ assert.equal(s.dead,losses===5);
+ assert.deepEqual(h.career.history.at(-1).summary,s);
+}

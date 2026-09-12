@@ -1,6 +1,15 @@
-# Hero Clash — Le Bastion des Serments · 0.29.0
+# Hero Clash — Le Bastion des Serments · 0.29.1
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.29.1 — Recrutement et bilan d’étage
+
+- Raccord des têtes au col ajusté selon chaque coiffure.
+- Apparence aléatoire au recrutement, sans panneau de personnalisation.
+- Vitesse de lecture des combats : ×1, ×2 ou ×3, réinitialisée à chaque match.
+- Bilan après dix combats : résultats individuels, victoires/défaites/nuls et étage atteint.
+- Montée selon les cœurs restants après le dixième combat, puis +1 cœur (maximum 5). Plafond : étage 15.
+- Les détails des anciens combats ne sont pas reconstruits ; les nouveaux résultats sont conservés dans la sauvegarde et le replay.
 
 ## Version 0.29.0 — Classes et équipements
 
