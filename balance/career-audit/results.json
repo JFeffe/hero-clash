@@ -1,0 +1,3769 @@
+{
+  "version": "0.29.1",
+  "sourceCommit": "3a26e463586ca88cbb945b6175f047647e081770",
+  "baseSeed": 20260913,
+  "perClassPerPolicy": 1000,
+  "policies": {
+    "random": {
+      "classes": {
+        "0": {
+          "name": "Guerrier",
+          "n": 1000,
+          "retired": 224,
+          "retirementRate": 0.224,
+          "retirementCI95": [
+            0.19924343666098776,
+            0.2508689340230386
+          ],
+          "dead": 776,
+          "meanFloor": 5.212,
+          "medianFloor": 2,
+          "reached6": 305,
+          "reached11": 241,
+          "reached15": 227,
+          "firstCycleDeaths": 447,
+          "meanFights": 26.26,
+          "medianFights": 15,
+          "p10Fights": 6,
+          "p90Fights": 63,
+          "meanFinalLevel": 7.547,
+          "meanRetiredFights": 63.30357142857143,
+          "meanRetiredLevel": 12.290178571428571,
+          "matches": 26260,
+          "wins": 20314,
+          "losses": 5942,
+          "draws": 4,
+          "winRate": 0.7735719725818736,
+          "ghostFights": 3711,
+          "opponentLevelDeltas": {
+            "lower": 9404,
+            "equal": 12341,
+            "higher": 4515
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 553,
+              "deaths": 447,
+              "matches": 8897,
+              "wins": 5082,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 198,
+              "completed": 80,
+              "deaths": 118,
+              "matches": 1522,
+              "wins": 1232,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.636363636363637
+            },
+            {
+              "floor": 3,
+              "entered": 215,
+              "completed": 145,
+              "deaths": 70,
+              "matches": 1909,
+              "wins": 1568,
+              "meanEntryHearts": 2.7488372093023257,
+              "meanEntryLevel": 6.251162790697674
+            },
+            {
+              "floor": 4,
+              "entered": 205,
+              "completed": 162,
+              "deaths": 43,
+              "matches": 1886,
+              "wins": 1602,
+              "meanEntryHearts": 3.297560975609756,
+              "meanEntryLevel": 6.678048780487805
+            },
+            {
+              "floor": 5,
+              "entered": 151,
+              "completed": 134,
+              "deaths": 17,
+              "matches": 1472,
+              "wins": 1271,
+              "meanEntryHearts": 3.6556291390728477,
+              "meanEntryLevel": 7.225165562913907
+            },
+            {
+              "floor": 6,
+              "entered": 126,
+              "completed": 107,
+              "deaths": 19,
+              "matches": 1208,
+              "wins": 1062,
+              "meanEntryHearts": 3.1746031746031744,
+              "meanEntryLevel": 8.11111111111111
+            },
+            {
+              "floor": 7,
+              "entered": 110,
+              "completed": 93,
+              "deaths": 17,
+              "matches": 1055,
+              "wins": 927,
+              "meanEntryHearts": 3.2,
+              "meanEntryLevel": 8.818181818181818
+            },
+            {
+              "floor": 8,
+              "entered": 123,
+              "completed": 110,
+              "deaths": 13,
+              "matches": 1190,
+              "wins": 1074,
+              "meanEntryHearts": 3.5528455284552845,
+              "meanEntryLevel": 8.983739837398375
+            },
+            {
+              "floor": 9,
+              "entered": 97,
+              "completed": 90,
+              "deaths": 7,
+              "matches": 954,
+              "wins": 873,
+              "meanEntryHearts": 3.4742268041237114,
+              "meanEntryLevel": 9.556701030927835
+            },
+            {
+              "floor": 10,
+              "entered": 81,
+              "completed": 73,
+              "deaths": 8,
+              "matches": 767,
+              "wins": 686,
+              "meanEntryHearts": 3.765432098765432,
+              "meanEntryLevel": 9.62962962962963
+            },
+            {
+              "floor": 11,
+              "entered": 83,
+              "completed": 81,
+              "deaths": 2,
+              "matches": 821,
+              "wins": 754,
+              "meanEntryHearts": 3.674698795180723,
+              "meanEntryLevel": 10.301204819277109
+            },
+            {
+              "floor": 12,
+              "entered": 81,
+              "completed": 76,
+              "deaths": 5,
+              "matches": 794,
+              "wins": 715,
+              "meanEntryHearts": 4.012345679012346,
+              "meanEntryLevel": 10.308641975308642
+            },
+            {
+              "floor": 13,
+              "entered": 84,
+              "completed": 81,
+              "deaths": 3,
+              "matches": 835,
+              "wins": 770,
+              "meanEntryHearts": 3.892857142857143,
+              "meanEntryLevel": 10.726190476190476
+            },
+            {
+              "floor": 14,
+              "entered": 70,
+              "completed": 66,
+              "deaths": 4,
+              "matches": 683,
+              "wins": 603,
+              "meanEntryHearts": 4,
+              "meanEntryLevel": 11.157142857142857
+            },
+            {
+              "floor": 15,
+              "entered": 227,
+              "completed": 224,
+              "deaths": 3,
+              "matches": 2267,
+              "wins": 2095,
+              "meanEntryHearts": 4.3744493392070485,
+              "meanEntryLevel": 11.343612334801762
+            }
+          ]
+        },
+        "1": {
+          "name": "Archer",
+          "n": 1000,
+          "retired": 68,
+          "retirementRate": 0.068,
+          "retirementCI95": [
+            0.0539924578085305,
+            0.08531386152298896
+          ],
+          "dead": 932,
+          "meanFloor": 3.255,
+          "medianFloor": 1,
+          "reached6": 172,
+          "reached11": 94,
+          "reached15": 74,
+          "firstCycleDeaths": 569,
+          "meanFights": 18.678,
+          "medianFights": 10,
+          "p10Fights": 6,
+          "p90Fights": 49,
+          "meanFinalLevel": 6.518,
+          "meanRetiredFights": 66.91176470588235,
+          "meanRetiredLevel": 12.647058823529411,
+          "matches": 18678,
+          "wins": 12802,
+          "losses": 5873,
+          "draws": 3,
+          "winRate": 0.6854052896455723,
+          "ghostFights": 2390,
+          "opponentLevelDeltas": {
+            "lower": 5819,
+            "equal": 9424,
+            "higher": 3435
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 431,
+              "deaths": 569,
+              "matches": 8630,
+              "wins": 4458,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 188,
+              "completed": 65,
+              "deaths": 123,
+              "matches": 1346,
+              "wins": 1059,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.601063829787234
+            },
+            {
+              "floor": 3,
+              "entered": 170,
+              "completed": 97,
+              "deaths": 73,
+              "matches": 1491,
+              "wins": 1189,
+              "meanEntryHearts": 2.7588235294117647,
+              "meanEntryLevel": 6.176470588235294
+            },
+            {
+              "floor": 4,
+              "entered": 146,
+              "completed": 103,
+              "deaths": 43,
+              "matches": 1313,
+              "wins": 1063,
+              "meanEntryHearts": 3.2465753424657535,
+              "meanEntryLevel": 6.767123287671233
+            },
+            {
+              "floor": 5,
+              "entered": 94,
+              "completed": 74,
+              "deaths": 20,
+              "matches": 892,
+              "wins": 743,
+              "meanEntryHearts": 3.3297872340425534,
+              "meanEntryLevel": 7.4361702127659575
+            },
+            {
+              "floor": 6,
+              "entered": 88,
+              "completed": 64,
+              "deaths": 24,
+              "matches": 806,
+              "wins": 676,
+              "meanEntryHearts": 3.0454545454545454,
+              "meanEntryLevel": 8.193181818181818
+            },
+            {
+              "floor": 7,
+              "entered": 67,
+              "completed": 56,
+              "deaths": 11,
+              "matches": 652,
+              "wins": 569,
+              "meanEntryHearts": 3.029850746268657,
+              "meanEntryLevel": 8.925373134328359
+            },
+            {
+              "floor": 8,
+              "entered": 65,
+              "completed": 46,
+              "deaths": 19,
+              "matches": 581,
+              "wins": 479,
+              "meanEntryHearts": 3.3384615384615386,
+              "meanEntryLevel": 8.876923076923077
+            },
+            {
+              "floor": 9,
+              "entered": 51,
+              "completed": 40,
+              "deaths": 11,
+              "matches": 479,
+              "wins": 394,
+              "meanEntryHearts": 3.411764705882353,
+              "meanEntryLevel": 9.72549019607843
+            },
+            {
+              "floor": 10,
+              "entered": 56,
+              "completed": 43,
+              "deaths": 13,
+              "matches": 528,
+              "wins": 450,
+              "meanEntryHearts": 3.3392857142857144,
+              "meanEntryLevel": 9.785714285714286
+            },
+            {
+              "floor": 11,
+              "entered": 36,
+              "completed": 27,
+              "deaths": 9,
+              "matches": 330,
+              "wins": 282,
+              "meanEntryHearts": 3.3055555555555554,
+              "meanEntryLevel": 10.472222222222221
+            },
+            {
+              "floor": 12,
+              "entered": 30,
+              "completed": 23,
+              "deaths": 7,
+              "matches": 289,
+              "wins": 247,
+              "meanEntryHearts": 3.533333333333333,
+              "meanEntryLevel": 10.866666666666667
+            },
+            {
+              "floor": 13,
+              "entered": 32,
+              "completed": 30,
+              "deaths": 2,
+              "matches": 312,
+              "wins": 275,
+              "meanEntryHearts": 3.78125,
+              "meanEntryLevel": 10.90625
+            },
+            {
+              "floor": 14,
+              "entered": 31,
+              "completed": 29,
+              "deaths": 2,
+              "matches": 304,
+              "wins": 271,
+              "meanEntryHearts": 3.774193548387097,
+              "meanEntryLevel": 11.161290322580646
+            },
+            {
+              "floor": 15,
+              "entered": 74,
+              "completed": 68,
+              "deaths": 6,
+              "matches": 725,
+              "wins": 647,
+              "meanEntryHearts": 4.135135135135135,
+              "meanEntryLevel": 11.64864864864865
+            }
+          ]
+        },
+        "2": {
+          "name": "Mage",
+          "n": 1000,
+          "retired": 5,
+          "retirementRate": 0.005,
+          "retirementCI95": [
+            0.0021375355273245064,
+            0.011650955373374858
+          ],
+          "dead": 995,
+          "meanFloor": 2.14,
+          "medianFloor": 1,
+          "reached6": 71,
+          "reached11": 18,
+          "reached15": 6,
+          "firstCycleDeaths": 636,
+          "meanFights": 13.191,
+          "medianFights": 9,
+          "p10Fights": 6,
+          "p90Fights": 26,
+          "meanFinalLevel": 5.797,
+          "meanRetiredFights": 52,
+          "meanRetiredLevel": 11.2,
+          "matches": 13191,
+          "wins": 7606,
+          "losses": 5585,
+          "draws": 0,
+          "winRate": 0.5766052611629141,
+          "ghostFights": 1388,
+          "opponentLevelDeltas": {
+            "lower": 3281,
+            "equal": 7286,
+            "higher": 2624
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 364,
+              "deaths": 636,
+              "matches": 8520,
+              "wins": 4237,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 139,
+              "completed": 28,
+              "deaths": 111,
+              "matches": 847,
+              "wins": 604,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.553956834532374
+            },
+            {
+              "floor": 3,
+              "entered": 151,
+              "completed": 52,
+              "deaths": 99,
+              "matches": 1159,
+              "wins": 806,
+              "meanEntryHearts": 2.8609271523178808,
+              "meanEntryLevel": 6.046357615894039
+            },
+            {
+              "floor": 4,
+              "entered": 102,
+              "completed": 39,
+              "deaths": 63,
+              "matches": 883,
+              "wins": 628,
+              "meanEntryHearts": 3.343137254901961,
+              "meanEntryLevel": 6.529411764705882
+            },
+            {
+              "floor": 5,
+              "entered": 53,
+              "completed": 33,
+              "deaths": 20,
+              "matches": 476,
+              "wins": 344,
+              "meanEntryHearts": 3.849056603773585,
+              "meanEntryLevel": 7.037735849056604
+            },
+            {
+              "floor": 6,
+              "entered": 34,
+              "completed": 19,
+              "deaths": 15,
+              "matches": 283,
+              "wins": 212,
+              "meanEntryHearts": 3.0588235294117645,
+              "meanEntryLevel": 7.764705882352941
+            },
+            {
+              "floor": 7,
+              "entered": 33,
+              "completed": 17,
+              "deaths": 16,
+              "matches": 281,
+              "wins": 215,
+              "meanEntryHearts": 3,
+              "meanEntryLevel": 8.424242424242424
+            },
+            {
+              "floor": 8,
+              "entered": 20,
+              "completed": 13,
+              "deaths": 7,
+              "matches": 172,
+              "wins": 129,
+              "meanEntryHearts": 3.35,
+              "meanEntryLevel": 8.75
+            },
+            {
+              "floor": 9,
+              "entered": 22,
+              "completed": 13,
+              "deaths": 9,
+              "matches": 192,
+              "wins": 148,
+              "meanEntryHearts": 3.090909090909091,
+              "meanEntryLevel": 9.363636363636363
+            },
+            {
+              "floor": 10,
+              "entered": 15,
+              "completed": 9,
+              "deaths": 6,
+              "matches": 126,
+              "wins": 97,
+              "meanEntryHearts": 3.066666666666667,
+              "meanEntryLevel": 9.6
+            },
+            {
+              "floor": 11,
+              "entered": 8,
+              "completed": 1,
+              "deaths": 7,
+              "matches": 46,
+              "wins": 28,
+              "meanEntryHearts": 2.5,
+              "meanEntryLevel": 10.625
+            },
+            {
+              "floor": 12,
+              "entered": 5,
+              "completed": 4,
+              "deaths": 1,
+              "matches": 49,
+              "wins": 37,
+              "meanEntryHearts": 4,
+              "meanEntryLevel": 9.6
+            },
+            {
+              "floor": 13,
+              "entered": 7,
+              "completed": 6,
+              "deaths": 1,
+              "matches": 63,
+              "wins": 47,
+              "meanEntryHearts": 3.5714285714285716,
+              "meanEntryLevel": 10
+            },
+            {
+              "floor": 14,
+              "entered": 5,
+              "completed": 2,
+              "deaths": 3,
+              "matches": 37,
+              "wins": 30,
+              "meanEntryHearts": 2.6,
+              "meanEntryLevel": 11
+            },
+            {
+              "floor": 15,
+              "entered": 6,
+              "completed": 5,
+              "deaths": 1,
+              "matches": 57,
+              "wins": 44,
+              "meanEntryHearts": 3.6666666666666665,
+              "meanEntryLevel": 10.666666666666666
+            }
+          ]
+        },
+        "3": {
+          "name": "Trooper",
+          "n": 1000,
+          "retired": 171,
+          "retirementRate": 0.171,
+          "retirementCI95": [
+            0.14893385518054927,
+            0.1955841519029459
+          ],
+          "dead": 829,
+          "meanFloor": 4.657,
+          "medianFloor": 2,
+          "reached6": 269,
+          "reached11": 201,
+          "reached15": 177,
+          "firstCycleDeaths": 487,
+          "meanFights": 24.666,
+          "medianFights": 12,
+          "p10Fights": 6,
+          "p90Fights": 60,
+          "meanFinalLevel": 7.304,
+          "meanRetiredFights": 64.3859649122807,
+          "meanRetiredLevel": 12.397660818713451,
+          "matches": 24666,
+          "wins": 18633,
+          "losses": 6020,
+          "draws": 13,
+          "winRate": 0.7554123084407687,
+          "ghostFights": 3427,
+          "opponentLevelDeltas": {
+            "lower": 8642,
+            "equal": 11733,
+            "higher": 4291
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 513,
+              "deaths": 487,
+              "matches": 8825,
+              "wins": 4854,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 203,
+              "completed": 88,
+              "deaths": 115,
+              "matches": 1565,
+              "wins": 1281,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.650246305418719
+            },
+            {
+              "floor": 3,
+              "entered": 210,
+              "completed": 150,
+              "deaths": 60,
+              "matches": 1942,
+              "wins": 1633,
+              "meanEntryHearts": 2.742857142857143,
+              "meanEntryLevel": 6.29047619047619
+            },
+            {
+              "floor": 4,
+              "entered": 194,
+              "completed": 155,
+              "deaths": 39,
+              "matches": 1833,
+              "wins": 1548,
+              "meanEntryHearts": 3.185567010309278,
+              "meanEntryLevel": 6.876288659793815
+            },
+            {
+              "floor": 5,
+              "entered": 163,
+              "completed": 133,
+              "deaths": 30,
+              "matches": 1551,
+              "wins": 1328,
+              "meanEntryHearts": 3.245398773006135,
+              "meanEntryLevel": 7.619631901840491
+            },
+            {
+              "floor": 6,
+              "entered": 111,
+              "completed": 90,
+              "deaths": 21,
+              "matches": 1046,
+              "wins": 915,
+              "meanEntryHearts": 3.0720720720720722,
+              "meanEntryLevel": 8.396396396396396
+            },
+            {
+              "floor": 7,
+              "entered": 113,
+              "completed": 96,
+              "deaths": 17,
+              "matches": 1077,
+              "wins": 942,
+              "meanEntryHearts": 3.2035398230088497,
+              "meanEntryLevel": 8.938053097345133
+            },
+            {
+              "floor": 8,
+              "entered": 95,
+              "completed": 75,
+              "deaths": 20,
+              "matches": 885,
+              "wins": 776,
+              "meanEntryHearts": 3.4526315789473685,
+              "meanEntryLevel": 9.115789473684211
+            },
+            {
+              "floor": 9,
+              "entered": 87,
+              "completed": 81,
+              "deaths": 6,
+              "matches": 856,
+              "wins": 785,
+              "meanEntryHearts": 3.5172413793103448,
+              "meanEntryLevel": 9.563218390804598
+            },
+            {
+              "floor": 10,
+              "entered": 71,
+              "completed": 67,
+              "deaths": 4,
+              "matches": 695,
+              "wins": 624,
+              "meanEntryHearts": 3.704225352112676,
+              "meanEntryLevel": 9.845070422535212
+            },
+            {
+              "floor": 11,
+              "entered": 66,
+              "completed": 58,
+              "deaths": 8,
+              "matches": 645,
+              "wins": 570,
+              "meanEntryHearts": 3.6515151515151514,
+              "meanEntryLevel": 10.363636363636363
+            },
+            {
+              "floor": 12,
+              "entered": 68,
+              "completed": 65,
+              "deaths": 3,
+              "matches": 668,
+              "wins": 593,
+              "meanEntryHearts": 3.8823529411764706,
+              "meanEntryLevel": 10.426470588235293
+            },
+            {
+              "floor": 13,
+              "entered": 79,
+              "completed": 73,
+              "deaths": 6,
+              "matches": 775,
+              "wins": 707,
+              "meanEntryHearts": 3.8607594936708862,
+              "meanEntryLevel": 10.822784810126583
+            },
+            {
+              "floor": 14,
+              "entered": 56,
+              "completed": 49,
+              "deaths": 7,
+              "matches": 542,
+              "wins": 492,
+              "meanEntryHearts": 3.7142857142857144,
+              "meanEntryLevel": 11.125
+            },
+            {
+              "floor": 15,
+              "entered": 177,
+              "completed": 171,
+              "deaths": 6,
+              "matches": 1761,
+              "wins": 1585,
+              "meanEntryHearts": 4.429378531073446,
+              "meanEntryLevel": 11.440677966101696
+            }
+          ]
+        },
+        "4": {
+          "name": "Paladin",
+          "n": 1000,
+          "retired": 110,
+          "retirementRate": 0.11,
+          "retirementCI95": [
+            0.09207937267185756,
+            0.13090549894687528
+          ],
+          "dead": 890,
+          "meanFloor": 3.886,
+          "medianFloor": 1,
+          "reached6": 212,
+          "reached11": 147,
+          "reached15": 119,
+          "firstCycleDeaths": 555,
+          "meanFights": 20.654,
+          "medianFights": 10,
+          "p10Fights": 6,
+          "p90Fights": 56,
+          "meanFinalLevel": 6.748,
+          "meanRetiredFights": 63.09090909090909,
+          "meanRetiredLevel": 12.272727272727273,
+          "matches": 20654,
+          "wins": 14774,
+          "losses": 5879,
+          "draws": 1,
+          "winRate": 0.7153093831703302,
+          "ghostFights": 2690,
+          "opponentLevelDeltas": {
+            "lower": 6857,
+            "equal": 10068,
+            "higher": 3729
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 445,
+              "deaths": 555,
+              "matches": 8557,
+              "wins": 4496,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 163,
+              "completed": 67,
+              "deaths": 96,
+              "matches": 1250,
+              "wins": 1023,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.588957055214724
+            },
+            {
+              "floor": 3,
+              "entered": 169,
+              "completed": 97,
+              "deaths": 72,
+              "matches": 1457,
+              "wins": 1154,
+              "meanEntryHearts": 2.7928994082840237,
+              "meanEntryLevel": 6.053254437869822
+            },
+            {
+              "floor": 4,
+              "entered": 162,
+              "completed": 131,
+              "deaths": 31,
+              "matches": 1531,
+              "wins": 1277,
+              "meanEntryHearts": 3.3580246913580245,
+              "meanEntryLevel": 6.654320987654321
+            },
+            {
+              "floor": 5,
+              "entered": 131,
+              "completed": 97,
+              "deaths": 34,
+              "matches": 1210,
+              "wins": 1005,
+              "meanEntryHearts": 3.3893129770992365,
+              "meanEntryLevel": 7.412213740458015
+            },
+            {
+              "floor": 6,
+              "entered": 92,
+              "completed": 69,
+              "deaths": 23,
+              "matches": 841,
+              "wins": 725,
+              "meanEntryHearts": 3.0869565217391304,
+              "meanEntryLevel": 8.065217391304348
+            },
+            {
+              "floor": 7,
+              "entered": 74,
+              "completed": 61,
+              "deaths": 13,
+              "matches": 712,
+              "wins": 618,
+              "meanEntryHearts": 3.1486486486486487,
+              "meanEntryLevel": 8.81081081081081
+            },
+            {
+              "floor": 8,
+              "entered": 83,
+              "completed": 75,
+              "deaths": 8,
+              "matches": 801,
+              "wins": 712,
+              "meanEntryHearts": 3.5542168674698793,
+              "meanEntryLevel": 9
+            },
+            {
+              "floor": 9,
+              "entered": 65,
+              "completed": 53,
+              "deaths": 12,
+              "matches": 601,
+              "wins": 521,
+              "meanEntryHearts": 3.4,
+              "meanEntryLevel": 9.63076923076923
+            },
+            {
+              "floor": 10,
+              "entered": 57,
+              "completed": 48,
+              "deaths": 9,
+              "matches": 551,
+              "wins": 469,
+              "meanEntryHearts": 3.6140350877192984,
+              "meanEntryLevel": 9.929824561403509
+            },
+            {
+              "floor": 11,
+              "entered": 59,
+              "completed": 53,
+              "deaths": 6,
+              "matches": 575,
+              "wins": 505,
+              "meanEntryHearts": 3.6271186440677967,
+              "meanEntryLevel": 10.220338983050848
+            },
+            {
+              "floor": 12,
+              "entered": 49,
+              "completed": 42,
+              "deaths": 7,
+              "matches": 465,
+              "wins": 409,
+              "meanEntryHearts": 3.7346938775510203,
+              "meanEntryLevel": 10.36734693877551
+            },
+            {
+              "floor": 13,
+              "entered": 56,
+              "completed": 49,
+              "deaths": 7,
+              "matches": 542,
+              "wins": 466,
+              "meanEntryHearts": 3.732142857142857,
+              "meanEntryLevel": 10.821428571428571
+            },
+            {
+              "floor": 14,
+              "entered": 42,
+              "completed": 34,
+              "deaths": 8,
+              "matches": 390,
+              "wins": 344,
+              "meanEntryHearts": 3.738095238095238,
+              "meanEntryLevel": 10.785714285714286
+            },
+            {
+              "floor": 15,
+              "entered": 119,
+              "completed": 110,
+              "deaths": 9,
+              "matches": 1171,
+              "wins": 1050,
+              "meanEntryHearts": 4.302521008403361,
+              "meanEntryLevel": 11.336134453781513
+            }
+          ]
+        },
+        "6": {
+          "name": "Ninja",
+          "n": 1000,
+          "retired": 29,
+          "retirementRate": 0.029,
+          "retirementCI95": [
+            0.020266448156698952,
+            0.04133835833669378
+          ],
+          "dead": 971,
+          "meanFloor": 2.591,
+          "medianFloor": 1,
+          "reached6": 115,
+          "reached11": 48,
+          "reached15": 32,
+          "firstCycleDeaths": 603,
+          "meanFights": 15.54,
+          "medianFights": 9,
+          "p10Fights": 6,
+          "p90Fights": 34,
+          "meanFinalLevel": 6.122,
+          "meanRetiredFights": 65.51724137931035,
+          "meanRetiredLevel": 12.551724137931034,
+          "matches": 15540,
+          "wins": 9793,
+          "losses": 5745,
+          "draws": 2,
+          "winRate": 0.6301801801801802,
+          "ghostFights": 1836,
+          "opponentLevelDeltas": {
+            "lower": 4437,
+            "equal": 8064,
+            "higher": 3039
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 397,
+              "deaths": 603,
+              "matches": 8506,
+              "wins": 4243,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 191,
+              "completed": 48,
+              "deaths": 143,
+              "matches": 1268,
+              "wins": 952,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.50261780104712
+            },
+            {
+              "floor": 3,
+              "entered": 138,
+              "completed": 70,
+              "deaths": 68,
+              "matches": 1167,
+              "wins": 902,
+              "meanEntryHearts": 2.782608695652174,
+              "meanEntryLevel": 6.195652173913044
+            },
+            {
+              "floor": 4,
+              "entered": 116,
+              "completed": 73,
+              "deaths": 43,
+              "matches": 1011,
+              "wins": 775,
+              "meanEntryHearts": 3.2758620689655173,
+              "meanEntryLevel": 6.689655172413793
+            },
+            {
+              "floor": 5,
+              "entered": 81,
+              "completed": 53,
+              "deaths": 28,
+              "matches": 716,
+              "wins": 556,
+              "meanEntryHearts": 3.345679012345679,
+              "meanEntryLevel": 7.283950617283951
+            },
+            {
+              "floor": 6,
+              "entered": 60,
+              "completed": 41,
+              "deaths": 19,
+              "matches": 535,
+              "wins": 434,
+              "meanEntryHearts": 3.05,
+              "meanEntryLevel": 8.216666666666667
+            },
+            {
+              "floor": 7,
+              "entered": 50,
+              "completed": 30,
+              "deaths": 20,
+              "matches": 412,
+              "wins": 325,
+              "meanEntryHearts": 3,
+              "meanEntryLevel": 8.74
+            },
+            {
+              "floor": 8,
+              "entered": 39,
+              "completed": 29,
+              "deaths": 10,
+              "matches": 354,
+              "wins": 286,
+              "meanEntryHearts": 3.2564102564102564,
+              "meanEntryLevel": 8.871794871794872
+            },
+            {
+              "floor": 9,
+              "entered": 32,
+              "completed": 24,
+              "deaths": 8,
+              "matches": 296,
+              "wins": 253,
+              "meanEntryHearts": 3.0625,
+              "meanEntryLevel": 9.40625
+            },
+            {
+              "floor": 10,
+              "entered": 28,
+              "completed": 18,
+              "deaths": 10,
+              "matches": 257,
+              "wins": 206,
+              "meanEntryHearts": 3.5,
+              "meanEntryLevel": 9.571428571428571
+            },
+            {
+              "floor": 11,
+              "entered": 19,
+              "completed": 15,
+              "deaths": 4,
+              "matches": 180,
+              "wins": 145,
+              "meanEntryHearts": 3.5789473684210527,
+              "meanEntryLevel": 10.105263157894736
+            },
+            {
+              "floor": 12,
+              "entered": 22,
+              "completed": 17,
+              "deaths": 5,
+              "matches": 205,
+              "wins": 175,
+              "meanEntryHearts": 3.3181818181818183,
+              "meanEntryLevel": 10.409090909090908
+            },
+            {
+              "floor": 13,
+              "entered": 14,
+              "completed": 12,
+              "deaths": 2,
+              "matches": 134,
+              "wins": 113,
+              "meanEntryHearts": 3.5714285714285716,
+              "meanEntryLevel": 10.5
+            },
+            {
+              "floor": 14,
+              "entered": 20,
+              "completed": 15,
+              "deaths": 5,
+              "matches": 187,
+              "wins": 157,
+              "meanEntryHearts": 3.5,
+              "meanEntryLevel": 10.85
+            },
+            {
+              "floor": 15,
+              "entered": 32,
+              "completed": 29,
+              "deaths": 3,
+              "matches": 312,
+              "wins": 271,
+              "meanEntryHearts": 4,
+              "meanEntryLevel": 11.5
+            }
+          ]
+        },
+        "7": {
+          "name": "Moine",
+          "n": 1000,
+          "retired": 55,
+          "retirementRate": 0.055,
+          "retirementCI95": [
+            0.04249742737476874,
+            0.07090838767737513
+          ],
+          "dead": 945,
+          "meanFloor": 3.231,
+          "medianFloor": 1,
+          "reached6": 180,
+          "reached11": 85,
+          "reached15": 61,
+          "firstCycleDeaths": 574,
+          "meanFights": 18.107,
+          "medianFights": 10,
+          "p10Fights": 6,
+          "p90Fights": 46,
+          "meanFinalLevel": 6.463,
+          "meanRetiredFights": 63.09090909090909,
+          "meanRetiredLevel": 12.272727272727273,
+          "matches": 18107,
+          "wins": 12223,
+          "losses": 5880,
+          "draws": 4,
+          "winRate": 0.6750428011266361,
+          "ghostFights": 2233,
+          "opponentLevelDeltas": {
+            "lower": 5568,
+            "equal": 9095,
+            "higher": 3444
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 426,
+              "deaths": 574,
+              "matches": 8577,
+              "wins": 4458,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 156,
+              "completed": 52,
+              "deaths": 104,
+              "matches": 1088,
+              "wins": 852,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.5576923076923075
+            },
+            {
+              "floor": 3,
+              "entered": 163,
+              "completed": 91,
+              "deaths": 72,
+              "matches": 1421,
+              "wins": 1111,
+              "meanEntryHearts": 2.8282208588957056,
+              "meanEntryLevel": 6.122699386503068
+            },
+            {
+              "floor": 4,
+              "entered": 161,
+              "completed": 113,
+              "deaths": 48,
+              "matches": 1468,
+              "wins": 1188,
+              "meanEntryHearts": 3.279503105590062,
+              "meanEntryLevel": 6.708074534161491
+            },
+            {
+              "floor": 5,
+              "entered": 92,
+              "completed": 70,
+              "deaths": 22,
+              "matches": 840,
+              "wins": 674,
+              "meanEntryHearts": 3.4347826086956523,
+              "meanEntryLevel": 7.271739130434782
+            },
+            {
+              "floor": 6,
+              "entered": 97,
+              "completed": 63,
+              "deaths": 34,
+              "matches": 899,
+              "wins": 743,
+              "meanEntryHearts": 3.0721649484536084,
+              "meanEntryLevel": 8.010309278350515
+            },
+            {
+              "floor": 7,
+              "entered": 66,
+              "completed": 49,
+              "deaths": 17,
+              "matches": 609,
+              "wins": 502,
+              "meanEntryHearts": 3.227272727272727,
+              "meanEntryLevel": 8.469696969696969
+            },
+            {
+              "floor": 8,
+              "entered": 62,
+              "completed": 51,
+              "deaths": 11,
+              "matches": 591,
+              "wins": 504,
+              "meanEntryHearts": 3.306451612903226,
+              "meanEntryLevel": 9.048387096774194
+            },
+            {
+              "floor": 9,
+              "entered": 50,
+              "completed": 29,
+              "deaths": 21,
+              "matches": 427,
+              "wins": 335,
+              "meanEntryHearts": 3.26,
+              "meanEntryLevel": 9.52
+            },
+            {
+              "floor": 10,
+              "entered": 52,
+              "completed": 40,
+              "deaths": 12,
+              "matches": 479,
+              "wins": 387,
+              "meanEntryHearts": 3.519230769230769,
+              "meanEntryLevel": 9.76923076923077
+            },
+            {
+              "floor": 11,
+              "entered": 35,
+              "completed": 28,
+              "deaths": 7,
+              "matches": 333,
+              "wins": 291,
+              "meanEntryHearts": 3.2857142857142856,
+              "meanEntryLevel": 10.285714285714286
+            },
+            {
+              "floor": 12,
+              "entered": 31,
+              "completed": 26,
+              "deaths": 5,
+              "matches": 294,
+              "wins": 253,
+              "meanEntryHearts": 3.4838709677419355,
+              "meanEntryLevel": 10.612903225806452
+            },
+            {
+              "floor": 13,
+              "entered": 33,
+              "completed": 24,
+              "deaths": 9,
+              "matches": 296,
+              "wins": 239,
+              "meanEntryHearts": 3.6363636363636362,
+              "meanEntryLevel": 10.575757575757576
+            },
+            {
+              "floor": 14,
+              "entered": 20,
+              "completed": 17,
+              "deaths": 3,
+              "matches": 189,
+              "wins": 165,
+              "meanEntryHearts": 3.5,
+              "meanEntryLevel": 10.7
+            },
+            {
+              "floor": 15,
+              "entered": 61,
+              "completed": 55,
+              "deaths": 6,
+              "matches": 596,
+              "wins": 521,
+              "meanEntryHearts": 4.114754098360656,
+              "meanEntryLevel": 11.39344262295082
+            }
+          ]
+        },
+        "8": {
+          "name": "Ingénieur",
+          "n": 1000,
+          "retired": 25,
+          "retirementRate": 0.025,
+          "retirementCI95": [
+            0.016990131293434248,
+            0.036645289267842926
+          ],
+          "dead": 975,
+          "meanFloor": 2.5,
+          "medianFloor": 1,
+          "reached6": 106,
+          "reached11": 47,
+          "reached15": 35,
+          "firstCycleDeaths": 631,
+          "meanFights": 15.19,
+          "medianFights": 9,
+          "p10Fights": 5,
+          "p90Fights": 35,
+          "meanFinalLevel": 6.02,
+          "meanRetiredFights": 64.4,
+          "meanRetiredLevel": 12.4,
+          "matches": 15190,
+          "wins": 9454,
+          "losses": 5732,
+          "draws": 4,
+          "winRate": 0.6223831468071099,
+          "ghostFights": 1762,
+          "opponentLevelDeltas": {
+            "lower": 4283,
+            "equal": 7915,
+            "higher": 2992
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 369,
+              "deaths": 631,
+              "matches": 8413,
+              "wins": 4080,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 175,
+              "completed": 48,
+              "deaths": 127,
+              "matches": 1204,
+              "wins": 913,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.508571428571429
+            },
+            {
+              "floor": 3,
+              "entered": 154,
+              "completed": 70,
+              "deaths": 84,
+              "matches": 1280,
+              "wins": 969,
+              "meanEntryHearts": 2.75974025974026,
+              "meanEntryLevel": 6.1688311688311686
+            },
+            {
+              "floor": 4,
+              "entered": 93,
+              "completed": 58,
+              "deaths": 35,
+              "matches": 796,
+              "wins": 623,
+              "meanEntryHearts": 3.172043010752688,
+              "meanEntryLevel": 6.806451612903226
+            },
+            {
+              "floor": 5,
+              "entered": 74,
+              "completed": 57,
+              "deaths": 17,
+              "matches": 687,
+              "wins": 558,
+              "meanEntryHearts": 3.4594594594594597,
+              "meanEntryLevel": 7.418918918918919
+            },
+            {
+              "floor": 6,
+              "entered": 46,
+              "completed": 34,
+              "deaths": 12,
+              "matches": 421,
+              "wins": 350,
+              "meanEntryHearts": 2.891304347826087,
+              "meanEntryLevel": 8.521739130434783
+            },
+            {
+              "floor": 7,
+              "entered": 48,
+              "completed": 34,
+              "deaths": 14,
+              "matches": 426,
+              "wins": 338,
+              "meanEntryHearts": 3,
+              "meanEntryLevel": 8.625
+            },
+            {
+              "floor": 8,
+              "entered": 53,
+              "completed": 39,
+              "deaths": 14,
+              "matches": 477,
+              "wins": 400,
+              "meanEntryHearts": 3.150943396226415,
+              "meanEntryLevel": 9.075471698113208
+            },
+            {
+              "floor": 9,
+              "entered": 29,
+              "completed": 20,
+              "deaths": 9,
+              "matches": 261,
+              "wins": 222,
+              "meanEntryHearts": 2.8275862068965516,
+              "meanEntryLevel": 9.620689655172415
+            },
+            {
+              "floor": 10,
+              "entered": 29,
+              "completed": 19,
+              "deaths": 10,
+              "matches": 246,
+              "wins": 194,
+              "meanEntryHearts": 3.2758620689655173,
+              "meanEntryLevel": 9.862068965517242
+            },
+            {
+              "floor": 11,
+              "entered": 19,
+              "completed": 16,
+              "deaths": 3,
+              "matches": 180,
+              "wins": 156,
+              "meanEntryHearts": 3.210526315789474,
+              "meanEntryLevel": 10.157894736842104
+            },
+            {
+              "floor": 12,
+              "entered": 17,
+              "completed": 15,
+              "deaths": 2,
+              "matches": 169,
+              "wins": 144,
+              "meanEntryHearts": 3.764705882352941,
+              "meanEntryLevel": 10.705882352941176
+            },
+            {
+              "floor": 13,
+              "entered": 21,
+              "completed": 16,
+              "deaths": 5,
+              "matches": 198,
+              "wins": 172,
+              "meanEntryHearts": 3.380952380952381,
+              "meanEntryLevel": 10.619047619047619
+            },
+            {
+              "floor": 14,
+              "entered": 13,
+              "completed": 11,
+              "deaths": 2,
+              "matches": 124,
+              "wins": 96,
+              "meanEntryHearts": 4,
+              "meanEntryLevel": 10.76923076923077
+            },
+            {
+              "floor": 15,
+              "entered": 35,
+              "completed": 25,
+              "deaths": 10,
+              "matches": 308,
+              "wins": 239,
+              "meanEntryHearts": 3.7714285714285714,
+              "meanEntryLevel": 11.6
+            }
+          ]
+        },
+        "9": {
+          "name": "Berserker",
+          "n": 1000,
+          "retired": 97,
+          "retirementRate": 0.097,
+          "retirementCI95": [
+            0.08016916179032346,
+            0.11691520554903381
+          ],
+          "dead": 903,
+          "meanFloor": 3.609,
+          "medianFloor": 1,
+          "reached6": 191,
+          "reached11": 131,
+          "reached15": 103,
+          "firstCycleDeaths": 557,
+          "meanFights": 20.24,
+          "medianFights": 10,
+          "p10Fights": 6,
+          "p90Fights": 58,
+          "meanFinalLevel": 6.698,
+          "meanRetiredFights": 66.49484536082474,
+          "meanRetiredLevel": 12.56701030927835,
+          "matches": 20240,
+          "wins": 14258,
+          "losses": 5967,
+          "draws": 15,
+          "winRate": 0.7044466403162055,
+          "ghostFights": 2627,
+          "opponentLevelDeltas": {
+            "lower": 6570,
+            "equal": 9964,
+            "higher": 3706
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 443,
+              "deaths": 557,
+              "matches": 8650,
+              "wins": 4510,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 177,
+              "completed": 50,
+              "deaths": 127,
+              "matches": 1235,
+              "wins": 948,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.52542372881356
+            },
+            {
+              "floor": 3,
+              "entered": 179,
+              "completed": 119,
+              "deaths": 60,
+              "matches": 1601,
+              "wins": 1306,
+              "meanEntryHearts": 2.815642458100559,
+              "meanEntryLevel": 6.078212290502793
+            },
+            {
+              "floor": 4,
+              "entered": 149,
+              "completed": 102,
+              "deaths": 47,
+              "matches": 1331,
+              "wins": 1069,
+              "meanEntryHearts": 3.2013422818791946,
+              "meanEntryLevel": 6.74496644295302
+            },
+            {
+              "floor": 5,
+              "entered": 115,
+              "completed": 97,
+              "deaths": 18,
+              "matches": 1094,
+              "wins": 934,
+              "meanEntryHearts": 3.252173913043478,
+              "meanEntryLevel": 7.417391304347826
+            },
+            {
+              "floor": 6,
+              "entered": 91,
+              "completed": 70,
+              "deaths": 21,
+              "matches": 831,
+              "wins": 712,
+              "meanEntryHearts": 3.010989010989011,
+              "meanEntryLevel": 8.219780219780219
+            },
+            {
+              "floor": 7,
+              "entered": 71,
+              "completed": 58,
+              "deaths": 13,
+              "matches": 671,
+              "wins": 573,
+              "meanEntryHearts": 3.140845070422535,
+              "meanEntryLevel": 8.901408450704226
+            },
+            {
+              "floor": 8,
+              "entered": 79,
+              "completed": 68,
+              "deaths": 11,
+              "matches": 760,
+              "wins": 668,
+              "meanEntryHearts": 3.3164556962025316,
+              "meanEntryLevel": 9.113924050632912
+            },
+            {
+              "floor": 9,
+              "entered": 57,
+              "completed": 50,
+              "deaths": 7,
+              "matches": 554,
+              "wins": 482,
+              "meanEntryHearts": 3.3157894736842106,
+              "meanEntryLevel": 9.68421052631579
+            },
+            {
+              "floor": 10,
+              "entered": 64,
+              "completed": 56,
+              "deaths": 8,
+              "matches": 617,
+              "wins": 536,
+              "meanEntryHearts": 3.484375,
+              "meanEntryLevel": 9.90625
+            },
+            {
+              "floor": 11,
+              "entered": 55,
+              "completed": 47,
+              "deaths": 8,
+              "matches": 529,
+              "wins": 463,
+              "meanEntryHearts": 3.327272727272727,
+              "meanEntryLevel": 10.272727272727273
+            },
+            {
+              "floor": 12,
+              "entered": 46,
+              "completed": 39,
+              "deaths": 7,
+              "matches": 440,
+              "wins": 383,
+              "meanEntryHearts": 3.4347826086956523,
+              "meanEntryLevel": 10.543478260869565
+            },
+            {
+              "floor": 13,
+              "entered": 48,
+              "completed": 41,
+              "deaths": 7,
+              "matches": 460,
+              "wins": 393,
+              "meanEntryHearts": 3.5625,
+              "meanEntryLevel": 10.916666666666666
+            },
+            {
+              "floor": 14,
+              "entered": 47,
+              "completed": 41,
+              "deaths": 6,
+              "matches": 464,
+              "wins": 409,
+              "meanEntryHearts": 3.5319148936170213,
+              "meanEntryLevel": 11.319148936170214
+            },
+            {
+              "floor": 15,
+              "entered": 103,
+              "completed": 97,
+              "deaths": 6,
+              "matches": 1003,
+              "wins": 872,
+              "meanEntryHearts": 4.029126213592233,
+              "meanEntryLevel": 11.737864077669903
+            }
+          ]
+        }
+      },
+      "overall": {
+        "n": 9000,
+        "retired": 784,
+        "retirementRate": 0.08711111111111111,
+        "retirementCI95": [
+          0.08145982051425371,
+          0.0931147170328091
+        ],
+        "dead": 8216,
+        "meanFloor": 3.4534444444444445,
+        "medianFloor": 1,
+        "reached6": 1621,
+        "reached11": 1012,
+        "reached15": 834,
+        "firstCycleDeaths": 5059,
+        "meanFights": 19.169555555555554,
+        "medianFights": 10,
+        "p10Fights": 6,
+        "p90Fights": 50,
+        "meanFinalLevel": 6.579666666666666,
+        "meanRetiredFights": 64.24744897959184,
+        "meanRetiredLevel": 12.381377551020408,
+        "matches": 172526,
+        "wins": 119857,
+        "losses": 52623,
+        "draws": 46,
+        "winRate": 0.6947184772150284,
+        "ghostFights": 22064,
+        "opponentLevelDeltas": {
+          "lower": 54861,
+          "equal": 85890,
+          "higher": 31775
+        },
+        "floors": [
+          {
+            "floor": 1,
+            "entered": 9000,
+            "completed": 3941,
+            "deaths": 5059,
+            "matches": 77575,
+            "wins": 40418,
+            "meanEntryHearts": 5,
+            "meanEntryLevel": 1
+          },
+          {
+            "floor": 2,
+            "entered": 1590,
+            "completed": 526,
+            "deaths": 1064,
+            "matches": 11325,
+            "wins": 8864,
+            "meanEntryHearts": 2,
+            "meanEntryLevel": 5.571698113207547
+          },
+          {
+            "floor": 3,
+            "entered": 1549,
+            "completed": 891,
+            "deaths": 658,
+            "matches": 13427,
+            "wins": 10638,
+            "meanEntryHearts": 2.7850225952227246,
+            "meanEntryLevel": 6.16010329244674
+          },
+          {
+            "floor": 4,
+            "entered": 1328,
+            "completed": 936,
+            "deaths": 392,
+            "matches": 12052,
+            "wins": 9773,
+            "meanEntryHearts": 3.262801204819277,
+            "meanEntryLevel": 6.723644578313253
+          },
+          {
+            "floor": 5,
+            "entered": 954,
+            "completed": 748,
+            "deaths": 206,
+            "matches": 8938,
+            "wins": 7413,
+            "meanEntryHearts": 3.4161425576519915,
+            "meanEntryLevel": 7.376310272536688
+          },
+          {
+            "floor": 6,
+            "entered": 745,
+            "completed": 557,
+            "deaths": 188,
+            "matches": 6870,
+            "wins": 5829,
+            "meanEntryHearts": 3.0671140939597317,
+            "meanEntryLevel": 8.175838926174496
+          },
+          {
+            "floor": 7,
+            "entered": 632,
+            "completed": 494,
+            "deaths": 138,
+            "matches": 5895,
+            "wins": 5009,
+            "meanEntryHearts": 3.1313291139240507,
+            "meanEntryLevel": 8.781645569620252
+          },
+          {
+            "floor": 8,
+            "entered": 619,
+            "completed": 506,
+            "deaths": 113,
+            "matches": 5811,
+            "wins": 5028,
+            "meanEntryHearts": 3.4006462035541194,
+            "meanEntryLevel": 9.011308562197092
+          },
+          {
+            "floor": 9,
+            "entered": 490,
+            "completed": 400,
+            "deaths": 90,
+            "matches": 4620,
+            "wins": 4013,
+            "meanEntryHearts": 3.342857142857143,
+            "meanEntryLevel": 9.581632653061224
+          },
+          {
+            "floor": 10,
+            "entered": 453,
+            "completed": 373,
+            "deaths": 80,
+            "matches": 4266,
+            "wins": 3649,
+            "meanEntryHearts": 3.5452538631346577,
+            "meanEntryLevel": 9.785871964679911
+          },
+          {
+            "floor": 11,
+            "entered": 380,
+            "completed": 326,
+            "deaths": 54,
+            "matches": 3639,
+            "wins": 3194,
+            "meanEntryHearts": 3.4894736842105263,
+            "meanEntryLevel": 10.3
+          },
+          {
+            "floor": 12,
+            "entered": 349,
+            "completed": 307,
+            "deaths": 42,
+            "matches": 3373,
+            "wins": 2956,
+            "meanEntryHearts": 3.7277936962750715,
+            "meanEntryLevel": 10.461318051575931
+          },
+          {
+            "floor": 13,
+            "entered": 374,
+            "completed": 332,
+            "deaths": 42,
+            "matches": 3615,
+            "wins": 3182,
+            "meanEntryHearts": 3.7406417112299466,
+            "meanEntryLevel": 10.759358288770054
+          },
+          {
+            "floor": 14,
+            "entered": 304,
+            "completed": 264,
+            "deaths": 40,
+            "matches": 2920,
+            "wins": 2567,
+            "meanEntryHearts": 3.726973684210526,
+            "meanEntryLevel": 11.055921052631579
+          },
+          {
+            "floor": 15,
+            "entered": 834,
+            "completed": 784,
+            "deaths": 50,
+            "matches": 8200,
+            "wins": 7324,
+            "meanEntryHearts": 4.248201438848921,
+            "meanEntryLevel": 11.454436450839328
+          }
+        ]
+      }
+    },
+    "cautious": {
+      "classes": {
+        "0": {
+          "name": "Guerrier",
+          "n": 1000,
+          "retired": 415,
+          "retirementRate": 0.415,
+          "retirementCI95": [
+            0.3848433602464034,
+            0.4458071886961409
+          ],
+          "dead": 585,
+          "meanFloor": 7.978,
+          "medianFloor": 6,
+          "reached6": 511,
+          "reached11": 444,
+          "reached15": 423,
+          "firstCycleDeaths": 302,
+          "meanFights": 37.224,
+          "medianFights": 37,
+          "p10Fights": 7,
+          "p90Fights": 70,
+          "meanFinalLevel": 8.501,
+          "meanRetiredFights": 62.98795180722892,
+          "meanRetiredLevel": 11.525301204819277,
+          "matches": 37224,
+          "wins": 31123,
+          "losses": 6094,
+          "draws": 7,
+          "winRate": 0.8361003653556845,
+          "ghostFights": 7331,
+          "opponentLevelDeltas": {
+            "lower": 22309,
+            "equal": 13810,
+            "higher": 1105
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 698,
+              "deaths": 302,
+              "matches": 9387,
+              "wins": 5950,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 209,
+              "completed": 130,
+              "deaths": 79,
+              "matches": 1777,
+              "wins": 1549,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.1291866028708135
+            },
+            {
+              "floor": 3,
+              "entered": 297,
+              "completed": 250,
+              "deaths": 47,
+              "matches": 2833,
+              "wins": 2512,
+              "meanEntryHearts": 2.7643097643097643,
+              "meanEntryLevel": 5.734006734006734
+            },
+            {
+              "floor": 4,
+              "entered": 297,
+              "completed": 261,
+              "deaths": 36,
+              "matches": 2829,
+              "wins": 2500,
+              "meanEntryHearts": 3.292929292929293,
+              "meanEntryLevel": 6.343434343434343
+            },
+            {
+              "floor": 5,
+              "entered": 236,
+              "completed": 211,
+              "deaths": 25,
+              "matches": 2293,
+              "wins": 2047,
+              "meanEntryHearts": 3.4533898305084745,
+              "meanEntryLevel": 6.983050847457627
+            },
+            {
+              "floor": 6,
+              "entered": 211,
+              "completed": 190,
+              "deaths": 21,
+              "matches": 2057,
+              "wins": 1855,
+              "meanEntryHearts": 3.345971563981043,
+              "meanEntryLevel": 7.601895734597156
+            },
+            {
+              "floor": 7,
+              "entered": 176,
+              "completed": 158,
+              "deaths": 18,
+              "matches": 1706,
+              "wins": 1551,
+              "meanEntryHearts": 3.25,
+              "meanEntryLevel": 8.073863636363637
+            },
+            {
+              "floor": 8,
+              "entered": 167,
+              "completed": 157,
+              "deaths": 10,
+              "matches": 1639,
+              "wins": 1507,
+              "meanEntryHearts": 3.754491017964072,
+              "meanEntryLevel": 8.233532934131736
+            },
+            {
+              "floor": 9,
+              "entered": 168,
+              "completed": 159,
+              "deaths": 9,
+              "matches": 1652,
+              "wins": 1496,
+              "meanEntryHearts": 3.7023809523809526,
+              "meanEntryLevel": 8.714285714285714
+            },
+            {
+              "floor": 10,
+              "entered": 168,
+              "completed": 159,
+              "deaths": 9,
+              "matches": 1664,
+              "wins": 1544,
+              "meanEntryHearts": 3.9226190476190474,
+              "meanEntryLevel": 8.857142857142858
+            },
+            {
+              "floor": 11,
+              "entered": 129,
+              "completed": 123,
+              "deaths": 6,
+              "matches": 1270,
+              "wins": 1157,
+              "meanEntryHearts": 3.891472868217054,
+              "meanEntryLevel": 9.550387596899224
+            },
+            {
+              "floor": 12,
+              "entered": 123,
+              "completed": 119,
+              "deaths": 4,
+              "matches": 1211,
+              "wins": 1119,
+              "meanEntryHearts": 3.8780487804878048,
+              "meanEntryLevel": 9.886178861788618
+            },
+            {
+              "floor": 13,
+              "entered": 149,
+              "completed": 141,
+              "deaths": 8,
+              "matches": 1473,
+              "wins": 1346,
+              "meanEntryHearts": 4.201342281879195,
+              "meanEntryLevel": 9.912751677852349
+            },
+            {
+              "floor": 14,
+              "entered": 123,
+              "completed": 120,
+              "deaths": 3,
+              "matches": 1219,
+              "wins": 1109,
+              "meanEntryHearts": 4.0894308943089435,
+              "meanEntryLevel": 10.268292682926829
+            },
+            {
+              "floor": 15,
+              "entered": 423,
+              "completed": 415,
+              "deaths": 8,
+              "matches": 4214,
+              "wins": 3881,
+              "meanEntryHearts": 4.50354609929078,
+              "meanEntryLevel": 10.657210401891254
+            }
+          ]
+        },
+        "1": {
+          "name": "Archer",
+          "n": 1000,
+          "retired": 164,
+          "retirementRate": 0.164,
+          "retirementCI95": [
+            0.14234418773548752,
+            0.18822739396680543
+          ],
+          "dead": 836,
+          "meanFloor": 4.947,
+          "medianFloor": 2,
+          "reached6": 299,
+          "reached11": 211,
+          "reached15": 175,
+          "firstCycleDeaths": 433,
+          "meanFights": 26.339,
+          "medianFights": 15,
+          "p10Fights": 7,
+          "p90Fights": 66,
+          "meanFinalLevel": 7.172,
+          "meanRetiredFights": 67.07317073170732,
+          "meanRetiredLevel": 11.810975609756097,
+          "matches": 26339,
+          "wins": 20053,
+          "losses": 6278,
+          "draws": 8,
+          "winRate": 0.7613424959185998,
+          "ghostFights": 4763,
+          "opponentLevelDeltas": {
+            "lower": 14325,
+            "equal": 10982,
+            "higher": 1032
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 567,
+              "deaths": 433,
+              "matches": 9137,
+              "wins": 5332,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 196,
+              "completed": 81,
+              "deaths": 115,
+              "matches": 1444,
+              "wins": 1159,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.1938775510204085
+            },
+            {
+              "floor": 3,
+              "entered": 255,
+              "completed": 177,
+              "deaths": 78,
+              "matches": 2315,
+              "wins": 1908,
+              "meanEntryHearts": 2.784313725490196,
+              "meanEntryLevel": 5.694117647058824
+            },
+            {
+              "floor": 4,
+              "entered": 208,
+              "completed": 156,
+              "deaths": 52,
+              "matches": 1925,
+              "wins": 1606,
+              "meanEntryHearts": 3.105769230769231,
+              "meanEntryLevel": 6.447115384615385
+            },
+            {
+              "floor": 5,
+              "entered": 165,
+              "completed": 142,
+              "deaths": 23,
+              "matches": 1591,
+              "wins": 1386,
+              "meanEntryHearts": 3.2606060606060607,
+              "meanEntryLevel": 7.181818181818182
+            },
+            {
+              "floor": 6,
+              "entered": 141,
+              "completed": 112,
+              "deaths": 29,
+              "matches": 1321,
+              "wins": 1132,
+              "meanEntryHearts": 3.2624113475177303,
+              "meanEntryLevel": 7.553191489361702
+            },
+            {
+              "floor": 7,
+              "entered": 115,
+              "completed": 95,
+              "deaths": 20,
+              "matches": 1085,
+              "wins": 941,
+              "meanEntryHearts": 3.130434782608696,
+              "meanEntryLevel": 8.243478260869566
+            },
+            {
+              "floor": 8,
+              "entered": 108,
+              "completed": 92,
+              "deaths": 16,
+              "matches": 1046,
+              "wins": 904,
+              "meanEntryHearts": 3.3796296296296298,
+              "meanEntryLevel": 8.416666666666666
+            },
+            {
+              "floor": 9,
+              "entered": 97,
+              "completed": 82,
+              "deaths": 15,
+              "matches": 927,
+              "wins": 821,
+              "meanEntryHearts": 3.2577319587628866,
+              "meanEntryLevel": 8.896907216494846
+            },
+            {
+              "floor": 10,
+              "entered": 92,
+              "completed": 84,
+              "deaths": 8,
+              "matches": 878,
+              "wins": 779,
+              "meanEntryHearts": 3.652173913043478,
+              "meanEntryLevel": 9.097826086956522
+            },
+            {
+              "floor": 11,
+              "entered": 80,
+              "completed": 73,
+              "deaths": 7,
+              "matches": 775,
+              "wins": 671,
+              "meanEntryHearts": 3.6125,
+              "meanEntryLevel": 9.4625
+            },
+            {
+              "floor": 12,
+              "entered": 84,
+              "completed": 70,
+              "deaths": 14,
+              "matches": 786,
+              "wins": 677,
+              "meanEntryHearts": 3.4047619047619047,
+              "meanEntryLevel": 10.142857142857142
+            },
+            {
+              "floor": 13,
+              "entered": 73,
+              "completed": 63,
+              "deaths": 10,
+              "matches": 709,
+              "wins": 612,
+              "meanEntryHearts": 3.5616438356164384,
+              "meanEntryLevel": 10.246575342465754
+            },
+            {
+              "floor": 14,
+              "entered": 70,
+              "completed": 65,
+              "deaths": 5,
+              "matches": 684,
+              "wins": 613,
+              "meanEntryHearts": 3.5714285714285716,
+              "meanEntryLevel": 10.628571428571428
+            },
+            {
+              "floor": 15,
+              "entered": 175,
+              "completed": 164,
+              "deaths": 11,
+              "matches": 1716,
+              "wins": 1512,
+              "meanEntryHearts": 4.051428571428572,
+              "meanEntryLevel": 11
+            }
+          ]
+        },
+        "2": {
+          "name": "Mage",
+          "n": 1000,
+          "retired": 15,
+          "retirementRate": 0.015,
+          "retirementCI95": [
+            0.009110978804081793,
+            0.024600976926906472
+          ],
+          "dead": 985,
+          "meanFloor": 2.984,
+          "medianFloor": 2,
+          "reached6": 145,
+          "reached11": 48,
+          "reached15": 25,
+          "firstCycleDeaths": 493,
+          "meanFights": 17.038,
+          "medianFights": 12,
+          "p10Fights": 6,
+          "p90Fights": 36,
+          "meanFinalLevel": 6.166,
+          "meanRetiredFights": 56.666666666666664,
+          "meanRetiredLevel": 10.933333333333334,
+          "matches": 17038,
+          "wins": 11100,
+          "losses": 5938,
+          "draws": 0,
+          "winRate": 0.6514849160699613,
+          "ghostFights": 2782,
+          "opponentLevelDeltas": {
+            "lower": 7600,
+            "equal": 8462,
+            "higher": 976
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 507,
+              "deaths": 493,
+              "matches": 8866,
+              "wins": 4905,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 189,
+              "completed": 41,
+              "deaths": 148,
+              "matches": 1181,
+              "wins": 854,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.195767195767195
+            },
+            {
+              "floor": 3,
+              "entered": 192,
+              "completed": 90,
+              "deaths": 102,
+              "matches": 1597,
+              "wins": 1199,
+              "meanEntryHearts": 2.8385416666666665,
+              "meanEntryLevel": 5.5625
+            },
+            {
+              "floor": 4,
+              "entered": 165,
+              "completed": 103,
+              "deaths": 62,
+              "matches": 1484,
+              "wins": 1120,
+              "meanEntryHearts": 3.393939393939394,
+              "meanEntryLevel": 6.096969696969697
+            },
+            {
+              "floor": 5,
+              "entered": 109,
+              "completed": 59,
+              "deaths": 50,
+              "matches": 907,
+              "wins": 684,
+              "meanEntryHearts": 3.3211009174311927,
+              "meanEntryLevel": 6.770642201834862
+            },
+            {
+              "floor": 6,
+              "entered": 83,
+              "completed": 47,
+              "deaths": 36,
+              "matches": 700,
+              "wins": 548,
+              "meanEntryHearts": 3.144578313253012,
+              "meanEntryLevel": 7.253012048192771
+            },
+            {
+              "floor": 7,
+              "entered": 43,
+              "completed": 30,
+              "deaths": 13,
+              "matches": 373,
+              "wins": 297,
+              "meanEntryHearts": 3.1627906976744184,
+              "meanEntryLevel": 7.6976744186046515
+            },
+            {
+              "floor": 8,
+              "entered": 44,
+              "completed": 25,
+              "deaths": 19,
+              "matches": 383,
+              "wins": 294,
+              "meanEntryHearts": 3.25,
+              "meanEntryLevel": 7.9772727272727275
+            },
+            {
+              "floor": 9,
+              "entered": 45,
+              "completed": 28,
+              "deaths": 17,
+              "matches": 399,
+              "wins": 302,
+              "meanEntryHearts": 3.466666666666667,
+              "meanEntryLevel": 8.177777777777777
+            },
+            {
+              "floor": 10,
+              "entered": 31,
+              "completed": 19,
+              "deaths": 12,
+              "matches": 266,
+              "wins": 202,
+              "meanEntryHearts": 3.4516129032258065,
+              "meanEntryLevel": 8.387096774193548
+            },
+            {
+              "floor": 11,
+              "entered": 20,
+              "completed": 13,
+              "deaths": 7,
+              "matches": 175,
+              "wins": 136,
+              "meanEntryHearts": 3.2,
+              "meanEntryLevel": 9
+            },
+            {
+              "floor": 12,
+              "entered": 22,
+              "completed": 15,
+              "deaths": 7,
+              "matches": 193,
+              "wins": 159,
+              "meanEntryHearts": 3.1818181818181817,
+              "meanEntryLevel": 9.227272727272727
+            },
+            {
+              "floor": 13,
+              "entered": 16,
+              "completed": 13,
+              "deaths": 3,
+              "matches": 157,
+              "wins": 124,
+              "meanEntryHearts": 3.875,
+              "meanEntryLevel": 9.625
+            },
+            {
+              "floor": 14,
+              "entered": 14,
+              "completed": 8,
+              "deaths": 6,
+              "matches": 127,
+              "wins": 98,
+              "meanEntryHearts": 3,
+              "meanEntryLevel": 10.071428571428571
+            },
+            {
+              "floor": 15,
+              "entered": 25,
+              "completed": 15,
+              "deaths": 10,
+              "matches": 230,
+              "wins": 178,
+              "meanEntryHearts": 3.64,
+              "meanEntryLevel": 10.2
+            }
+          ]
+        },
+        "3": {
+          "name": "Trooper",
+          "n": 1000,
+          "retired": 364,
+          "retirementRate": 0.364,
+          "retirementCI95": [
+            0.3347516509127758,
+            0.39428922739529504
+          ],
+          "dead": 636,
+          "meanFloor": 7.09,
+          "medianFloor": 3,
+          "reached6": 444,
+          "reached11": 388,
+          "reached15": 369,
+          "firstCycleDeaths": 378,
+          "meanFights": 33.972,
+          "medianFights": 20,
+          "p10Fights": 6,
+          "p90Fights": 73,
+          "meanFinalLevel": 8.04,
+          "meanRetiredFights": 64.53296703296704,
+          "meanRetiredLevel": 11.64010989010989,
+          "matches": 33972,
+          "wins": 27908,
+          "losses": 6048,
+          "draws": 16,
+          "winRate": 0.8215000588720123,
+          "ghostFights": 6622,
+          "opponentLevelDeltas": {
+            "lower": 19745,
+            "equal": 13060,
+            "higher": 1167
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 622,
+              "deaths": 378,
+              "matches": 9114,
+              "wins": 5520,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 190,
+              "completed": 109,
+              "deaths": 81,
+              "matches": 1604,
+              "wins": 1385,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.226315789473684
+            },
+            {
+              "floor": 3,
+              "entered": 248,
+              "completed": 203,
+              "deaths": 45,
+              "matches": 2357,
+              "wins": 2048,
+              "meanEntryHearts": 2.774193548387097,
+              "meanEntryLevel": 5.689516129032258
+            },
+            {
+              "floor": 4,
+              "entered": 255,
+              "completed": 219,
+              "deaths": 36,
+              "matches": 2429,
+              "wins": 2121,
+              "meanEntryHearts": 3.235294117647059,
+              "meanEntryLevel": 6.407843137254902
+            },
+            {
+              "floor": 5,
+              "entered": 231,
+              "completed": 215,
+              "deaths": 16,
+              "matches": 2269,
+              "wins": 2017,
+              "meanEntryHearts": 3.5757575757575757,
+              "meanEntryLevel": 6.93073593073593
+            },
+            {
+              "floor": 6,
+              "entered": 166,
+              "completed": 151,
+              "deaths": 15,
+              "matches": 1617,
+              "wins": 1445,
+              "meanEntryHearts": 3.246987951807229,
+              "meanEntryLevel": 7.614457831325301
+            },
+            {
+              "floor": 7,
+              "entered": 168,
+              "completed": 152,
+              "deaths": 16,
+              "matches": 1621,
+              "wins": 1468,
+              "meanEntryHearts": 3.25,
+              "meanEntryLevel": 8.130952380952381
+            },
+            {
+              "floor": 8,
+              "entered": 170,
+              "completed": 158,
+              "deaths": 12,
+              "matches": 1668,
+              "wins": 1530,
+              "meanEntryHearts": 3.541176470588235,
+              "meanEntryLevel": 8.394117647058824
+            },
+            {
+              "floor": 9,
+              "entered": 131,
+              "completed": 124,
+              "deaths": 7,
+              "matches": 1287,
+              "wins": 1189,
+              "meanEntryHearts": 3.5877862595419847,
+              "meanEntryLevel": 8.709923664122137
+            },
+            {
+              "floor": 10,
+              "entered": 154,
+              "completed": 148,
+              "deaths": 6,
+              "matches": 1531,
+              "wins": 1393,
+              "meanEntryHearts": 3.844155844155844,
+              "meanEntryLevel": 9.006493506493506
+            },
+            {
+              "floor": 11,
+              "entered": 126,
+              "completed": 121,
+              "deaths": 5,
+              "matches": 1238,
+              "wins": 1139,
+              "meanEntryHearts": 3.7063492063492065,
+              "meanEntryLevel": 9.722222222222221
+            },
+            {
+              "floor": 12,
+              "entered": 115,
+              "completed": 108,
+              "deaths": 7,
+              "matches": 1130,
+              "wins": 1026,
+              "meanEntryHearts": 3.8434782608695652,
+              "meanEntryLevel": 9.965217391304348
+            },
+            {
+              "floor": 13,
+              "entered": 129,
+              "completed": 127,
+              "deaths": 2,
+              "matches": 1285,
+              "wins": 1163,
+              "meanEntryHearts": 3.9612403100775193,
+              "meanEntryLevel": 10.178294573643411
+            },
+            {
+              "floor": 14,
+              "entered": 116,
+              "completed": 111,
+              "deaths": 5,
+              "matches": 1145,
+              "wins": 1042,
+              "meanEntryHearts": 4.051724137931035,
+              "meanEntryLevel": 10.405172413793103
+            },
+            {
+              "floor": 15,
+              "entered": 369,
+              "completed": 364,
+              "deaths": 5,
+              "matches": 3677,
+              "wins": 3422,
+              "meanEntryHearts": 4.368563685636857,
+              "meanEntryLevel": 10.799457994579946
+            }
+          ]
+        },
+        "4": {
+          "name": "Paladin",
+          "n": 1000,
+          "retired": 245,
+          "retirementRate": 0.245,
+          "retirementCI95": [
+            0.21935239609499688,
+            0.2725992507326362
+          ],
+          "dead": 755,
+          "meanFloor": 5.952,
+          "medianFloor": 2,
+          "reached6": 370,
+          "reached11": 295,
+          "reached15": 257,
+          "firstCycleDeaths": 411,
+          "meanFights": 28.501,
+          "medianFights": 17,
+          "p10Fights": 6,
+          "p90Fights": 64,
+          "meanFinalLevel": 7.457,
+          "meanRetiredFights": 61.30612244897959,
+          "meanRetiredLevel": 11.404081632653062,
+          "matches": 28501,
+          "wins": 22466,
+          "losses": 6032,
+          "draws": 3,
+          "winRate": 0.7882530437528508,
+          "ghostFights": 5447,
+          "opponentLevelDeltas": {
+            "lower": 15979,
+            "equal": 11441,
+            "higher": 1081
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 589,
+              "deaths": 411,
+              "matches": 8984,
+              "wins": 5349,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 179,
+              "completed": 79,
+              "deaths": 100,
+              "matches": 1402,
+              "wins": 1158,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.195530726256983
+            },
+            {
+              "floor": 3,
+              "entered": 222,
+              "completed": 162,
+              "deaths": 60,
+              "matches": 2025,
+              "wins": 1713,
+              "meanEntryHearts": 2.8018018018018016,
+              "meanEntryLevel": 5.6441441441441444
+            },
+            {
+              "floor": 4,
+              "entered": 218,
+              "completed": 183,
+              "deaths": 35,
+              "matches": 2079,
+              "wins": 1808,
+              "meanEntryHearts": 3.3073394495412844,
+              "meanEntryLevel": 6.293577981651376
+            },
+            {
+              "floor": 5,
+              "entered": 175,
+              "completed": 151,
+              "deaths": 24,
+              "matches": 1682,
+              "wins": 1446,
+              "meanEntryHearts": 3.68,
+              "meanEntryLevel": 6.76
+            },
+            {
+              "floor": 6,
+              "entered": 165,
+              "completed": 146,
+              "deaths": 19,
+              "matches": 1585,
+              "wins": 1411,
+              "meanEntryHearts": 3.418181818181818,
+              "meanEntryLevel": 7.3090909090909095
+            },
+            {
+              "floor": 7,
+              "entered": 121,
+              "completed": 105,
+              "deaths": 16,
+              "matches": 1172,
+              "wins": 1052,
+              "meanEntryHearts": 3.206611570247934,
+              "meanEntryLevel": 7.884297520661157
+            },
+            {
+              "floor": 8,
+              "entered": 128,
+              "completed": 107,
+              "deaths": 21,
+              "matches": 1222,
+              "wins": 1070,
+              "meanEntryHearts": 3.65625,
+              "meanEntryLevel": 8.1640625
+            },
+            {
+              "floor": 9,
+              "entered": 109,
+              "completed": 98,
+              "deaths": 11,
+              "matches": 1047,
+              "wins": 940,
+              "meanEntryHearts": 3.6788990825688073,
+              "meanEntryLevel": 8.53211009174312
+            },
+            {
+              "floor": 10,
+              "entered": 115,
+              "completed": 107,
+              "deaths": 8,
+              "matches": 1127,
+              "wins": 997,
+              "meanEntryHearts": 4.017391304347826,
+              "meanEntryLevel": 8.652173913043478
+            },
+            {
+              "floor": 11,
+              "entered": 104,
+              "completed": 95,
+              "deaths": 9,
+              "matches": 1005,
+              "wins": 911,
+              "meanEntryHearts": 3.8173076923076925,
+              "meanEntryLevel": 9.153846153846153
+            },
+            {
+              "floor": 12,
+              "entered": 79,
+              "completed": 67,
+              "deaths": 12,
+              "matches": 759,
+              "wins": 665,
+              "meanEntryHearts": 3.6835443037974684,
+              "meanEntryLevel": 9.822784810126583
+            },
+            {
+              "floor": 13,
+              "entered": 98,
+              "completed": 90,
+              "deaths": 8,
+              "matches": 969,
+              "wins": 848,
+              "meanEntryHearts": 4.040816326530612,
+              "meanEntryLevel": 9.857142857142858
+            },
+            {
+              "floor": 14,
+              "entered": 93,
+              "completed": 84,
+              "deaths": 9,
+              "matches": 897,
+              "wins": 808,
+              "meanEntryHearts": 3.989247311827957,
+              "meanEntryLevel": 10.204301075268818
+            },
+            {
+              "floor": 15,
+              "entered": 257,
+              "completed": 245,
+              "deaths": 12,
+              "matches": 2546,
+              "wins": 2290,
+              "meanEntryHearts": 4.42023346303502,
+              "meanEntryLevel": 10.560311284046692
+            }
+          ]
+        },
+        "6": {
+          "name": "Ninja",
+          "n": 1000,
+          "retired": 113,
+          "retirementRate": 0.113,
+          "retirementCI95": [
+            0.09484035831643511,
+            0.1341215527513844
+          ],
+          "dead": 887,
+          "meanFloor": 4.05,
+          "medianFloor": 1,
+          "reached6": 223,
+          "reached11": 158,
+          "reached15": 125,
+          "firstCycleDeaths": 514,
+          "meanFights": 22.522,
+          "medianFights": 10,
+          "p10Fights": 6,
+          "p90Fights": 60,
+          "meanFinalLevel": 6.705,
+          "meanRetiredFights": 67.2566371681416,
+          "meanRetiredLevel": 11.787610619469026,
+          "matches": 22522,
+          "wins": 16397,
+          "losses": 6121,
+          "draws": 4,
+          "winRate": 0.7280436906136223,
+          "ghostFights": 3986,
+          "opponentLevelDeltas": {
+            "lower": 11590,
+            "equal": 9874,
+            "higher": 1058
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 486,
+              "deaths": 514,
+              "matches": 8921,
+              "wins": 4894,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 199,
+              "completed": 75,
+              "deaths": 124,
+              "matches": 1409,
+              "wins": 1111,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.155778894472362
+            },
+            {
+              "floor": 3,
+              "entered": 198,
+              "completed": 128,
+              "deaths": 70,
+              "matches": 1746,
+              "wins": 1432,
+              "meanEntryHearts": 2.7474747474747474,
+              "meanEntryLevel": 5.732323232323233
+            },
+            {
+              "floor": 4,
+              "entered": 166,
+              "completed": 130,
+              "deaths": 36,
+              "matches": 1542,
+              "wins": 1282,
+              "meanEntryHearts": 3.210843373493976,
+              "meanEntryLevel": 6.391566265060241
+            },
+            {
+              "floor": 5,
+              "entered": 128,
+              "completed": 95,
+              "deaths": 33,
+              "matches": 1166,
+              "wins": 978,
+              "meanEntryHearts": 3.2421875,
+              "meanEntryLevel": 6.9921875
+            },
+            {
+              "floor": 6,
+              "entered": 115,
+              "completed": 93,
+              "deaths": 22,
+              "matches": 1093,
+              "wins": 926,
+              "meanEntryHearts": 3.226086956521739,
+              "meanEntryLevel": 7.452173913043478
+            },
+            {
+              "floor": 7,
+              "entered": 81,
+              "completed": 70,
+              "deaths": 11,
+              "matches": 781,
+              "wins": 694,
+              "meanEntryHearts": 2.9876543209876543,
+              "meanEntryLevel": 8.160493827160494
+            },
+            {
+              "floor": 8,
+              "entered": 94,
+              "completed": 83,
+              "deaths": 11,
+              "matches": 910,
+              "wins": 788,
+              "meanEntryHearts": 3.3404255319148937,
+              "meanEntryLevel": 8.46808510638298
+            },
+            {
+              "floor": 9,
+              "entered": 68,
+              "completed": 54,
+              "deaths": 14,
+              "matches": 624,
+              "wins": 528,
+              "meanEntryHearts": 3.2058823529411766,
+              "meanEntryLevel": 8.75
+            },
+            {
+              "floor": 10,
+              "entered": 84,
+              "completed": 77,
+              "deaths": 7,
+              "matches": 820,
+              "wins": 718,
+              "meanEntryHearts": 3.4761904761904763,
+              "meanEntryLevel": 9.285714285714286
+            },
+            {
+              "floor": 11,
+              "entered": 66,
+              "completed": 56,
+              "deaths": 10,
+              "matches": 623,
+              "wins": 536,
+              "meanEntryHearts": 3.3181818181818183,
+              "meanEntryLevel": 9.757575757575758
+            },
+            {
+              "floor": 12,
+              "entered": 66,
+              "completed": 53,
+              "deaths": 13,
+              "matches": 632,
+              "wins": 542,
+              "meanEntryHearts": 3.3181818181818183,
+              "meanEntryLevel": 10.227272727272727
+            },
+            {
+              "floor": 13,
+              "entered": 46,
+              "completed": 41,
+              "deaths": 5,
+              "matches": 448,
+              "wins": 399,
+              "meanEntryHearts": 3.4782608695652173,
+              "meanEntryLevel": 10.326086956521738
+            },
+            {
+              "floor": 14,
+              "entered": 62,
+              "completed": 57,
+              "deaths": 5,
+              "matches": 594,
+              "wins": 516,
+              "meanEntryHearts": 3.564516129032258,
+              "meanEntryLevel": 10.629032258064516
+            },
+            {
+              "floor": 15,
+              "entered": 125,
+              "completed": 113,
+              "deaths": 12,
+              "matches": 1213,
+              "wins": 1053,
+              "meanEntryHearts": 3.952,
+              "meanEntryLevel": 11.016
+            }
+          ]
+        },
+        "7": {
+          "name": "Moine",
+          "n": 1000,
+          "retired": 196,
+          "retirementRate": 0.196,
+          "retirementCI95": [
+            0.17257900508841048,
+            0.22174766407080695
+          ],
+          "dead": 804,
+          "meanFloor": 5.356,
+          "medianFloor": 2,
+          "reached6": 326,
+          "reached11": 241,
+          "reached15": 205,
+          "firstCycleDeaths": 422,
+          "meanFights": 26.504,
+          "medianFights": 16,
+          "p10Fights": 6,
+          "p90Fights": 60,
+          "meanFinalLevel": 7.239,
+          "meanRetiredFights": 60.91836734693877,
+          "meanRetiredLevel": 11.39795918367347,
+          "matches": 26504,
+          "wins": 20360,
+          "losses": 6141,
+          "draws": 3,
+          "winRate": 0.7681859341986115,
+          "ghostFights": 4937,
+          "opponentLevelDeltas": {
+            "lower": 14430,
+            "equal": 11047,
+            "higher": 1027
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 578,
+              "deaths": 422,
+              "matches": 9063,
+              "wins": 5364,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 194,
+              "completed": 87,
+              "deaths": 107,
+              "matches": 1480,
+              "wins": 1223,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.164948453608248
+            },
+            {
+              "floor": 3,
+              "entered": 203,
+              "completed": 137,
+              "deaths": 66,
+              "matches": 1827,
+              "wins": 1521,
+              "meanEntryHearts": 2.7881773399014778,
+              "meanEntryLevel": 5.679802955665025
+            },
+            {
+              "floor": 4,
+              "entered": 227,
+              "completed": 183,
+              "deaths": 44,
+              "matches": 2156,
+              "wins": 1831,
+              "meanEntryHearts": 3.356828193832599,
+              "meanEntryLevel": 6.273127753303965
+            },
+            {
+              "floor": 5,
+              "entered": 155,
+              "completed": 120,
+              "deaths": 35,
+              "matches": 1436,
+              "wins": 1209,
+              "meanEntryHearts": 3.632258064516129,
+              "meanEntryLevel": 6.787096774193548
+            },
+            {
+              "floor": 6,
+              "entered": 146,
+              "completed": 125,
+              "deaths": 21,
+              "matches": 1393,
+              "wins": 1217,
+              "meanEntryHearts": 3.4452054794520546,
+              "meanEntryLevel": 7.3561643835616435
+            },
+            {
+              "floor": 7,
+              "entered": 111,
+              "completed": 90,
+              "deaths": 21,
+              "matches": 1041,
+              "wins": 887,
+              "meanEntryHearts": 3.2432432432432434,
+              "meanEntryLevel": 8.018018018018019
+            },
+            {
+              "floor": 8,
+              "entered": 112,
+              "completed": 95,
+              "deaths": 17,
+              "matches": 1068,
+              "wins": 922,
+              "meanEntryHearts": 3.5357142857142856,
+              "meanEntryLevel": 8.116071428571429
+            },
+            {
+              "floor": 9,
+              "entered": 109,
+              "completed": 96,
+              "deaths": 13,
+              "matches": 1063,
+              "wins": 933,
+              "meanEntryHearts": 3.596330275229358,
+              "meanEntryLevel": 8.65137614678899
+            },
+            {
+              "floor": 10,
+              "entered": 101,
+              "completed": 88,
+              "deaths": 13,
+              "matches": 971,
+              "wins": 859,
+              "meanEntryHearts": 3.871287128712871,
+              "meanEntryLevel": 8.653465346534654
+            },
+            {
+              "floor": 11,
+              "entered": 87,
+              "completed": 73,
+              "deaths": 14,
+              "matches": 836,
+              "wins": 731,
+              "meanEntryHearts": 3.7241379310344827,
+              "meanEntryLevel": 9.25287356321839
+            },
+            {
+              "floor": 12,
+              "entered": 67,
+              "completed": 59,
+              "deaths": 8,
+              "matches": 656,
+              "wins": 592,
+              "meanEntryHearts": 3.6865671641791047,
+              "meanEntryLevel": 9.477611940298507
+            },
+            {
+              "floor": 13,
+              "entered": 78,
+              "completed": 72,
+              "deaths": 6,
+              "matches": 763,
+              "wins": 662,
+              "meanEntryHearts": 4.012820512820513,
+              "meanEntryLevel": 9.794871794871796
+            },
+            {
+              "floor": 14,
+              "entered": 75,
+              "completed": 67,
+              "deaths": 8,
+              "matches": 729,
+              "wins": 629,
+              "meanEntryHearts": 3.8,
+              "meanEntryLevel": 10.133333333333333
+            },
+            {
+              "floor": 15,
+              "entered": 205,
+              "completed": 196,
+              "deaths": 9,
+              "matches": 2022,
+              "wins": 1780,
+              "meanEntryHearts": 4.307317073170732,
+              "meanEntryLevel": 10.541463414634146
+            }
+          ]
+        },
+        "8": {
+          "name": "Ingénieur",
+          "n": 1000,
+          "retired": 122,
+          "retirementRate": 0.122,
+          "retirementCI95": [
+            0.10314874471333033,
+            0.14374428470174921
+          ],
+          "dead": 878,
+          "meanFloor": 4.335,
+          "medianFloor": 2,
+          "reached6": 250,
+          "reached11": 174,
+          "reached15": 134,
+          "firstCycleDeaths": 498,
+          "meanFights": 23.351,
+          "medianFights": 12,
+          "p10Fights": 6,
+          "p90Fights": 60,
+          "meanFinalLevel": 6.805,
+          "meanRetiredFights": 63.278688524590166,
+          "meanRetiredLevel": 11.48360655737705,
+          "matches": 23351,
+          "wins": 17231,
+          "losses": 6118,
+          "draws": 2,
+          "winRate": 0.7379127232238448,
+          "ghostFights": 4187,
+          "opponentLevelDeltas": {
+            "lower": 12321,
+            "equal": 10028,
+            "higher": 1002
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 502,
+              "deaths": 498,
+              "matches": 8984,
+              "wins": 5032,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 177,
+              "completed": 74,
+              "deaths": 103,
+              "matches": 1346,
+              "wins": 1102,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.141242937853107
+            },
+            {
+              "floor": 3,
+              "entered": 205,
+              "completed": 141,
+              "deaths": 64,
+              "matches": 1840,
+              "wins": 1513,
+              "meanEntryHearts": 2.8146341463414632,
+              "meanEntryLevel": 5.570731707317073
+            },
+            {
+              "floor": 4,
+              "entered": 201,
+              "completed": 151,
+              "deaths": 50,
+              "matches": 1838,
+              "wins": 1522,
+              "meanEntryHearts": 3.2238805970149254,
+              "meanEntryLevel": 6.323383084577115
+            },
+            {
+              "floor": 5,
+              "entered": 147,
+              "completed": 112,
+              "deaths": 35,
+              "matches": 1376,
+              "wins": 1152,
+              "meanEntryHearts": 3.197278911564626,
+              "meanEntryLevel": 7.040816326530612
+            },
+            {
+              "floor": 6,
+              "entered": 114,
+              "completed": 92,
+              "deaths": 22,
+              "matches": 1073,
+              "wins": 924,
+              "meanEntryHearts": 3.1491228070175437,
+              "meanEntryLevel": 7.614035087719298
+            },
+            {
+              "floor": 7,
+              "entered": 98,
+              "completed": 75,
+              "deaths": 23,
+              "matches": 910,
+              "wins": 780,
+              "meanEntryHearts": 3.1020408163265305,
+              "meanEntryLevel": 8.040816326530612
+            },
+            {
+              "floor": 8,
+              "entered": 94,
+              "completed": 82,
+              "deaths": 12,
+              "matches": 907,
+              "wins": 787,
+              "meanEntryHearts": 3.5851063829787235,
+              "meanEntryLevel": 8.159574468085106
+            },
+            {
+              "floor": 9,
+              "entered": 82,
+              "completed": 72,
+              "deaths": 10,
+              "matches": 791,
+              "wins": 707,
+              "meanEntryHearts": 3.3902439024390243,
+              "meanEntryLevel": 8.560975609756097
+            },
+            {
+              "floor": 10,
+              "entered": 69,
+              "completed": 60,
+              "deaths": 9,
+              "matches": 671,
+              "wins": 585,
+              "meanEntryHearts": 3.6231884057971016,
+              "meanEntryLevel": 9.217391304347826
+            },
+            {
+              "floor": 11,
+              "entered": 70,
+              "completed": 55,
+              "deaths": 15,
+              "matches": 650,
+              "wins": 557,
+              "meanEntryHearts": 3.342857142857143,
+              "meanEntryLevel": 9.771428571428572
+            },
+            {
+              "floor": 12,
+              "entered": 62,
+              "completed": 51,
+              "deaths": 11,
+              "matches": 594,
+              "wins": 508,
+              "meanEntryHearts": 3.5,
+              "meanEntryLevel": 9.903225806451612
+            },
+            {
+              "floor": 13,
+              "entered": 57,
+              "completed": 49,
+              "deaths": 8,
+              "matches": 551,
+              "wins": 489,
+              "meanEntryHearts": 3.719298245614035,
+              "meanEntryLevel": 10.087719298245615
+            },
+            {
+              "floor": 14,
+              "entered": 53,
+              "completed": 47,
+              "deaths": 6,
+              "matches": 514,
+              "wins": 446,
+              "meanEntryHearts": 3.9245283018867925,
+              "meanEntryLevel": 10.09433962264151
+            },
+            {
+              "floor": 15,
+              "entered": 134,
+              "completed": 122,
+              "deaths": 12,
+              "matches": 1306,
+              "wins": 1127,
+              "meanEntryHearts": 4.2164179104477615,
+              "meanEntryLevel": 10.671641791044776
+            }
+          ]
+        },
+        "9": {
+          "name": "Berserker",
+          "n": 1000,
+          "retired": 166,
+          "retirementRate": 0.166,
+          "retirementCI95": [
+            0.14422547183061207,
+            0.19033080283773868
+          ],
+          "dead": 834,
+          "meanFloor": 4.807,
+          "medianFloor": 2,
+          "reached6": 282,
+          "reached11": 206,
+          "reached15": 174,
+          "firstCycleDeaths": 468,
+          "meanFights": 25.406,
+          "medianFights": 15,
+          "p10Fights": 6,
+          "p90Fights": 65,
+          "meanFinalLevel": 7.042,
+          "meanRetiredFights": 65.42168674698796,
+          "meanRetiredLevel": 11.63855421686747,
+          "matches": 25406,
+          "wins": 19204,
+          "losses": 6190,
+          "draws": 12,
+          "winRate": 0.755884436747225,
+          "ghostFights": 4530,
+          "opponentLevelDeltas": {
+            "lower": 13702,
+            "equal": 10584,
+            "higher": 1120
+          },
+          "floors": [
+            {
+              "floor": 1,
+              "entered": 1000,
+              "completed": 532,
+              "deaths": 468,
+              "matches": 8893,
+              "wins": 4988,
+              "meanEntryHearts": 5,
+              "meanEntryLevel": 1
+            },
+            {
+              "floor": 2,
+              "entered": 193,
+              "completed": 90,
+              "deaths": 103,
+              "matches": 1557,
+              "wins": 1296,
+              "meanEntryHearts": 2,
+              "meanEntryLevel": 5.170984455958549
+            },
+            {
+              "floor": 3,
+              "entered": 233,
+              "completed": 156,
+              "deaths": 77,
+              "matches": 2093,
+              "wins": 1736,
+              "meanEntryHearts": 2.763948497854077,
+              "meanEntryLevel": 5.733905579399142
+            },
+            {
+              "floor": 4,
+              "entered": 191,
+              "completed": 153,
+              "deaths": 38,
+              "matches": 1795,
+              "wins": 1502,
+              "meanEntryHearts": 3.2408376963350785,
+              "meanEntryLevel": 6.335078534031414
+            },
+            {
+              "floor": 5,
+              "entered": 167,
+              "completed": 135,
+              "deaths": 32,
+              "matches": 1580,
+              "wins": 1352,
+              "meanEntryHearts": 3.2634730538922154,
+              "meanEntryLevel": 7.089820359281437
+            },
+            {
+              "floor": 6,
+              "entered": 127,
+              "completed": 107,
+              "deaths": 20,
+              "matches": 1207,
+              "wins": 1056,
+              "meanEntryHearts": 3.1496062992125986,
+              "meanEntryLevel": 7.700787401574803
+            },
+            {
+              "floor": 7,
+              "entered": 116,
+              "completed": 103,
+              "deaths": 13,
+              "matches": 1114,
+              "wins": 986,
+              "meanEntryHearts": 3.1120689655172415,
+              "meanEntryLevel": 8.137931034482758
+            },
+            {
+              "floor": 8,
+              "entered": 102,
+              "completed": 87,
+              "deaths": 15,
+              "matches": 974,
+              "wins": 857,
+              "meanEntryHearts": 3.323529411764706,
+              "meanEntryLevel": 8.617647058823529
+            },
+            {
+              "floor": 9,
+              "entered": 98,
+              "completed": 78,
+              "deaths": 20,
+              "matches": 903,
+              "wins": 773,
+              "meanEntryHearts": 3.5510204081632653,
+              "meanEntryLevel": 8.816326530612244
+            },
+            {
+              "floor": 10,
+              "entered": 93,
+              "completed": 85,
+              "deaths": 8,
+              "matches": 920,
+              "wins": 823,
+              "meanEntryHearts": 3.6451612903225805,
+              "meanEntryLevel": 9.129032258064516
+            },
+            {
+              "floor": 11,
+              "entered": 70,
+              "completed": 60,
+              "deaths": 10,
+              "matches": 671,
+              "wins": 582,
+              "meanEntryHearts": 3.5142857142857142,
+              "meanEntryLevel": 9.442857142857143
+            },
+            {
+              "floor": 12,
+              "entered": 74,
+              "completed": 63,
+              "deaths": 11,
+              "matches": 705,
+              "wins": 616,
+              "meanEntryHearts": 3.5405405405405403,
+              "meanEntryLevel": 10.108108108108109
+            },
+            {
+              "floor": 13,
+              "entered": 67,
+              "completed": 60,
+              "deaths": 7,
+              "matches": 641,
+              "wins": 565,
+              "meanEntryHearts": 3.8059701492537314,
+              "meanEntryLevel": 10.119402985074627
+            },
+            {
+              "floor": 14,
+              "entered": 63,
+              "completed": 59,
+              "deaths": 4,
+              "matches": 623,
+              "wins": 558,
+              "meanEntryHearts": 4.015873015873016,
+              "meanEntryLevel": 10.46031746031746
+            },
+            {
+              "floor": 15,
+              "entered": 174,
+              "completed": 166,
+              "deaths": 8,
+              "matches": 1730,
+              "wins": 1514,
+              "meanEntryHearts": 4.247126436781609,
+              "meanEntryLevel": 10.804597701149426
+            }
+          ]
+        }
+      },
+      "overall": {
+        "n": 9000,
+        "retired": 1800,
+        "retirementRate": 0.2,
+        "retirementCI95": [
+          0.19186483195518972,
+          0.20839115603648672
+        ],
+        "dead": 7200,
+        "meanFloor": 5.277666666666667,
+        "medianFloor": 2,
+        "reached6": 2850,
+        "reached11": 2165,
+        "reached15": 1887,
+        "firstCycleDeaths": 3919,
+        "meanFights": 26.76188888888889,
+        "medianFights": 16,
+        "p10Fights": 6,
+        "p90Fights": 63,
+        "meanFinalLevel": 7.2363333333333335,
+        "meanRetiredFights": 63.67777777777778,
+        "meanRetiredLevel": 11.563333333333333,
+        "matches": 240857,
+        "wins": 185842,
+        "losses": 54960,
+        "draws": 55,
+        "winRate": 0.771586460015694,
+        "ghostFights": 44585,
+        "opponentLevelDeltas": {
+          "lower": 132001,
+          "equal": 99288,
+          "higher": 9568
+        },
+        "floors": [
+          {
+            "floor": 1,
+            "entered": 9000,
+            "completed": 5081,
+            "deaths": 3919,
+            "matches": 81349,
+            "wins": 47334,
+            "meanEntryHearts": 5,
+            "meanEntryLevel": 1
+          },
+          {
+            "floor": 2,
+            "entered": 1726,
+            "completed": 766,
+            "deaths": 960,
+            "matches": 13200,
+            "wins": 10837,
+            "meanEntryHearts": 2,
+            "meanEntryLevel": 5.174391657010429
+          },
+          {
+            "floor": 3,
+            "entered": 2053,
+            "completed": 1444,
+            "deaths": 609,
+            "matches": 18633,
+            "wins": 15582,
+            "meanEntryHearts": 2.784705309303458,
+            "meanEntryLevel": 5.676083779834388
+          },
+          {
+            "floor": 4,
+            "entered": 1928,
+            "completed": 1539,
+            "deaths": 389,
+            "matches": 18077,
+            "wins": 15292,
+            "meanEntryHearts": 3.263485477178423,
+            "meanEntryLevel": 6.329356846473029
+          },
+          {
+            "floor": 5,
+            "entered": 1513,
+            "completed": 1240,
+            "deaths": 273,
+            "matches": 14300,
+            "wins": 12271,
+            "meanEntryHearts": 3.422339722405816,
+            "meanEntryLevel": 6.953734302709848
+          },
+          {
+            "floor": 6,
+            "entered": 1268,
+            "completed": 1063,
+            "deaths": 205,
+            "matches": 12046,
+            "wins": 10514,
+            "meanEntryHearts": 3.283123028391167,
+            "meanEntryLevel": 7.506309148264984
+          },
+          {
+            "floor": 7,
+            "entered": 1029,
+            "completed": 878,
+            "deaths": 151,
+            "matches": 9803,
+            "wins": 8656,
+            "meanEntryHearts": 3.17687074829932,
+            "meanEntryLevel": 8.068999028182702
+          },
+          {
+            "floor": 8,
+            "entered": 1019,
+            "completed": 886,
+            "deaths": 133,
+            "matches": 9817,
+            "wins": 8659,
+            "meanEntryHearts": 3.524043179587831,
+            "meanEntryLevel": 8.300294406280667
+          },
+          {
+            "floor": 9,
+            "entered": 907,
+            "completed": 791,
+            "deaths": 116,
+            "matches": 8693,
+            "wins": 7689,
+            "meanEntryHearts": 3.529217199558986,
+            "meanEntryLevel": 8.676957001102537
+          },
+          {
+            "floor": 10,
+            "entered": 907,
+            "completed": 827,
+            "deaths": 80,
+            "matches": 8848,
+            "wins": 7900,
+            "meanEntryHearts": 3.7794928335170894,
+            "meanEntryLevel": 8.93715545755237
+          },
+          {
+            "floor": 11,
+            "entered": 752,
+            "completed": 669,
+            "deaths": 83,
+            "matches": 7243,
+            "wins": 6420,
+            "meanEntryHearts": 3.646276595744681,
+            "meanEntryLevel": 9.49468085106383
+          },
+          {
+            "floor": 12,
+            "entered": 692,
+            "completed": 605,
+            "deaths": 87,
+            "matches": 6666,
+            "wins": 5904,
+            "meanEntryHearts": 3.628612716763006,
+            "meanEntryLevel": 9.920520231213873
+          },
+          {
+            "floor": 13,
+            "entered": 713,
+            "completed": 656,
+            "deaths": 57,
+            "matches": 6996,
+            "wins": 6208,
+            "meanEntryHearts": 3.920056100981767,
+            "meanEntryLevel": 10.02805049088359
+          },
+          {
+            "floor": 14,
+            "entered": 669,
+            "completed": 618,
+            "deaths": 51,
+            "matches": 6532,
+            "wins": 5819,
+            "meanEntryHearts": 3.890881913303438,
+            "meanEntryLevel": 10.33931240657698
+          },
+          {
+            "floor": 15,
+            "entered": 1887,
+            "completed": 1800,
+            "deaths": 87,
+            "matches": 18654,
+            "wins": 16757,
+            "meanEntryHearts": 4.310545839957605,
+            "meanEntryLevel": 10.723370429252782
+          }
+        ]
+      }
+    }
+  },
+  "method": {
+    "energy": "Wait abstracted; 20 consumed per fight",
+    "opponents": "Production 9-member pool, 3 offers, maximum 2 meetings; copies fight every round",
+    "rewards": "Main offensive stat; first offered item; equip new reward then loot, like production bot copies",
+    "rerolls": "None, including the free opponent reroll",
+    "retirement": "Survive ten matches on floor 15; ten wins not required",
+    "seed": "LCG32 per career: baseSeed + class*1000003 + index*7919; same initial seed across policies; UUID/time do not affect outcomes"
+  },
+  "validation": {
+    "completed": true,
+    "invariants": "Energy, legal opponents, maximum meetings, hearts before climb, recovery, floor cap, 150-match termination bound, terminal state, totals"
+  },
+  "totalCareers": 18000,
+  "totalPlayerMatches": 413383,
+  "totalPoolMatches": 2066915
+}
