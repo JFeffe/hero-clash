@@ -1,6 +1,6 @@
 import {equipmentAssets,newArmorRow,drawNewWeapon,drawHeldObject,WEAPON_SPRITES} from './equipment-art.js';
-import {appearanceOf} from './appearance.js?v=0.29.1';
-import {warriorEquipment} from './warrior-gear.js?v=0.29.1';
+import {appearanceOf} from './appearance.js?v=0.29.2';
+import {warriorEquipment} from './warrior-gear.js?v=0.29.2';
 
 // Source sockets are measured on the generated atlases. Composites are drawn
 // onto a 2:1 pixel grid once, then shared by portraits and combat.

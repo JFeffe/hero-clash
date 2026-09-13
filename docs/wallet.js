@@ -1,5 +1,5 @@
-import {energy,hero} from './engine.js?v=0.29.1';
-import {ensureArena,newArena} from './hero-state.js?v=0.29.1';
+import {energy,hero} from './engine.js?v=0.29.2';
+import {ensureArena,newArena} from './hero-state.js?v=0.29.2';
 export const SHOP_PACKS=[{kind:'energy',amount:10},{kind:'energy',amount:20},{kind:'energy',amount:50},{kind:'energy',amount:100},{kind:'reroll',amount:1},{kind:'reroll',amount:3}];
 export function validWallet(w){return w&&Number.isFinite(w.energy)&&w.energy>=0&&w.energy<=Number.MAX_SAFE_INTEGER&&Number.isSafeInteger(w.reroll)&&w.reroll>=0;}
 export function ensureWallet(g){if(!validWallet(g.wallet))g.wallet={energy:0,reroll:0};return g.wallet;}

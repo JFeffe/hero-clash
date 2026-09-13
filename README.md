@@ -1,6 +1,15 @@
-# Hero Clash — Le Bastion des Serments · 0.29.1
+# Hero Clash — Le Bastion des Serments · 0.29.2
 
 **[Jouer à Hero Clash](https://jfeffe.github.io/hero-clash/)** · [Aperçu téléphone](https://jfeffe.github.io/hero-clash/mobile-preview.html)
+
+## Version 0.29.2 — Ajustements des compétences
+
+- Moine : soin de 5 % des premiers 250 PV maximaux, puis 2,5 % des PV au-delà.
+- Trooper : sa compétence ignore 15 % de défense au lieu de 25 %.
+- Mage et Baguette : brûlure la plus forte + 25 % de la plus faible lors de la compétence, sans cumul croissant.
+- Chien : réduction physique conservée ; réduction magique supplémentaire à moitié puissance. Toujours disponible pour le Mage.
+- Descriptions françaises et anglaises actualisées. Sauvegardes et progression conservées.
+- Validation : 23 tests existants et 3 nouvelles régressions de soin, brûlure et dégâts magiques du Chien.
 
 ## Version 0.29.1 — Recrutement et bilan d’étage
 

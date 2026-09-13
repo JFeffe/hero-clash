@@ -1,5 +1,5 @@
-import {D,canEquip,hero,pick,clamp} from './engine.js?v=0.29.1';
-import {ensureCareer,poolChoices} from './career.js?v=0.29.1';
+import {D,canEquip,hero,pick,clamp} from './engine.js?v=0.29.2';
+import {ensureCareer,poolChoices} from './career.js?v=0.29.2';
 export function newArena(h){return {rerollUsed:false,opponents:poolChoices(h)};}
 export function ensureArena(h){ensureCareer(h);if(!h.arena)h.arena=newArena(h);return h.arena;}
 export function rerollArena(h){const arena=ensureArena(h);if(arena.rerollUsed)return false;h.arena=newArena(h);h.arena.rerollUsed=true;return true;}

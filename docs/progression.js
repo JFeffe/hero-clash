@@ -1,7 +1,7 @@
-import {ensureWallet} from './wallet.js?v=0.29.1';
-import {ensureCareer,resolvePool,advanceCareer,markBot} from './career.js?v=0.29.1';
-import {acquireItem,resetArenaAfterBattle} from './hero-state.js?v=0.29.1';
-import {D,randomItem,applyResult,battleRewards} from './engine.js?v=0.29.1';
+import {ensureWallet} from './wallet.js?v=0.29.2';
+import {ensureCareer,resolvePool,advanceCareer,markBot} from './career.js?v=0.29.2';
+import {acquireItem,resetArenaAfterBattle} from './hero-state.js?v=0.29.2';
+import {D,randomItem,applyResult,battleRewards} from './engine.js?v=0.29.2';
 export const rarity=it=>Number.isInteger(it.rarity)?Math.max(0,Math.min(2,it.rarity)):0;
 export const legacyPoints=h=>10+3*Math.max(0,h.level-1)+5*h.wins+h.draws;
 // The ledger is reconstructed from career records, never incremented during viewing/replay.

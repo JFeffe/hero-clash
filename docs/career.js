@@ -1,4 +1,4 @@
-import {D,randomItem,hero,clamp,simulate,applyResult,battleRewards} from './engine.js?v=0.29.1';
+import {D,randomItem,hero,clamp,simulate,applyResult,battleRewards} from './engine.js?v=0.29.2';
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 // A complete double round-robin provides a feasible continuation after every choice.
 export function markBot(h){h.isBot=true;if(!h.name.startsWith('[BOT] '))h.name='[BOT] '+h.name;return h;}

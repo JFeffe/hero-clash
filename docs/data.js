@@ -65,11 +65,11 @@ export const DATA = {
     "Frappe lourde",
     "Double tir",
     "Boule de feu",
-    "Rafale",
+    "Rafale : dégâts ×1,6, ignore 15 % de défense",
     "Rempart",
     "Carte folle",
     "Frappe de l’ombre",
-    "Paume apaisante",
+    "Paume apaisante : dégâts ×1,15 ; soin 5 % jusqu’à 250 PV max, 2,5 % au-delà",
     "Tourelle",
     "Furie",
     "Drain de vie",
@@ -336,7 +336,7 @@ export const DATA = {
       "base": 0.3,
       "scale": 0.01,
       "kind": "dog",
-      "text": "Réduit la résistance physique adverse"
+      "text": "Réduit les défenses physique et magique adverses"
     },
     {
       "name": "Chat ninja",
@@ -416,7 +416,7 @@ export const DATA = {
       "kind": "ignite",
       "base": 3,
       "scale": 0.01,
-      "text": "Brûlure pendant 2 tours ; rafraîchie sans cumul"
+      "text": "Brûlure 2 tours ; synergie avec la compétence du Mage"
     },
     {
       "name": "Orbe de foudre",
@@ -716,11 +716,9 @@ export const DATA = {
     "Frappe lourde": "Heavy strike",
     "Double tir": "Double shot",
     "Boule de feu": "Fireball",
-    "Rafale": "Burst fire",
     "Rempart": "Bulwark",
     "Carte folle": "Wild card",
     "Frappe de l’ombre": "Shadow strike",
-    "Paume apaisante": "Soothing palm",
     "Tourelle": "Turret",
     "Furie": "Fury",
     "Drain de vie": "Life drain",
@@ -812,7 +810,11 @@ export const DATA = {
     "Résistance physique": "Physical resistance",
     "PV maximum": "Maximum HP",
     "Résistance magique": "Magic resistance",
-    "Bouclier initial en proportion des PV maximum": "Initial shield as a share of maximum HP"
+    "Bouclier initial en proportion des PV maximum": "Initial shield as a share of maximum HP",
+    "Rafale : dégâts ×1,6, ignore 15 % de défense": "Burst fire: ×1.6 damage, ignores 15% defense",
+    "Paume apaisante : dégâts ×1,15 ; soin 5 % jusqu’à 250 PV max, 2,5 % au-delà": "Soothing palm: ×1.15 damage; heals 5% of max HP up to 250, 2.5% above",
+    "Réduit les défenses physique et magique adverses": "Reduces enemy physical and magic defenses",
+    "Brûlure 2 tours ; synergie avec la compétence du Mage": "Burn for 2 turns; synergy with the Mage skill"
   },
   "ACTIVE_CLASSES": [
     0,
